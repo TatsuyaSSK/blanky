@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "blanky-2fc41": {
+      "hosting": {
+        "blanky": [
+          "blanky-2fc41"
+        ]
+      }
+    }
+  }
+}
