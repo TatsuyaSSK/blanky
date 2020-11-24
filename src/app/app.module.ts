@@ -14,9 +14,11 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
