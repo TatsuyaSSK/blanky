@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule)
   },
   {
+    path: 'privacy',
+    loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule)
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }
