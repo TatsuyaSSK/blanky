@@ -1,0 +1,44 @@
+.footer {
+  position: relative;
+  background: #f4f4f5;
+  padding: 80px;
+  margin-top: 100px;
+}
+
+.footer-link {
+  display: flex;
+}
+.link {
+  padding: 2px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 0;
+}
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+hr {
+  margin: 0px;
+  height: 10px;
+  background-color: #15c399;
+  border: none;
+}
+
+h1 {
+  color: #15c399;
+}
+
+button {
+  margin: 0px 5px;
+}
+
+.registration-button {
+  background: #15c399;
+  color: white;
+}
