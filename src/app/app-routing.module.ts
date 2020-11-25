@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,10 @@ const routes: Routes = [
   {
     path: 'privacy',
     loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule)
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
