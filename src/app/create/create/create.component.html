@@ -9,6 +9,12 @@
         matInput
         autocomplete="off"
       />
+      <mat-error *ngIf="titleControl.hasError('required')"
+        >必須入力です</mat-error
+      >
+      <mat-error *ngIf="titleControl.hasError('maxlength')"
+        >長すぎます</mat-error
+      >
     </mat-form-field>
 
     <mat-form-field class="sentence-input" appearance="outline">
@@ -23,6 +29,12 @@
         [matAutosizeMinRows]="10"
         [matAutosizeMaxRows]="20"
       ></textarea>
+      <mat-error *ngIf="sentenceControl.hasError('required')"
+        >必須入力です</mat-error
+      >
+      <mat-error *ngIf="sentenceControl.hasError('maxlength')"
+        >長すぎます</mat-error
+      >
     </mat-form-field>
 
     <div class="format">
