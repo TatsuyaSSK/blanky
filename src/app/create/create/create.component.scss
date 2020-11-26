@@ -54,3 +54,7 @@
     padding: 0px 20px;
   }
 }
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: #15c399 !important;
+}
