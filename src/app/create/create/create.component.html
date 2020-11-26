@@ -1,8 +1,9 @@
 <div class="container">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <mat-form-field class="title-input" appearance="outline">
       <mat-label>タイトル</mat-label>
       <input
+        (change)="validate()"
         formControlName="title"
         placeholder="タイトルを入力してください（40字以内）"
         type="text"
@@ -20,6 +21,7 @@
     <mat-form-field class="sentence-input" appearance="outline">
       <mat-label>英文</mat-label>
       <textarea
+        (change)="validate()"
         formControlName="sentence"
         placeholder="英文を入力してください（1000字以内）"
         type="text"
@@ -36,35 +38,53 @@
         >長すぎます</mat-error
       >
     </mat-form-field>
-
     <div class="format">
       <p class="label">問題形式</p>
       <div class="checkbox" formGroupName="types">
-        <mat-checkbox class="checkbox__item" formControlName="random"
+        <mat-checkbox
+          class="checkbox__item"
+          formControlName="random"
+          (change)="validate()"
           >ランダムに空白</mat-checkbox
         >
-        <mat-checkbox class="checkbox__item" formControlName="noun"
+        <mat-checkbox
+          class="checkbox__item"
+          formControlName="noun"
+          (change)="validate()"
           >名詞のみ空白</mat-checkbox
         >
-        <mat-checkbox class="checkbox__item" formControlName="verb"
+        <mat-checkbox
+          class="checkbox__item"
+          formControlName="verb"
+          (change)="validate()"
           >動詞のみ空白</mat-checkbox
         >
-        <mat-checkbox class="checkbox__item" formControlName="adjective"
+        <mat-checkbox
+          class="checkbox__item"
+          formControlName="adjective"
+          (change)="validate()"
           >形容詞のみ空白</mat-checkbox
         >
-        <mat-checkbox class="checkbox__item" formControlName="adverb"
+        <mat-checkbox
+          class="checkbox__item"
+          formControlName="adverb"
+          (change)="validate()"
           >副詞のみ空白</mat-checkbox
         >
-        <mat-checkbox class="checkbox__item" formControlName="preposition"
+        <mat-checkbox
+          class="checkbox__item"
+          formControlName="preposition"
+          (change)="validate()"
           >前置詞のみ空白</mat-checkbox
         >
       </div>
     </div>
 
     <div class="submit">
-      <button [disabled]="form.invalid" mat-raised-button class="create-button">
+      <button [disabled]="val" mat-raised-button class="create-button">
         作成する
       </button>
     </div>
   </form>
+  <p>{{ form.status }}</p>
 </div>
