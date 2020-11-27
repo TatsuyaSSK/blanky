@@ -9,6 +9,10 @@ h1 {
   color: #15c399;
 }
 
+h3 {
+  font-size: 32px;
+}
+
 .main_visual_container {
   display: flex;
   padding-top: 20px;
@@ -24,9 +28,16 @@ h1 {
   padding-top: 30px;
 }
 
+.sub_visual {
+  padding: 20px 40px 0px 40px;
+  width: 400px;
+  height: auto;
+}
+
 .login_button {
   background: #15c399;
   color: white;
+  text-align: center;
 }
 
 .center {
@@ -38,77 +49,23 @@ hr {
   width: 90%;
 }
 
-.part_1 {
-  display: flex;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  &__description {
-    display: flex;
-    padding: 0px 20px 0px 100px;
-  }
-}
-
-.part_2 {
-  display: flex;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  &__description {
-    display: flex;
-    padding: 0px 100px 0px 20px;
-    &__description-sentence {
-      padding-left: 20px;
-    }
-  }
-}
-
-.part_3 {
-  display: flex;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  &__description {
-    display: flex;
-    padding: 0px 20px 0px 100px;
-  }
-}
-
 .description {
+  text-align: center;
   &__title {
-    text-align: center;
     padding-top: 20px;
   }
-  &__image {
-    padding-top: 30px;
+  &__part {
+    display: flex;
+    padding: 20px 0px;
   }
 }
 
-h3 {
-  font-size: 32px;
-}
-
-.sentence1 {
-  padding-top: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
-  &__bd {
-    padding-left: 20px;
-    border-left: 5px solid #15c399;
+.sentence {
+  padding: 0px 20px;
+  width: 400px;
+  &--image-right {
+    order: -1;
   }
-}
-
-.sentence2 {
-  padding-top: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
-  &__bd {
-    padding-left: 20px;
-    border-left: 5px solid #15c399;
-  }
-}
-
-.sentence3 {
-  padding-top: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
   &__bd {
     padding-left: 20px;
     border-left: 5px solid #15c399;
