@@ -1,0 +1,73 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+}
+
+h1 {
+  font-size: 32px;
+  color: #15c399;
+}
+
+h3 {
+  font-size: 32px;
+}
+
+.main_visual_container {
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.title_message {
+  padding: 0px 100px 0px 20px;
+  width: 360px;
+}
+
+.main_visual {
+  padding-top: 30px;
+}
+
+.sub_visual {
+  padding: 20px 40px 0px 40px;
+  width: 400px;
+  height: auto;
+}
+
+.login_button {
+  background: #15c399;
+  color: white;
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+  padding-top: 20px;
+}
+
+hr {
+  width: 90%;
+}
+
+.description {
+  text-align: center;
+  &__title {
+    padding-top: 20px;
+  }
+  &__part {
+    display: flex;
+    padding: 20px 0px;
+  }
+}
+
+.sentence {
+  padding: 0px 20px;
+  width: 400px;
+  &--image-right {
+    order: -1;
+  }
+  &__bd {
+    padding-left: 20px;
+    border-left: 5px solid #15c399;
+  }
+}
