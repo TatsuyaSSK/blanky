@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule)
   },
   {
+    path: 'setting',
+    loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule)
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }

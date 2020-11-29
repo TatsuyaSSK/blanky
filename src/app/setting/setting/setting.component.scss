@@ -1,0 +1,107 @@
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 960px;
+  display: flex;
+}
+
+.my-profile {
+  border: 1px solid;
+  border-color: #e0e0e0;
+  border-radius: 5px;
+  padding-top: 40px;
+  width: 270px;
+  height: 270px;
+}
+
+.profile {
+  display: flex;
+  &__image {
+    width: 120px;
+    height: 120px;
+    padding-right: 40px;
+  }
+}
+
+.usage {
+  display: flex;
+  padding: 40px 20px 20px 20px;
+  &__item {
+    padding-right: 45px;
+  }
+}
+
+.my-status {
+  padding-left: 100px;
+}
+
+.login-setting {
+  width: 600px;
+  &__button {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 120px;
+  }
+}
+
+.account {
+  display: flex;
+  padding-top: 20px;
+  &__icon {
+    width: 24px;
+    height: 24px;
+  }
+  &__name {
+    padding-left: 20px;
+    margin: 0px;
+  }
+  &__status {
+    padding-left: 100px;
+    margin: 0px;
+  }
+}
+
+.service-setting {
+  padding-top: 40px;
+}
+
+.service {
+  &__paid {
+  }
+  &__logo {
+    color: #15c399;
+    font-size: 24px;
+    margin: 0px;
+  }
+  &__cancell-button {
+    margin-left: 200px;
+  }
+  &__payment-method {
+    margin: 0px;
+  }
+}
+
+.flex {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.payment-information {
+  &__number {
+    margin: 0px;
+  }
+}
+
+.payment-icon {
+  width: 24px;
+  height: 24px;
+  padding-left: 100px;
+  padding-right: 10px;
+}
+
+.withdrawal {
+  background: #15c399;
+  color: white;
+  margin-top: 20px;
+  margin-left: 500px;
+}
