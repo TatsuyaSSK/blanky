@@ -3,7 +3,6 @@
     <mat-form-field class="title-input" appearance="outline">
       <mat-label>タイトル</mat-label>
       <input
-        (change)="validate()"
         formControlName="title"
         placeholder="タイトルを入力してください（40字以内）"
         type="text"
@@ -21,7 +20,6 @@
     <mat-form-field class="sentence-input" appearance="outline">
       <mat-label>英文</mat-label>
       <textarea
-        (change)="validate()"
         formControlName="sentence"
         placeholder="英文を入力してください（1000字以内）"
         type="text"
@@ -41,47 +39,33 @@
     <div class="format">
       <p class="label">問題形式</p>
       <div class="checkbox" formGroupName="types">
-        <mat-checkbox
-          class="checkbox__item"
-          formControlName="random"
-          (change)="validate()"
+        <mat-checkbox class="checkbox__item" formControlName="random"
           >ランダムに空白</mat-checkbox
         >
-        <mat-checkbox
-          class="checkbox__item"
-          formControlName="noun"
-          (change)="validate()"
+        <mat-checkbox class="checkbox__item" formControlName="noun"
           >名詞のみ空白</mat-checkbox
         >
-        <mat-checkbox
-          class="checkbox__item"
-          formControlName="verb"
-          (change)="validate()"
+        <mat-checkbox class="checkbox__item" formControlName="verb"
           >動詞のみ空白</mat-checkbox
         >
-        <mat-checkbox
-          class="checkbox__item"
-          formControlName="adjective"
-          (change)="validate()"
+        <mat-checkbox class="checkbox__item" formControlName="adjective"
           >形容詞のみ空白</mat-checkbox
         >
-        <mat-checkbox
-          class="checkbox__item"
-          formControlName="adverb"
-          (change)="validate()"
+        <mat-checkbox class="checkbox__item" formControlName="adverb"
           >副詞のみ空白</mat-checkbox
         >
-        <mat-checkbox
-          class="checkbox__item"
-          formControlName="preposition"
-          (change)="validate()"
+        <mat-checkbox class="checkbox__item" formControlName="preposition"
           >前置詞のみ空白</mat-checkbox
         >
       </div>
     </div>
 
     <div class="submit">
-      <button [disabled]="val" mat-raised-button class="create-button">
+      <button
+        [disabled]="form.invalid || !valid"
+        mat-raised-button
+        class="create-button"
+      >
         作成する
       </button>
     </div>

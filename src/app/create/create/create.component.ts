@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
@@ -7,7 +7,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
-  val: boolean = true;
+  valid: boolean;
 
   form = this.fb.group({
     title: ['', [
@@ -26,8 +26,7 @@ export class CreateComponent implements OnInit {
         adjective: [false],
         adverb: [false],
        preposition: [false]
-      }
-    ),
+      })
   });
 
   get titleControl(){
@@ -42,29 +41,23 @@ export class CreateComponent implements OnInit {
     console.log(this.form.value)
   }
 
-  validate(){
-    if (this.form.valid === true && (
-        this.form.get('types').get('random').value === true
-     || this.form.get('types').get('noun').value === true
-     || this.form.get('types').get('verb').value === true
-     || this.form.get('types').get('adjective').value === true
-     || this.form.get('types').get('adverb').value === true
-     || this.form.get('types').get('preposition').value === true
-      )){
-      this.val = false;
-    }
-    else{
-      this.val = true;
-    }
+  validateTypes() {
+    this.valid = false;
+    Object.values(this.form.value.types).forEach(value => {
+      if (value) {
+        this.valid = true;
+      }
+    });
   }
-
 
   constructor(
     private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
-
+    this.form.valueChanges.subscribe(value => {
+      this.validateTypes();
+    })
   }
 
 }
