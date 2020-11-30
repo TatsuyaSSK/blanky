@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="my-profile">
+    <div class="profile">
+      <img src="/assets/images/icon.png" alt="" class="profile__image" />
+      <div class="block">
+        <p class="profile__name">テスト太郎</p>
+        <p class="profile__status">有料会員</p>
+      </div>
+    </div>
+    <div class="usage">
+      <p class="usage__item">作成した問題</p>
+      <p class="usage__num">{{ questionNum }}</p>
+    </div>
+  </div>
+
+  <div class="my-status">
+    <div class="login-setting">
+      <h1>アカウント連携</h1>
+      <hr />
+      <div class="account">
+        <img
+          src="assets/images/f_logo_RGB-Blue_58.png"
+          alt=""
+          class="account__icon"
+        />
+        <p class="account__name">facebook</p>
+        <p class="account__status">ログイン中です</p>
+      </div>
+      <div class="account">
+        <img
+          src="assets/images/Twitter_Social_Icon_Square_Color.png"
+          alt=""
+          class="account__icon"
+        />
+        <p class="account__name">twitter</p>
+        <p class="account__status">連携されていません</p>
+      </div>
+      <button class="login-setting__button" mat-raised-button>
+        アカウント連携の登録、変更
+      </button>
+    </div>
+    <hr />
+    <div class="service-setting">
+      <h1>サービスのご利用状況</h1>
+      <hr />
+      <div class="service">
+        <p class="servive__paid">有料会員</p>
+        <div class="flex">
+          <p class="service__logo">blanky</p>
+          <button class="service__cancell-button" mat-raised-button>
+            解約する
+          </button>
+        </div>
+        <div class="flex">
+          <p class="service__payment-method">お支払い方法</p>
+          <img
+            class="payment-icon"
+            src="assets/images/mc_symbol_opt_45_1x.png"
+            alt=""
+          />
+          <div class="payment-information">
+            <p class="payment-information__number">
+              ****_****_****_****　　変更する
+            </p>
+            <p>次回ご請求日：20**年*月*日</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <button mat-raised-button class="withdrawal">退会する</button>
+  </div>
+</div>
