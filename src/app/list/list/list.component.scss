@@ -1,0 +1,20 @@
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 960px;
+}
+
+.title {
+  padding-left: 20px;
+}
+
+.type {
+  width: 120px;
+}
+
+.search-form {
+  padding-top: 40px;
+  &__keyward {
+    width: 50%;
+  }
+}
