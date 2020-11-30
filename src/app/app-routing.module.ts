@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule)
   },
   {
+    path: 'create',
+    loadChildren: () => import('./create/create.module').then(m => m.CreateModule)
+  },
+  {
     path: 'privacy',
     loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule)
   },
