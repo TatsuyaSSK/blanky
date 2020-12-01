@@ -8,18 +8,19 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 })
 export class ListComponent implements OnInit {
 
+  sorts: any[] = [
+    {value: 'new', viewValue: '新着順'},
+    {value: 'accuracy', viewValue: '正答率順'},
+  ];
+
   form = this.fb.group({
     keyward: ['', [
-      Validators.required,
-      Validators.maxLength(20)
     ]],
-    sort: ['', [
-      Validators.required
-    ]],
+    sort: ['']
   });
 
   submit(){
-    console.log(this.form.value)
+    console.log(this.form.value);
   }
 
   get keywardControl(){
@@ -35,7 +36,6 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
   }
 
 }

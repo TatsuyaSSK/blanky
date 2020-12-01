@@ -14,7 +14,29 @@
 
 .search-form {
   padding-top: 40px;
+  display: flex;
   &__keyward {
     width: 50%;
   }
+  &__select {
+  }
+  &__button {
+    background-color: #15c399;
+    color: white;
+    width: 100px;
+    height: 60px;
+    font-size: 16px;
+  }
+}
+
+.card {
+  &__cover {
+    padding-bottom: 52.5%;
+    display: block;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

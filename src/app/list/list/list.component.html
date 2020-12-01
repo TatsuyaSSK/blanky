@@ -25,12 +25,51 @@
         matInput
         autocomplete="off"
       />
-      <mat-error *ngIf="keywardControl.hasError('required')"
-        >必須入力です</mat-error
-      >
-      <mat-error *ngIf="keywardControl.hasError('maxlength')"
-        >長すぎます</mat-error
-      >
     </mat-form-field>
+
+    <mat-form-field class="search-form__select" appearance="fill">
+      <mat-label>条件</mat-label>
+      <mat-select formControlName="sort">
+        <mat-option *ngFor="let sort of sorts" [value]="sort.value">
+          {{ sort.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="submit">
+      <button
+        [disabled]="form.invalid"
+        mat-raised-button
+        class="search-form__button"
+      >
+        検索
+      </button>
+    </div>
   </form>
+  <div class="grid">
+    <div class="card">
+      <div class="card__title">
+        <p>オバマ大統領のスピーチ</p>
+      </div>
+      <img class="card__cover" src="assets/images/study.png" alt="" />
+      <div class="card__accuracy">
+        <p>正答率：70%</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card__title">
+        <p>オバマ大統領のスピーチ</p>
+      </div>
+      <img class="card__cover" src="assets/images/study.png" alt="" />
+      <div class="card__accuracy">
+        <p>正答率：70%</p>
+      </div>
+      <div class="card__date">
+        <p>作成した日付: 2020年11月30日</p>
+      </div>
+    </div>
+  </div>
 </div>
