@@ -1,7 +1,7 @@
 <div class="container">
   <h1>問題：オバマ大統領のスピーチ</h1>
 
-  <div class="border">
+  <div class="border" *ngIf="display === false">
     <div class="box">
       <p class="box__item">英文</p>
       <form [formGroup]="form" (ngSubmit)="checkAnswer()">
@@ -29,13 +29,7 @@
           これはダミー文これはダミー文これはダミー文これはダミー文これはダミー文これはダミー文これはダミー文これはダミー文
         </p>
         <div class="button-layout">
-          <button
-            [disabled]="buttonValid"
-            class="box__button"
-            mat-raised-button
-          >
-            回答する
-          </button>
+          <button class="box__button" mat-raised-button>回答する</button>
         </div>
       </form>
     </div>

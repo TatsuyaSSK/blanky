@@ -9,7 +9,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class StudyComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
   display: boolean;
-  buttonValid: boolean;
 
   form = this.fb.group({
     one: [''],
@@ -20,12 +19,10 @@ export class StudyComponent implements OnInit {
 
   checkAnswer() {
     this.display = true;
-    this.buttonValid = true;
     console.log(this.form.value);
   }
 
   ngOnInit(): void {
     this.display = false;
-    this.buttonValid = false;
   }
 }
