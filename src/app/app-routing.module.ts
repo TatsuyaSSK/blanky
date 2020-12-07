@@ -6,19 +6,22 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadChildren: () => import('./top/top.module').then(m => m.TopModule)
+    loadChildren: () => import('./top/top.module').then((m) => m.TopModule),
   },
   {
     path: 'terms',
-    loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule)
+    loadChildren: () =>
+      import('./terms/terms.module').then((m) => m.TermsModule),
   },
   {
     path: 'create',
-    loadChildren: () => import('./create/create.module').then(m => m.CreateModule)
+    loadChildren: () =>
+      import('./create/create.module').then((m) => m.CreateModule),
   },
   {
     path: 'privacy',
-    loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule)
+    loadChildren: () =>
+      import('./privacy/privacy.module').then((m) => m.PrivacyModule),
   },
   {
     path: 'list',
@@ -26,16 +29,22 @@ const routes: Routes = [
   },
   {
     path: 'setting',
-    loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule)
+    loadChildren: () =>
+      import('./setting/setting.module').then((m) => m.SettingModule),
+  },
+  {
+    path: 'study',
+    loadChildren: () =>
+      import('./study/study.module').then((m) => m.StudyModule),
   },
   {
     path: '**',
-    component: NotFoundComponent
-  }
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

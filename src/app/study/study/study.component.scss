@@ -1,0 +1,61 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 16px;
+  width: 960px;
+}
+
+.border {
+  margin-right: auto;
+  margin-left: auto;
+  width: 840px;
+  border: 1px solid #ccc;
+  margin-top: 30px;
+}
+
+.box {
+  margin-right: auto;
+  margin-left: auto;
+  width: 800px;
+  padding: 16px;
+  &__item {
+    color: #15c399;
+  }
+  &__input-field {
+    width: 80px;
+  }
+  &__button {
+    background: #15c399;
+    color: white;
+    text-align: center;
+    margin: 0px 60px;
+  }
+  &__question-num {
+    color: #15c399;
+    padding-left: 35px;
+  }
+}
+
+.button-layout {
+  margin: 40px 0px 16px 0px;
+  text-align: center;
+}
+
+.filled-correct {
+  color: #15c399;
+}
+.filled-wrong {
+  color: #ff3d00;
+}
+
+.accuracy-box {
+  display: flex;
+  align-items: center;
+  &__string {
+    padding-left: 24px;
+  }
+  &__percentage {
+    font-size: 40px;
+    color: #15c399;
+  }
+}
