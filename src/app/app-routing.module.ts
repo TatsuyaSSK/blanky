@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule)
   },
   {
+    path: 'list',
+    loadChildren: () => import('./list/list.module').then(m => m.ListModule)
+  },
+  {
     path: 'setting',
     loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule)
   },

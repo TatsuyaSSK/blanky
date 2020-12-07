@@ -1,0 +1,132 @@
+<div class="container">
+  <h1 class="title">作成した問題</h1>
+
+  <mat-button-toggle-group
+    class="types"
+    name="fontStyle"
+    aria-label="Font Style"
+  >
+    <mat-button-toggle class="type" value="random">ランダム</mat-button-toggle>
+    <mat-button-toggle class="type" value="noun">名詞</mat-button-toggle>
+    <mat-button-toggle class="type" value="verb">動詞</mat-button-toggle>
+    <mat-button-toggle class="type" value="adjective">形容詞</mat-button-toggle>
+    <mat-button-toggle class="type" value="adverb">副詞</mat-button-toggle>
+    <mat-button-toggle class="type" value="preposition"
+      >前置詞</mat-button-toggle
+    >
+  </mat-button-toggle-group>
+
+  <form class="search-form" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field class="search-form__keyward" appearance="outline">
+      <input
+        formControlName="keyward"
+        placeholder="キーワードを入力してください（20字以内）"
+        type="text"
+        matInput
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="search-form__select" appearance="fill">
+      <mat-label>条件</mat-label>
+      <mat-select formControlName="sort">
+        <mat-option *ngFor="let sort of sorts" [value]="sort.value">
+          {{ sort.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="submit">
+      <button
+        [disabled]="form.invalid"
+        mat-raised-button
+        class="search-form__button"
+      >
+        検索
+      </button>
+    </div>
+  </form>
+
+  <div class="grid">
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+    <div class="card">
+      <p class="card__title">オバマ大統領のスピーチ</p>
+      <figure class="card__cover"></figure>
+      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
+    </div>
+  </div>
+</div>
