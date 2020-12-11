@@ -43,11 +43,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./study/study.module').then((m) => m.StudyModule),
       },
-      {
-        path: '**',
-        component: NotFoundComponent,
-      },
     ],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 
