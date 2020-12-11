@@ -18,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShellComponent } from './shell/shell.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { MatMenuModule } from '@angular/material/menu';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +43,7 @@ import { FooterComponent } from './footer/footer.component';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatMenuModule,
   ],
   providers: [
     {

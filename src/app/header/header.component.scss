@@ -1,23 +1,43 @@
-.header-spacer {
-  flex: 1 1 auto;
-}
-
-hr {
-  margin: 0px;
-  height: 10px;
-  background-color: #15c399;
-  border: none;
-}
-
-h1 {
-  color: #15c399;
-}
-
-button {
-  margin: 0px 5px;
-}
-
-.registration-button {
-  background: #15c399;
-  color: white;
+.header {
+  &__bar {
+    margin: 0px;
+    height: 10px;
+    background-color: #15c399;
+    border: none;
+  }
+  &__logo {
+    color: #15c399;
+    padding: 4px;
+  }
+  &__spacer {
+    flex: 1 1 auto;
+  }
+  &__nav {
+    display: flex;
+  }
+  &__icon {
+    margin-top: 12px;
+    height: 40px;
+    width: auto;
+  }
+  &__icon-description {
+    font-size: 16px;
+    padding-right: 24px;
+  }
+  &__click {
+    display: flex;
+    padding-right: 24px;
+  }
+  &__registration-button {
+    background: #15c399;
+    color: white;
+  }
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 16px;
+    margin-top: 12px;
+    background: #fff center/cover;
+  }
 }
