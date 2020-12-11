@@ -36,4 +36,9 @@ export class AuthService {
   logout() {
     this.afAuth.signOut().then(() => this.router.navigateByUrl('/'));
   }
+
+  withdrawal() {
+    const user = firebase.auth().currentUser;
+    user.delete().then(() => this.router.navigateByUrl('/'));
+  }
 }

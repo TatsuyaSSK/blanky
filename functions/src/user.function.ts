@@ -15,3 +15,10 @@ export const createUser = functions
       createdAt: new Date(),
     });
   });
+
+export const deleteUser = functions
+  .region('asia-northeast1')
+  .auth.user()
+  .onDelete((user) => {
+    return db.doc(`users/${user.uid}`).delete();
+  });
