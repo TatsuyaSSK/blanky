@@ -1,1 +1,1 @@
-export { createUser } from './user.function';
+export { createUser, deleteUser } from './user.function';
