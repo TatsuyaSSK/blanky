@@ -1,8 +1,51 @@
-<header class="logout-header">
-  <hr />
+<header class="header">
+  <hr class="header__bar" />
   <mat-toolbar>
-    <span><h1>blanky</h1></span>
-    <span class="header-spacer"></span>
-    <button mat-raised-button class="registration-button">ログイン</button>
+    <span><h1 class="header__logo" routerLink="/">blanky</h1></span>
+    <span class="header__spacer"></span>
+
+    <div class="header__nav" *ngIf="user$ | async as user; else showLogin">
+      <div class="header__click" routerLink="/create">
+        <img class="header__icon" src="assets/images/create.png" alt="" />
+        <p class="header__icon-description">問題を作成する</p>
+      </div>
+      <div class="header__click" routerLink="/list">
+        <img
+          class="header__icon"
+          routerLink="/list"
+          src="assets/images/learn.png"
+          alt=""
+        />
+        <p class="header__icon-description">学習する</p>
+      </div>
+
+      <button
+        class="header__avatar"
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        [style.background-image]="'url(' + user.avatarURL + ')'"
+      ></button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/setting">
+          <mat-icon>settings</mat-icon>
+          <span>設定</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>ログアウト</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <ng-template #showLogin>
+      <button
+        (click)="login()"
+        mat-raised-button
+        class="header__registration-button"
+      >
+        ログイン
+      </button>
+    </ng-template>
   </mat-toolbar>
 </header>

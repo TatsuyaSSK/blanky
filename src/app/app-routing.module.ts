@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ShellComponent } from './shell/shell.component';
 
@@ -22,6 +23,8 @@ const routes: Routes = [
         path: 'create',
         loadChildren: () =>
           import('./create/create.module').then((m) => m.CreateModule),
+        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: 'privacy',
@@ -32,22 +35,28 @@ const routes: Routes = [
         path: 'list',
         loadChildren: () =>
           import('./list/list.module').then((m) => m.ListModule),
+        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: 'setting',
         loadChildren: () =>
           import('./setting/setting.module').then((m) => m.SettingModule),
+        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: 'study',
         loadChildren: () =>
           import('./study/study.module').then((m) => m.StudyModule),
-      },
-      {
-        path: '**',
-        component: NotFoundComponent,
+        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
       },
     ],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 
