@@ -11,7 +11,7 @@ import { User } from '../interfaces/user';
   providedIn: 'root',
 })
 export class AuthService {
-  afUser$: Observable<User> = this.afAuth.authState.pipe(
+  user$: Observable<User> = this.afAuth.authState.pipe(
     switchMap((afUser) => {
       if (afUser) {
         return this.db.doc<User>(`users/${afUser.uid}`).valueChanges();
