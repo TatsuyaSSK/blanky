@@ -17,7 +17,7 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
-  check$ = this.authService.afUser$.pipe(
+  check$ = this.authService.user$.pipe(
     map((user) => !!user),
     tap((isLoggedIn) => {
       if (!isLoggedIn) {
