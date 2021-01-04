@@ -10,6 +10,20 @@ import * as firebase from 'firebase';
 export class ProblemService {
   constructor(private db: AngularFirestore, private authService: AuthService) {}
 
+  countWords(englishText: string) {
+    return englishText.split(' ').filter((word) => word !== '').length;
+  }
+
+  createBlankIndexes(textLength: number, ratio = 0.2) {
+    const blankIndexes: number[] = [];
+    for (let i = 0; i < textLength + 1; i++) {
+      if (Math.random() <= ratio) {
+        blankIndexes.push(i);
+      }
+    }
+    return blankIndexes;
+  }
+
   createProblem(
     problem: Omit<
       Problem,
@@ -18,12 +32,16 @@ export class ProblemService {
     type: string
   ) {
     const problemId = this.db.createId();
+    const blankIndexes = this.createBlankIndexes(
+      this.countWords(problem.englishText)
+    );
+
     this.db
       .doc<Problem>(`problems/${this.authService.uid}/${type}/${problemId}`)
       .set({
         ...problem,
         japaneseText: '和訳文',
-        blankIndexes: [1, 3, 5],
+        blankIndexes,
         correctAnswerRate: 0,
         createdAt: firebase.default.firestore.Timestamp.now(),
       });
