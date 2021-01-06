@@ -24,8 +24,6 @@ export class ProblemService {
     return blankIndexes;
   }
 
-  createJapaneseText(englishText: string) {}
-
   createProblem(
     problem: Omit<
       Problem,
