@@ -1,4 +1,5 @@
 export interface Problem {
+  problemId: string;
   title: string;
   englishText: string;
   japaneseText: string;

@@ -61,7 +61,11 @@ export class CreateComponent implements OnInit {
     const englishText: string = this.form.get('englishText').value;
     const problem: Omit<
       Problem,
-      'japaneseText' | 'blankIndexes' | 'correctAnswerRate' | 'createdAt'
+      | 'problemId'
+      | 'japaneseText'
+      | 'blankIndexes'
+      | 'correctAnswerRate'
+      | 'createdAt'
     > = {
       title,
       englishText,

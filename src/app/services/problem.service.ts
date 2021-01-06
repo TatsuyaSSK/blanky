@@ -24,10 +24,16 @@ export class ProblemService {
     return blankIndexes;
   }
 
+  createJapaneseText(englishText: string) {}
+
   createProblem(
     problem: Omit<
       Problem,
-      'japaneseText' | 'blankIndexes' | 'correctAnswerRate' | 'createdAt'
+      | 'problemId'
+      | 'japaneseText'
+      | 'blankIndexes'
+      | 'correctAnswerRate'
+      | 'createdAt'
     >,
     type: string
   ) {
@@ -39,6 +45,7 @@ export class ProblemService {
     this.db
       .doc<Problem>(`problems/${this.authService.uid}/${type}/${problemId}`)
       .set({
+        problemId,
         ...problem,
         japaneseText: '和訳文',
         blankIndexes,
