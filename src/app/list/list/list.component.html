@@ -1,21 +1,4 @@
 <div class="container">
-  <h1 class="title">作成した問題</h1>
-
-  <mat-button-toggle-group
-    class="types"
-    name="fontStyle"
-    aria-label="Font Style"
-  >
-    <mat-button-toggle class="type" value="random">ランダム</mat-button-toggle>
-    <mat-button-toggle class="type" value="noun">名詞</mat-button-toggle>
-    <mat-button-toggle class="type" value="verb">動詞</mat-button-toggle>
-    <mat-button-toggle class="type" value="adjective">形容詞</mat-button-toggle>
-    <mat-button-toggle class="type" value="adverb">副詞</mat-button-toggle>
-    <mat-button-toggle class="type" value="preposition"
-      >前置詞</mat-button-toggle
-    >
-  </mat-button-toggle-group>
-
   <form class="search-form" [formGroup]="form" (ngSubmit)="submit()">
     <mat-form-field class="search-form__keyward" appearance="outline">
       <input
@@ -47,86 +30,47 @@
     </div>
   </form>
 
-  <div class="grid">
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-    <div class="card">
-      <p class="card__title">オバマ大統領のスピーチ</p>
-      <figure class="card__cover"></figure>
-      <p class="card__accuracy">正答率: <strong>60</strong>%</p>
-    </div>
-  </div>
+  <mat-tab-group
+    class="tab"
+    (selectedTabChange)="getProblemsbyType($event)"
+    animationDuration="0ms"
+  >
+    <mat-tab label="ランダム">
+      <div class="grid">
+        <div *ngFor="let problem of problems" class="card">
+          <p class="card_title">{{ problem.title }}</p>
+          <figure class="card__cover"></figure>
+          <p class="class__accuracy">
+            正答率: <strong>{{ problem.correctAnswerRate }}</strong
+            >%
+          </p>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="名詞">
+      <div *ngFor="let problem of problems" class="problems">
+        {{ problem.title }}
+      </div>
+    </mat-tab>
+    <mat-tab label="動詞">
+      <div *ngFor="let problem of problems" class="problems">
+        {{ problem.title }}
+      </div>
+    </mat-tab>
+    <mat-tab label="形容詞">
+      <div *ngFor="let problem of problems" class="problems">
+        {{ problem.title }}
+      </div>
+    </mat-tab>
+    <mat-tab label="副詞">
+      <div *ngFor="let problem of problems" class="problems">
+        {{ problem.title }}
+      </div>
+    </mat-tab>
+    <mat-tab label="前置詞">
+      <div *ngFor="let problem of problems" class="problems">
+        {{ problem.title }}
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>

@@ -1,7 +1,11 @@
 .container {
-  margin-right: auto;
-  margin-left: auto;
-  width: 960px;
+  width: 100%;
+  min-width: 960px;
+  margin: 0 auto;
+}
+
+.tab {
+  margin-top: 10px;
 }
 
 .title {
@@ -13,7 +17,7 @@
 }
 
 .search-form {
-  padding-top: 40px;
+  padding-top: 60px;
   display: flex;
   &__keyward {
     width: 50%;
@@ -33,7 +37,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   padding: 16px;
   gap: 16px;
 }
@@ -41,6 +45,7 @@
 .card {
   border-radius: 4px;
   text-align: center;
+  box-shadow: 0 0 3px #ccc;
   &__cover {
     padding-bottom: 52.5%;
     width: 100%;
