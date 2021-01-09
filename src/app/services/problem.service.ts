@@ -51,4 +51,10 @@ export class ProblemService {
         createdAt: firebase.default.firestore.Timestamp.now(),
       });
   }
+
+  getProblemsbyType(type: string) {
+    return this.db
+      .collection<Problem>(`problems/${this.authService.uid}/${type}`)
+      .valueChanges();
+  }
 }
