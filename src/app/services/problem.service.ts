@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Problem } from '../interfaces/problem';
 import { AuthService } from './auth.service';
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +53,7 @@ export class ProblemService {
       });
   }
 
-  getProblemsbyType(type: string) {
+  getProblemsbyType(type: string): Observable<Problem[]> {
     return this.db
       .collection<Problem>(`problems/${this.authService.uid}/${type}`)
       .valueChanges();

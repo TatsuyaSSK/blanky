@@ -54,7 +54,7 @@ export class ListComponent implements OnInit {
     });
   }
 
-  getProblemsbyType($event) {
+  setProblemsbyType($event) {
     const type = this.typeDict[$event['tab'].textLabel];
     this.problemService.getProblemsbyType(type).subscribe((problems) => {
       this.problems = problems;
