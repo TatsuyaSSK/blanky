@@ -1,70 +1,30 @@
 <div class="container">
-  <h1>問題：オバマ大統領のスピーチ</h1>
+  <h1>問題：{{ problem.title }}</h1>
 
   <div class="border" *ngIf="display === false">
     <div class="box">
-      <p class="box__item">英文</p>
-      <form [formGroup]="form" (ngSubmit)="checkAnswer()">
-        <p>
-          Lorem ipsum
-          <mat-form-field class="box__input-field">
-            <input formControlName="one" matInput autocomplete="off" />
-          </mat-form-field>
-          sit amet consectetur
-          <mat-form-field class="box__input-field">
-            <input formControlName="two" matInput autocomplete="off" />
-          </mat-form-field>
-          elit. Eveniet ut veritatis excepturi voluptate aspernatur id
-          <mat-form-field class="box__input-field">
-            <input formControlName="three" matInput autocomplete="off" />
-          </mat-form-field>
-          necessitatibus, facere
-          <mat-form-field class="box__input-field">
-            <input formControlName="four" matInput autocomplete="off" />
-          </mat-form-field>
-          facilis!
-        </p>
-        <p class="box__item">和訳</p>
-        <p>
-          これはダミー文これはダミー文これはダミー文これはダミー文これはダミー文これはダミー文これはダミー文これはダミー文
-        </p>
-        <div class="button-layout">
-          <button class="box__button" mat-raised-button>回答する</button>
-        </div>
+      <h2 class="box__item">英文</h2>
+      <form (ngSubmit)="onSubmit($event)">
+        <span *ngFor="let i of wordLengthList">
+          <span class="word" *ngIf="!blankList[i]">{{
+            englishTextList[i]
+          }}</span>
+          <input
+            class="word"
+            name="{{ englishTextList[i] }}"
+            *ngIf="blankList[i]"
+            type="text"
+            size="10"
+          />
+        </span>
+        <button>回答する</button>
       </form>
-    </div>
-  </div>
-
-  <div class="border" *ngIf="display === true">
-    <div class="box">
-      <p class="box__item">回答</p>
+      <h2 class="box__item">和訳</h2>
       <p>
-        Lorem ipsum <strong class="filled-correct">dolor</strong> sit amet
-        consectetur
-        <strong class="filled-correct">adipisicing</strong>
-        elit. Totam voluptatum enim
-        <strong class="filled-wrong">illum</strong> fugit optio quaerat commodi
-        beatae similique <strong class="filled-wrong">tempora</strong> iste.
+        {{ problem.japaneseText }}
       </p>
-      <p class="box__item">正解</p>
-      <p>
-        Lorem ipsum <strong class="filled-correct">dolor</strong> sit amet
-        consectetur
-        <strong class="filled-correct">adipisicing</strong>
-        elit. Totam voluptatum enim
-        <strong class="filled-correct">illum</strong> fugit optio quaerat
-        commodi beatae similique
-        <strong class="filled-correct">tempora</strong> iste.
-      </p>
-      <p class="box__item">正答率</p>
-      <div class="accuracy-box">
-        <p><strong class="accuracy-box__percentage">50</strong>%</p>
-        <p class="accuracy-box__string">4問中2問正解</p>
-      </div>
-
       <div class="button-layout">
-        <button class="box__button" mat-raised-button>もう一度挑戦する</button>
-        <button class="box__button" mat-raised-button>他の問題を解く</button>
+        <button class="box__button" mat-raised-button>回答する</button>
       </div>
     </div>
   </div>
