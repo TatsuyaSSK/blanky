@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Problem } from 'src/app/interfaces/problem';
 import { ProblemService } from 'src/app/services/problem.service';
@@ -23,22 +22,30 @@ export class StudyComponent implements OnInit {
 
   englishTextList: string[] = [];
   answerList: string[] = [];
+  answerDict: { [key: number]: string } = {};
+  wordIndexList: number[] = [];
   wordLengthList: number[] = [];
   blankList: boolean[] = [];
+  blankIndexes: number[];
+  filledDict: { [key: number]: string } = {};
+  problemNum: number;
+  correctAnswerRate: number;
+  correctAnswerNum = 0;
+  type: string;
+  problemId: string;
+  display: boolean;
 
   constructor(
-    private fb: FormBuilder,
     private route: ActivatedRoute,
     private problemService: ProblemService
   ) {}
-  display: boolean;
 
   ngOnInit(): void {
-    const type = this.route.snapshot.paramMap.get('type');
-    const problemId = this.route.snapshot.paramMap.get('problemId');
+    this.type = this.route.snapshot.paramMap.get('type');
+    this.problemId = this.route.snapshot.paramMap.get('problemId');
 
     this.problemService
-      .getProblembyProblemId(type, problemId)
+      .getProblembyProblemId(this.type, this.problemId)
       .subscribe((problem) => {
         this.problem = problem;
         this.createBlankProblem(problem.englishText, problem.blankIndexes);
@@ -47,25 +54,91 @@ export class StudyComponent implements OnInit {
     this.display = false;
   }
 
-  checkAnswer() {
-    this.display = true;
-  }
-
   createBlankProblem(englishText: string, blankIndexes: Array<number>) {
+    this.blankIndexes = blankIndexes;
+    this.problemNum = blankIndexes.length;
     this.englishTextList = englishText.split(' ').filter((word) => word !== '');
-    this.wordLengthList = [...Array(this.englishTextList.length)].map(
+    this.wordLengthList = this.englishTextList.map((word) => {
+      return word.length;
+    });
+    this.wordIndexList = [...Array(this.englishTextList.length)].map(
       (_, i) => i
     );
     this.blankList = [...Array(this.englishTextList.length)].map(
       (_, i) => false
     );
-    blankIndexes.forEach((index) => (this.blankList[index] = true));
-    blankIndexes.forEach((index) =>
-      this.answerList.push(this.englishTextList[index])
+    blankIndexes.forEach((index) => {
+      this.blankList[index] = true;
+    });
+    blankIndexes.forEach((index) => {
+      const end = this.englishTextList[index].slice(-1);
+      if (end === ',' || end === '.') {
+        this.answerList.push(
+          this.englishTextList[index].slice(
+            0,
+            this.englishTextList[index].length - 1
+          )
+        );
+      } else {
+        this.answerList.push(this.englishTextList[index]);
+      }
+    });
+
+    for (let i = 0; i < this.blankIndexes.length; i++) {
+      this.answerDict[this.blankIndexes[i]] = this.answerList[i];
+    }
+  }
+
+  setFilledDict() {
+    for (let i = 0; i < this.problemNum; i++) {
+      const value = document.forms['problems'].elements[i].value;
+      if (value === '') {
+        this.filledDict[this.blankIndexes[i]] = '---';
+      } else {
+        this.filledDict[this.blankIndexes[i]] = value.replace(/^\s+|\s+$/g, '');
+      }
+    }
+  }
+
+  calculateCorrectAnswerRate(
+    filledDict: { [key: number]: string },
+    answerDict: { [key: number]: string }
+  ) {
+    this.correctAnswerNum = 0;
+    for (const key in filledDict) {
+      if (filledDict[key] === answerDict[key]) {
+        this.correctAnswerNum += 1;
+      }
+    }
+    this.correctAnswerRate = Math.floor(
+      (this.correctAnswerNum / this.problemNum) * 100
     );
   }
 
-  onSubmit(event: any) {
-    console.log(event.target.relief.value);
+  updateCorrectAnswerRate(
+    correctAnswerRate: number,
+    type: string,
+    problemId: string
+  ) {
+    this.problemService.updateCorrectAnswerRate(
+      correctAnswerRate,
+      type,
+      problemId
+    );
+  }
+
+  onSubmit() {
+    this.setFilledDict();
+    this.calculateCorrectAnswerRate(this.filledDict, this.answerDict);
+    this.updateCorrectAnswerRate(
+      this.correctAnswerRate,
+      this.type,
+      this.problemId
+    );
+    this.display = true;
+  }
+
+  onTransitioned(isClicked: boolean) {
+    isClicked ? (this.display = false) : (this.display = true);
   }
 }

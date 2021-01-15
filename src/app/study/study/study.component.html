@@ -1,31 +1,63 @@
 <div class="container">
-  <h1>問題：{{ problem.title }}</h1>
+  <h1 class="title">問題：{{ problem.title }}</h1>
 
-  <div class="border" *ngIf="display === false">
-    <div class="box">
-      <h2 class="box__item">英文</h2>
-      <form (ngSubmit)="onSubmit($event)">
-        <span *ngFor="let i of wordLengthList">
-          <span class="word" *ngIf="!blankList[i]">{{
-            englishTextList[i]
-          }}</span>
+  <div class="box" *ngIf="display === false">
+    <h2 class="box__item">英文</h2>
+    <form name="problems" autocomplete="off">
+      <span *ngFor="let i of wordIndexList">
+        <span class="word" *ngIf="!blankList[i]">
+          {{ englishTextList[i] }}
+        </span>
+        <span class="word" *ngIf="blankList[i]">
+          <span
+            *ngIf="
+              englishTextList[i].slice(-1) === ',' ||
+              englishTextList[i].slice(-1) === '.'
+            "
+          >
+            <input
+              name="{{
+                englishTextList[i].slice(0, englishTextList[i].length - 1)
+              }}"
+              type="text"
+              size="{{ wordLengthList[i] }}"
+            />
+            <span>{{ englishTextList[i].slice(-1) }}</span>
+          </span>
+
           <input
-            class="word"
+            *ngIf="
+              englishTextList[i].slice(-1) !== ',' &&
+              englishTextList[i].slice(-1) !== '.'
+            "
             name="{{ englishTextList[i] }}"
-            *ngIf="blankList[i]"
             type="text"
-            size="10"
+            size="{{ wordLengthList[i] + 1 }}"
           />
         </span>
-        <button>回答する</button>
-      </form>
-      <h2 class="box__item">和訳</h2>
-      <p>
-        {{ problem.japaneseText }}
-      </p>
-      <div class="button-layout">
-        <button class="box__button" mat-raised-button>回答する</button>
-      </div>
+      </span>
+    </form>
+    <h2 class="box__item">和訳</h2>
+    <p>
+      {{ problem.japaneseText }}
+    </p>
+    <div class="button-layout">
+      <button class="box__button" mat-raised-button (click)="onSubmit()">
+        回答する
+      </button>
     </div>
   </div>
+  <app-answer
+    *ngIf="display === true"
+    [wordIndexList]="wordIndexList"
+    [blankList]="blankList"
+    [englishTextList]="englishTextList"
+    [filledDict]="filledDict"
+    [answerDict]="answerDict"
+    [wordLengthList]="wordLengthList"
+    [correctAnswerRate]="correctAnswerRate"
+    [problemNum]="problemNum"
+    [correctAnswerNum]="correctAnswerNum"
+    (transitioned)="onTransitioned($event)"
+  ></app-answer>
 </div>

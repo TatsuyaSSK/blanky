@@ -1,0 +1,98 @@
+<div class="box">
+  <h2 class="box__item">回答</h2>
+  <span *ngFor="let i of wordIndexList">
+    <span class="word" *ngIf="!blankList[i]">
+      {{ englishTextList[i] }}
+    </span>
+    <span *ngIf="blankList[i]">
+      <span
+        *ngIf="
+          englishTextList[i].slice(-1) === ',' ||
+          englishTextList[i].slice(-1) === '.'
+        "
+      >
+        <input
+          [class]="filledDict[i] === answerDict[i] ? 'correct' : 'incorrect'"
+          name="{{ englishTextList[i] }}"
+          *ngIf="blankList[i]"
+          type="text"
+          size="{{ wordLengthList[i] }}"
+          value="{{ filledDict[i] }}"
+        />
+        <span>{{ englishTextList[i].slice(-1) }}</span>
+      </span>
+
+      <input
+        *ngIf="
+          englishTextList[i].slice(-1) !== ',' &&
+          englishTextList[i].slice(-1) !== '.'
+        "
+        [class]="filledDict[i] === answerDict[i] ? 'correct' : 'incorrect'"
+        name="{{ englishTextList[i] }}"
+        type="text"
+        size="{{ wordLengthList[i] + 1 }}"
+        value="{{ filledDict[i] }}"
+      />
+    </span>
+  </span>
+  <h2 class="box__item">正解</h2>
+  <span *ngFor="let i of wordIndexList">
+    <span class="word" *ngIf="!blankList[i]">
+      {{ englishTextList[i] }}
+    </span>
+    <span *ngIf="blankList[i]">
+      <span
+        *ngIf="
+          englishTextList[i].slice(-1) === ',' ||
+          englishTextList[i].slice(-1) === '.'
+        "
+      >
+        <input
+          class="correct"
+          name="{{ englishTextList[i] }}"
+          *ngIf="blankList[i]"
+          type="text"
+          size="{{ wordLengthList[i] }}"
+          value="{{ answerDict[i] }}"
+        />
+        <span>{{ englishTextList[i].slice(-1) }}</span>
+      </span>
+
+      <input
+        *ngIf="
+          englishTextList[i].slice(-1) !== ',' &&
+          englishTextList[i].slice(-1) !== '.'
+        "
+        class="correct"
+        name="{{ englishTextList[i] }}"
+        type="text"
+        size="{{ wordLengthList[i] + 1 }}"
+        value="{{ answerDict[i] }}"
+      />
+    </span>
+  </span>
+  <h2 class="box__item">正答率</h2>
+  <div class="accuracy-box">
+    <p>
+      <strong class="accuracy-box__percentage">{{ correctAnswerRate }}</strong
+      >%
+    </p>
+    <p class="accuracy-box__string">
+      {{ problemNum }}問中{{ correctAnswerNum }}問正解
+    </p>
+  </div>
+
+  <div class="button-layout">
+    <button (click)="transition(true)" class="box__button" mat-raised-button>
+      もう一度挑戦する
+    </button>
+    <button
+      routerLink="/list"
+      routerLinkActive="active"
+      class="box__button"
+      mat-raised-button
+    >
+      他の問題を解く
+    </button>
+  </div>
+</div>

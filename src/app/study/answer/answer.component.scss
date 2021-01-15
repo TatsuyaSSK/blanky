@@ -5,18 +5,6 @@
   width: 960px;
 }
 
-.title {
-  color: #15c399;
-}
-
-.border {
-  margin-right: auto;
-  margin-left: auto;
-  width: 840px;
-  border: 1px solid #ccc;
-  margin-top: 30px;
-}
-
 .box {
   margin-right: auto;
   margin-left: auto;
@@ -61,4 +49,16 @@
 
 .word {
   margin-left: 10px;
+}
+
+.correct {
+  margin-left: 10px;
+  color: #15c399;
+  font-weight: bold;
+}
+
+.incorrect {
+  margin-left: 10px;
+  color: #ff3d00;
+  font-weight: bold;
 }

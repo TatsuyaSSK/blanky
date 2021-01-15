@@ -7,9 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { AnswerComponent } from './answer/answer.component';
 
 @NgModule({
-  declarations: [StudyComponent],
+  declarations: [StudyComponent, AnswerComponent],
   imports: [
     CommonModule,
     StudyRoutingModule,

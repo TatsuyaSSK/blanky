@@ -64,4 +64,16 @@ export class ProblemService {
       .doc<Problem>(`problems/${this.authService.uid}/${type}/${problemId}`)
       .valueChanges();
   }
+
+  updateCorrectAnswerRate(
+    correctAnswerRate: number,
+    type: string,
+    problemId: string
+  ) {
+    return this.db
+      .doc<Problem>(`problems/${this.authService.uid}/${type}/${problemId}`)
+      .update({
+        correctAnswerRate,
+      });
+  }
 }
