@@ -6,11 +6,6 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./answer.component.scss'],
 })
 export class AnswerComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  @Input() wordIndexList;
   @Input() blankList;
   @Input() englishTextList;
   @Input() filledDict;
@@ -19,8 +14,13 @@ export class AnswerComponent implements OnInit {
   @Input() correctAnswerRate;
   @Input() problemNum;
   @Input() correctAnswerNum;
+  @Input() isBlankList;
 
   @Output() transitioned = new EventEmitter<boolean>();
+
+  constructor() {}
+
+  ngOnInit(): void {}
 
   transition(isClicked: boolean) {
     this.transitioned.emit(isClicked);

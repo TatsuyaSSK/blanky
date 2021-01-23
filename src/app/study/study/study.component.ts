@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Problem } from 'src/app/interfaces/problem';
 import { ProblemService } from 'src/app/services/problem.service';
 import * as firebase from 'firebase';
+import { FormArray, FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-study',
@@ -22,18 +24,20 @@ export class StudyComponent implements OnInit {
 
   englishTextList: string[] = [];
   answerList: string[] = [];
-  answerDict: { [key: number]: string } = {};
-  wordIndexList: number[] = [];
   wordLengthList: number[] = [];
-  blankList: boolean[] = [];
+  blankList: number[] = [];
   blankIndexes: number[];
+  isBlankList: number[] = [];
   filledDict: { [key: number]: string } = {};
+  answerDict: { [key: number]: string } = {};
   problemNum: number;
   correctAnswerRate: number;
   correctAnswerNum = 0;
   type: string;
   problemId: string;
   display: boolean;
+  fills: FormArray = new FormArray([]);
+  private subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,14 +48,19 @@ export class StudyComponent implements OnInit {
     this.type = this.route.snapshot.paramMap.get('type');
     this.problemId = this.route.snapshot.paramMap.get('problemId');
 
-    this.problemService
+    this.subscription = this.problemService
       .getProblembyProblemId(this.type, this.problemId)
       .subscribe((problem) => {
         this.problem = problem;
         this.createBlankProblem(problem.englishText, problem.blankIndexes);
+        this.setFormControl(this.blankIndexes);
       });
 
     this.display = false;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   createBlankProblem(englishText: string, blankIndexes: Array<number>) {
@@ -61,15 +70,17 @@ export class StudyComponent implements OnInit {
     this.wordLengthList = this.englishTextList.map((word) => {
       return word.length;
     });
-    this.wordIndexList = [...Array(this.englishTextList.length)].map(
-      (_, i) => i
-    );
     this.blankList = [...Array(this.englishTextList.length)].map(
-      (_, i) => false
+      (_, i) => null
     );
-    blankIndexes.forEach((index) => {
-      this.blankList[index] = true;
+    this.isBlankList = [...Array(this.englishTextList.length)].map(
+      (_, i) => null
+    );
+    blankIndexes.forEach((index, i) => {
+      this.isBlankList[index] = i + 1;
+      this.blankList[index] = i;
     });
+
     blankIndexes.forEach((index) => {
       const end = this.englishTextList[index].slice(-1);
       if (end === ',' || end === '.') {
@@ -89,24 +100,25 @@ export class StudyComponent implements OnInit {
     }
   }
 
-  setFilledDict() {
-    for (let i = 0; i < this.problemNum; i++) {
-      const value = document.forms['problems'].elements[i].value;
+  setFormControl(blankIndexes: number[]) {
+    blankIndexes.forEach((index) => {
+      this.fills.push(new FormControl(''));
+    });
+  }
+
+  calculateCorrectAnswerRate() {
+    this.fills.value.map((value, i) => {
       if (value === '') {
         this.filledDict[this.blankIndexes[i]] = '---';
       } else {
         this.filledDict[this.blankIndexes[i]] = value.replace(/^\s+|\s+$/g, '');
       }
-    }
-  }
+    });
 
-  calculateCorrectAnswerRate(
-    filledDict: { [key: number]: string },
-    answerDict: { [key: number]: string }
-  ) {
     this.correctAnswerNum = 0;
-    for (const key in filledDict) {
-      if (filledDict[key] === answerDict[key]) {
+
+    for (const key in this.filledDict) {
+      if (this.filledDict[key] === this.answerDict[key]) {
         this.correctAnswerNum += 1;
       }
     }
@@ -128,13 +140,13 @@ export class StudyComponent implements OnInit {
   }
 
   onSubmit() {
-    this.setFilledDict();
-    this.calculateCorrectAnswerRate(this.filledDict, this.answerDict);
+    this.calculateCorrectAnswerRate();
     this.updateCorrectAnswerRate(
       this.correctAnswerRate,
       this.type,
       this.problemId
     );
+    this.fills = new FormArray([]);
     this.display = true;
   }
 
