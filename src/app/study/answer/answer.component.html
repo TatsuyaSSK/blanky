@@ -1,0 +1,97 @@
+<h2 class="box__item">回答</h2>
+
+<span *ngFor="let text of englishTextList; index as i">
+  <span class="word">
+    <ng-container *ngIf="isBlankList[i]; else showWord">
+      <span
+        *ngIf="
+          englishTextList[i].slice(-1) === ',' ||
+            englishTextList[i].slice(-1) === '.';
+          else normalTerm
+        "
+      >
+        <input
+          [class]="filledDict[i] === answerDict[i] ? 'correct' : 'incorrect'"
+          type="text"
+          [size]="wordLengthList[i]"
+          [value]="filledDict[i]"
+        />
+        <span>{{ englishTextList[i].slice(-1) }}</span>
+      </span>
+
+      <ng-template #normalTerm>
+        <input
+          *ngIf="
+            englishTextList[i].slice(-1) !== ',' &&
+            englishTextList[i].slice(-1) !== '.'
+          "
+          [class]="filledDict[i] === answerDict[i] ? 'correct' : 'incorrect'"
+          type="text"
+          [size]="wordLengthList[i] + 1"
+          [value]="filledDict[i]"
+        />
+      </ng-template>
+    </ng-container>
+    <ng-template #showWord>
+      {{ englishTextList[i] }}
+    </ng-template>
+  </span>
+</span>
+<h2 class="box__item">正解</h2>
+<span *ngFor="let word of englishTextList; index as i">
+  <span class="word">
+    <ng-container *ngIf="isBlankList[i]; else showWord">
+      <span
+        *ngIf="
+          englishTextList[i].slice(-1) === ',' ||
+            englishTextList[i].slice(-1) === '.';
+          else normalTerm
+        "
+      >
+        <input
+          class="correct"
+          type="text"
+          [size]="wordLengthList[i]"
+          [value]="answerDict[i]"
+        />
+        <span>{{ englishTextList[i].slice(-1) }}</span>
+      </span>
+
+      <ng-template #normalTerm>
+        <input
+          class="correct"
+          type="text"
+          [size]="wordLengthList[i] + 1"
+          [value]="answerDict[i]"
+        />
+      </ng-template>
+    </ng-container>
+    <ng-template #showWord>
+      {{ englishTextList[i] }}
+    </ng-template>
+  </span>
+</span>
+<h2 class="box__item">正答率</h2>
+<div class="accuracy-box">
+  <p>
+    <strong class="accuracy-box__percentage">{{ correctAnswerRate }}</strong
+    >%
+  </p>
+  <p class="accuracy-box__string">
+    {{ problemNum }}問中{{ correctAnswerNum }}問正解
+  </p>
+</div>
+
+<div class="button-layout">
+  <button (click)="transition(true)" class="box__button" mat-raised-button>
+    もう一度挑戦する
+  </button>
+  <button
+    routerLink="/list"
+    routerLinkActive="active"
+    class="box__button"
+    mat-raised-button
+  >
+    他の問題を解く
+  </button>
+</div>

@@ -1,17 +1,13 @@
 <header class="header">
   <hr class="header__bar" />
   <mat-toolbar>
-    <span><h1 class="header__logo" routerLink="/">blanky</h1></span>
+    <span><h1 class="header__logo" routerLink="/list">blanky</h1></span>
     <span class="header__spacer"></span>
 
     <div class="header__nav" *ngIf="user$ | async as user; else showLogin">
       <div class="header__click" routerLink="/create">
         <img class="header__icon" src="assets/images/create.png" alt="" />
         <p class="header__icon-description">問題を作成する</p>
-      </div>
-      <div class="header__click" routerLink="/list">
-        <img class="header__icon" src="assets/images/learn.png" alt="" />
-        <p class="header__icon-description">学習する</p>
       </div>
 
       <button

@@ -32,7 +32,7 @@
 
   <mat-tab-group
     class="tab"
-    (selectedTabChange)="getProblemsbyType($event)"
+    (selectedTabChange)="setProblemsbyType($event)"
     animationDuration="0ms"
   >
     <mat-tab label="ランダム">
@@ -44,6 +44,11 @@
             正答率: <strong>{{ problem.correctAnswerRate }}</strong
             >%
           </p>
+          <a
+            routerLink="/study/{{ type }}/{{ problem.problemId }}/"
+            routerLinkActive="active"
+            class="card__link"
+          ></a>
         </div>
       </div>
     </mat-tab>

@@ -58,4 +58,22 @@ export class ProblemService {
       .collection<Problem>(`problems/${this.authService.uid}/${type}`)
       .valueChanges();
   }
+
+  getProblembyProblemId(type: string, problemId: string): Observable<Problem> {
+    return this.db
+      .doc<Problem>(`problems/${this.authService.uid}/${type}/${problemId}`)
+      .valueChanges();
+  }
+
+  updateCorrectAnswerRate(
+    correctAnswerRate: number,
+    type: string,
+    problemId: string
+  ) {
+    return this.db
+      .doc<Problem>(`problems/${this.authService.uid}/${type}/${problemId}`)
+      .update({
+        correctAnswerRate,
+      });
+  }
 }

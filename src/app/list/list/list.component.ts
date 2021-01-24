@@ -18,6 +18,8 @@ export class ListComponent implements OnInit {
     前置詞: 'preposition',
   };
 
+  type = 'random';
+
   problems: Problem[];
 
   sorts: any[] = [
@@ -52,11 +54,12 @@ export class ListComponent implements OnInit {
     this.problemService.getProblemsbyType('random').subscribe((problems) => {
       this.problems = problems;
     });
+    this.type = 'random';
   }
 
   setProblemsbyType($event) {
-    const type = this.typeDict[$event['tab'].textLabel];
-    this.problemService.getProblemsbyType(type).subscribe((problems) => {
+    this.type = this.typeDict[$event['tab'].textLabel];
+    this.problemService.getProblemsbyType(this.type).subscribe((problems) => {
       this.problems = problems;
     });
   }
