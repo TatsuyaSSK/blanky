@@ -56,8 +56,12 @@ export class ProblemService {
     const englishWords = new partsOfSpeech.Lexer().lex(englishText);
     const tagger = new partsOfSpeech.Tagger();
     const taggedWords = tagger.tag(englishWords);
-    for (let i = 0; i < taggedWords.length; i++) {
-      const taggedWord = taggedWords[i];
+    const taggedWordsDeleted = taggedWords.filter(
+      (taggedWord) => taggedWord[1] !== '.' && taggedWord[1] !== ','
+    );
+
+    for (let i = 0; i < taggedWordsDeleted.length; i++) {
+      const taggedWord = taggedWordsDeleted[i];
       const tag = taggedWord[1];
       if (tags.includes(tag)) {
         blankIndexes.push(i);
