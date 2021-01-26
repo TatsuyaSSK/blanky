@@ -30,7 +30,7 @@ export class ProblemService {
     englishText: string,
     type: string
   ): number[] {
-    let blankIndexes: number[] = [];
+    const blankIndexes: number[] = [];
     let tags: string[] = [];
     switch (type) {
       case 'noun':
@@ -44,6 +44,11 @@ export class ProblemService {
         break;
       case 'adverb':
         tags = ['RB', 'RBR', 'RBS'];
+        break;
+      case 'preposition':
+        tags = ['IN'];
+        break;
+
       default:
         console.log('type is not matched');
     }
