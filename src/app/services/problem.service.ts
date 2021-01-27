@@ -4,6 +4,7 @@ import { Problem } from '../interfaces/problem';
 import { AuthService } from './auth.service';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
+import * as pos from 'parts-of-speech';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +16,54 @@ export class ProblemService {
     return englishText.split(' ').filter((word) => word !== '').length;
   }
 
-  createBlankIndexes(textLength: number, ratio = 0.2) {
+  createBlankIndexesbyRandom(textLength: number, ratio = 0.2) {
     const blankIndexes: number[] = [];
     for (let i = 0; i < textLength + 1; i++) {
       if (Math.random() <= ratio) {
+        blankIndexes.push(i);
+      }
+    }
+    return blankIndexes;
+  }
+
+  createBlankIndexesbyPartOfSpeech(
+    englishText: string,
+    type: string
+  ): number[] {
+    const blankIndexes: number[] = [];
+    let tags: string[] = [];
+    switch (type) {
+      case 'noun':
+        tags = ['NN', 'NNP', 'NNPS', 'NNS'];
+        break;
+      case 'verb':
+        tags = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'];
+        break;
+      case 'adjective':
+        tags = ['JJ', 'JJR', 'JJS'];
+        break;
+      case 'adverb':
+        tags = ['RB', 'RBR', 'RBS'];
+        break;
+      case 'preposition':
+        tags = ['IN'];
+        break;
+
+      default:
+        console.log('type is not matched');
+    }
+    const partsOfSpeech = pos;
+    const englishWords = new partsOfSpeech.Lexer().lex(englishText);
+    const tagger = new partsOfSpeech.Tagger();
+    const taggedWords = tagger.tag(englishWords);
+    const taggedWordsDeleted = taggedWords.filter(
+      (taggedWord) => taggedWord[1] !== '.' && taggedWord[1] !== ','
+    );
+
+    for (let i = 0; i < taggedWordsDeleted.length; i++) {
+      const taggedWord = taggedWordsDeleted[i];
+      const tag = taggedWord[1];
+      if (tags.includes(tag)) {
         blankIndexes.push(i);
       }
     }
@@ -36,10 +81,18 @@ export class ProblemService {
     >,
     type: string
   ) {
+    let blankIndexes: number[];
     const problemId = this.db.createId();
-    const blankIndexes = this.createBlankIndexes(
-      this.countWords(problem.englishText)
-    );
+    if (type === 'random') {
+      blankIndexes = this.createBlankIndexesbyRandom(
+        this.countWords(problem.englishText)
+      );
+    } else {
+      blankIndexes = this.createBlankIndexesbyPartOfSpeech(
+        problem.englishText,
+        type
+      );
+    }
 
     this.db
       .doc<Problem>(`problems/${this.authService.uid}/${type}/${problemId}`)
