@@ -1,0 +1,17 @@
+<div class="grid">
+  <ng-container *ngFor="let problem of problems">
+    <div class="card">
+      <p class="card__title">{{ problem.title }}</p>
+      <figure class="card__cover"></figure>
+      <p class="class__accuracy">
+        正答率: <strong>{{ problem.correctAnswerRate }}</strong
+        >%
+      </p>
+      <a
+        routerLink="/study/{{ type }}/{{ problem.problemId }}/"
+        routerLinkActive="active"
+        class="card__link"
+      ></a>
+    </div>
+  </ng-container>
+</div>
