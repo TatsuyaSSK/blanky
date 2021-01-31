@@ -23,13 +23,13 @@
     <div class="service-setting">
       <h2 class="heading">サービスのご利用状況</h2>
       <div class="service">
-        <p class="servive__paid">有料会員</p>
         <div class="flex">
           <p class="service__logo">blanky</p>
           <button class="service__cancell-button" mat-raised-button>
             解約する
           </button>
         </div>
+        <hr class="service-setting__border" />
         <div class="flex">
           <p class="service__payment-method">お支払い方法</p>
           <img
@@ -39,9 +39,18 @@
           />
           <div class="payment-information">
             <p class="payment-information__number">
-              ****_****_****_****　　変更する
+              ****_****_****_****　<a
+                class="payment-information__link"
+                routerLink="/payment"
+                >変更する</a
+              >　
             </p>
-            <p>次回ご請求日：20**年*月*日</p>
+            <p>
+              次回ご請求日：20**年*月*日
+              <a class="payment-information__link" routerLink="/payment-history"
+                >お支払い履歴</a
+              >　
+            </p>
           </div>
         </div>
       </div>
