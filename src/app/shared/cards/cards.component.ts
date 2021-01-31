@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ProblemService } from 'src/app/services/problem.service';
 
 @Component({
   selector: 'app-cards',
