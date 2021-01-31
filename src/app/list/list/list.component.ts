@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Problem } from 'src/app/interfaces/problem';
 import { ProblemService } from 'src/app/services/problem.service';
+import { SearchService } from 'src/app/services/search.service';
+import { SearchIndex } from 'algoliasearch/lite';
 
 @Component({
   selector: 'app-list',
@@ -9,6 +11,15 @@ import { ProblemService } from 'src/app/services/problem.service';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
+  index: SearchIndex = this.searchService.index.dev_blanky_service;
+  result: {
+    nbHits: number;
+    hits: any[];
+  };
+  isQuery: boolean;
+
+  query = new FormControl('');
+
   typeDict: { [key: string]: string } = {
     ランダム: 'random',
     名詞: 'noun',
@@ -28,26 +39,10 @@ export class ListComponent implements OnInit {
     { value: 'accuracy', viewValue: '正答率順' },
   ];
 
-  form = this.fb.group({
-    keyward: ['', []],
-    sort: [''],
-  });
-
-  submit() {
-    console.log(this.form.value);
-  }
-
-  get keywardControl() {
-    return this.form.get('keyward') as FormControl;
-  }
-
-  get sortControl() {
-    return this.form.get('sort') as FormControl;
-  }
-
   constructor(
     private fb: FormBuilder,
-    private problemService: ProblemService
+    private problemService: ProblemService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
@@ -55,12 +50,27 @@ export class ListComponent implements OnInit {
       this.problems = problems;
     });
     this.type = 'random';
+    this.isQuery = false;
   }
 
   setProblemsbyType($event) {
+    this.query.setValue('');
     this.type = this.typeDict[$event['tab'].textLabel];
     this.problemService.getProblemsbyType(this.type).subscribe((problems) => {
       this.problems = problems;
     });
+  }
+
+  search(event: any) {
+    if (event.target.value) {
+      this.isQuery = true;
+      this.index
+        .search(event.target.value, { filters: `type:${this.type}` })
+        .then((result) => {
+          this.result = result;
+        });
+    } else {
+      this.isQuery = false;
+    }
   }
 }

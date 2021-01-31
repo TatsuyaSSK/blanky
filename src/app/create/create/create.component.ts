@@ -59,19 +59,21 @@ export class CreateComponent implements OnInit {
     }, []);
     const title: string = this.form.get('title').value;
     const englishText: string = this.form.get('englishText').value;
-    const problem: Omit<
-      Problem,
-      | 'problemId'
-      | 'japaneseText'
-      | 'blankIndexes'
-      | 'correctAnswerRate'
-      | 'createdAt'
-    > = {
-      title,
-      englishText,
-    };
     selectedTypes.forEach((type) => {
-      this.problemService.createProblem(problem, type);
+      const problem: Omit<
+        Problem,
+        | 'problemId'
+        | 'japaneseText'
+        | 'blankIndexes'
+        | 'correctAnswerRate'
+        | 'createdAt'
+      > = {
+        title,
+        englishText,
+        type,
+      };
+
+      this.problemService.createProblem(problem);
     });
   }
 
