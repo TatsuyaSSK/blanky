@@ -54,6 +54,7 @@ export class ListComponent implements OnInit {
   }
 
   setProblemsbyType($event) {
+    this.isQuery = false;
     this.query.setValue('');
     this.type = this.typeDict[$event['tab'].textLabel];
     this.problemService.getProblemsbyType(this.type).subscribe((problems) => {
