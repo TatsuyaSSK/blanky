@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardsComponent implements OnInit {
   @Input() problems;
   @Input() type;
+  @Input() isQuery;
+  @Input() result;
 
   constructor() {}
 

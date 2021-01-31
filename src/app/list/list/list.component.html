@@ -18,82 +18,52 @@
     animationDuration="0ms"
   >
     <mat-tab label="ランダム">
-      <div *ngIf="!isQuery; else showResult">
-        <app-cards [problems]="problems" [type]="type"></app-cards>
-      </div>
-      <ng-template #showResult>
-        <div *ngIf="result?.nbHits === 0; else matched">
-          <p>検索結果がありません</p>
-        </div>
-        <ng-template #matched>
-          <app-cards [problems]="result?.hits"></app-cards>
-        </ng-template>
-      </ng-template>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
     <mat-tab label="名詞">
-      <div *ngIf="!isQuery; else showResult">
-        <app-cards [problems]="problems" [type]="type"></app-cards>
-      </div>
-      <ng-template #showResult>
-        <div *ngIf="result?.nbHits === 0; else matched">
-          <p>検索結果がありません</p>
-        </div>
-        <ng-template #matched>
-          <app-cards [problems]="result?.hits"></app-cards>
-        </ng-template>
-      </ng-template>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
     <mat-tab label="動詞">
-      <div *ngIf="!isQuery; else showResult">
-        <app-cards [problems]="problems" [type]="type"></app-cards>
-      </div>
-      <ng-template #showResult>
-        <div *ngIf="result?.nbHits === 0; else matched">
-          <p>検索結果がありません</p>
-        </div>
-        <ng-template #matched>
-          <app-cards [problems]="result?.hits"></app-cards>
-        </ng-template>
-      </ng-template>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
     <mat-tab label="形容詞">
-      <div *ngIf="!isQuery; else showResult">
-        <app-cards [problems]="problems" [type]="type"></app-cards>
-      </div>
-      <ng-template #showResult>
-        <div *ngIf="result?.nbHits === 0; else matched">
-          <p>検索結果がありません</p>
-        </div>
-        <ng-template #matched>
-          <app-cards [problems]="result?.hits"></app-cards>
-        </ng-template>
-      </ng-template>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
     <mat-tab label="副詞">
-      <div *ngIf="!isQuery; else showResult">
-        <app-cards [problems]="problems" [type]="type"></app-cards>
-      </div>
-      <ng-template #showResult>
-        <div *ngIf="result?.nbHits === 0; else matched">
-          <p>検索結果がありません</p>
-        </div>
-        <ng-template #matched>
-          <app-cards [problems]="result?.hits"></app-cards>
-        </ng-template>
-      </ng-template>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
     <mat-tab label="前置詞">
-      <div *ngIf="!isQuery; else showResult">
-        <app-cards [problems]="problems" [type]="type"></app-cards>
-      </div>
-      <ng-template #showResult>
-        <div *ngIf="result?.nbHits === 0; else matched">
-          <p>検索結果がありません</p>
-        </div>
-        <ng-template #matched>
-          <app-cards [problems]="result?.hits"></app-cards>
-        </ng-template>
-      </ng-template>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
   </mat-tab-group>
 </div>
