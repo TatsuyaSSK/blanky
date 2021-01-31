@@ -1,19 +1,7 @@
 <div *ngIf="!isQuery; else showResult">
   <div class="grid">
     <ng-container *ngFor="let problem of problems">
-      <div class="card">
-        <p class="card__title">{{ problem.title }}</p>
-        <figure class="card__cover"></figure>
-        <p class="class__accuracy">
-          正答率: <strong>{{ problem.correctAnswerRate }}</strong
-          >%
-        </p>
-        <a
-          routerLink="/study/{{ type }}/{{ problem.problemId }}/"
-          routerLinkActive="active"
-          class="card__link"
-        ></a>
-      </div>
+      <app-card [problem]="problem" [type]="type"></app-card>
     </ng-container>
   </div>
 </div>
@@ -24,19 +12,7 @@
   <ng-template #matched>
     <div class="grid">
       <ng-container *ngFor="let hit of result?.hits">
-        <div class="card">
-          <p class="card__title">{{ hit.title }}</p>
-          <figure class="card__cover"></figure>
-          <p class="class__accuracy">
-            正答率: <strong>{{ hit.correctAnswerRate }}</strong
-            >%
-          </p>
-          <a
-            routerLink="/study/{{ type }}/{{ hit.problemId }}/"
-            routerLinkActive="active"
-            class="card__link"
-          ></a>
-        </div>
+        <app-card [problem]="hit" [type]="type"></app-card>
       </ng-container>
     </div>
   </ng-template>

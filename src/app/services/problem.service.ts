@@ -128,4 +128,8 @@ export class ProblemService {
         correctAnswerRate,
       });
   }
+
+  deleteProblem(uid: string, type: string, problemId: string) {
+    this.db.doc<Problem>(`problems/${uid}/${type}/${problemId}`).delete();
+  }
 }
