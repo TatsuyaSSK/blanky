@@ -2,45 +2,43 @@
   margin-right: auto;
   margin-left: auto;
   width: 960px;
-  display: flex;
+}
+
+.inner {
+  width: 880px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: 24px;
+  color: #15c399;
 }
 
 .my-profile {
-  border: 1px solid;
   border-color: #e0e0e0;
   border-radius: 5px;
-  padding-top: 40px;
-  width: 270px;
-  height: 270px;
+  width: 800px;
+  margin-top: 40px;
 }
 
 .profile {
+  border: 1px solid rgba(black, 0.05);
   display: flex;
+  align-items: center;
+  background-color: #fafffe;
+  padding: 20px 0;
   &__image {
-    width: 120px;
-    height: 120px;
-    padding-right: 40px;
+    width: 80px;
+    height: 80px;
+    margin: 0 40px 0 16px;
+    border-radius: 50%;
   }
-}
-
-.usage {
-  display: flex;
-  padding: 40px 20px 20px 20px;
-  &__item {
-    padding-right: 45px;
+  &__username {
+    padding: 0;
+    margin: 0;
   }
-}
-
-.my-status {
-  padding-left: 100px;
-}
-
-.login-setting {
-  width: 600px;
   &__button {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    margin-left: 120px;
+    margin-left: 40px;
   }
 }
 
@@ -62,12 +60,14 @@
 }
 
 .service-setting {
-  padding-top: 40px;
+  margin-top: 40px;
+  width: 800px;
 }
 
 .service {
-  &__paid {
-  }
+  border: 1px solid rgba(black, 0.05);
+  padding: 20px;
+  background-color: #fafffe;
   &__logo {
     color: #15c399;
     font-size: 24px;
@@ -100,8 +100,12 @@
 }
 
 .withdrawal {
-  background: #15c399;
-  color: white;
-  margin-top: 20px;
-  margin-left: 500px;
+  text-align: right;
+  margin: 0 auto;
+  margin-top: 40px;
+  &__button {
+    background: #15c399;
+    color: white;
+    margin-right: 80px;
+  }
 }

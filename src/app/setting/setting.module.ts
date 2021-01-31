@@ -6,6 +6,7 @@ import { SettingComponent } from './setting/setting.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { WithdrawalComponent } from './withdrawal/withdrawal.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [SettingComponent, WithdrawalComponent],
@@ -14,6 +15,7 @@ import { WithdrawalComponent } from './withdrawal/withdrawal.component';
     SettingRoutingModule,
     MatButtonModule,
     MatDialogModule,
+    MatInputModule,
   ],
 })
 export class SettingModule {}

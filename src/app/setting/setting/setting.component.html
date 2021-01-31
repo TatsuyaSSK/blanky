@@ -1,48 +1,27 @@
 <div class="container">
-  <div class="my-profile">
-    <div class="profile">
-      <img src="/assets/images/icon.png" alt="" class="profile__image" />
-      <div class="block">
-        <p class="profile__name">テスト太郎</p>
-        <p class="profile__status">有料会員</p>
+  <div class="inner">
+    <div class="my-profile" *ngIf="user$ | async as user">
+      <h2 class="heading">プロフィール情報</h2>
+      <div class="profile">
+        <img [src]="user.avatarURL" alt="" class="profile__image" />
+        <div class="profile__user">
+          <p class="profile__username">ユーザー名</p>
+          <mat-form-field class="example-full-width">
+            <input matInput [value]="user.name" />
+          </mat-form-field>
+        </div>
+        <button
+          [disabled]="!isUpdated"
+          class="profile__button"
+          mat-raised-button
+        >
+          更新する
+        </button>
       </div>
     </div>
-    <div class="usage">
-      <p class="usage__item">作成した問題</p>
-      <p class="usage__num">{{ questionNum }}</p>
-    </div>
-  </div>
 
-  <div class="my-status">
-    <div class="login-setting">
-      <h1>アカウント連携</h1>
-      <hr />
-      <div class="account">
-        <img
-          src="assets/images/f_logo_RGB-Blue_58.png"
-          alt=""
-          class="account__icon"
-        />
-        <p class="account__name">facebook</p>
-        <p class="account__status">ログイン中です</p>
-      </div>
-      <div class="account">
-        <img
-          src="assets/images/Twitter_Social_Icon_Square_Color.png"
-          alt=""
-          class="account__icon"
-        />
-        <p class="account__name">twitter</p>
-        <p class="account__status">連携されていません</p>
-      </div>
-      <button class="login-setting__button" mat-raised-button>
-        アカウント連携の登録、変更
-      </button>
-    </div>
-    <hr />
     <div class="service-setting">
-      <h1>サービスのご利用状況</h1>
-      <hr />
+      <h2 class="heading">サービスのご利用状況</h2>
       <div class="service">
         <p class="servive__paid">有料会員</p>
         <div class="flex">
@@ -67,13 +46,15 @@
         </div>
       </div>
     </div>
-    <hr />
-    <button
-      (click)="openWithdrawalDialog()"
-      mat-raised-button
-      class="withdrawal"
-    >
-      退会する
-    </button>
+
+    <div class="withdrawal">
+      <button
+        (click)="openWithdrawalDialog()"
+        mat-raised-button
+        class="withdrawal__button"
+      >
+        退会する
+      </button>
+    </div>
   </div>
 </div>
