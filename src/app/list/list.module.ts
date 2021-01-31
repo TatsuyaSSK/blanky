@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [ListComponent],
@@ -26,6 +27,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSelectModule,
     MatButtonModule,
     MatTabsModule,
+    SharedModule,
   ],
 })
 export class ListModule {}
