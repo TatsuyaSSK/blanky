@@ -14,9 +14,6 @@ import { Router } from '@angular/router';
 export class CropComponent implements OnInit {
   imageChangedEvent = '';
   croppedImage = '';
-  imageSelecter: any;
-
-  isLoading: boolean;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { event: any },
