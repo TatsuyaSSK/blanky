@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { Problem } from 'src/app/interfaces/problem';
 import { ProblemService } from 'src/app/services/problem.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -40,7 +42,9 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private problemService: ProblemService
+    private problemService: ProblemService,
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -59,19 +63,25 @@ export class CreateComponent implements OnInit {
     }, []);
     const title: string = this.form.get('title').value;
     const englishText: string = this.form.get('englishText').value;
-    const problem: Omit<
-      Problem,
-      | 'problemId'
-      | 'japaneseText'
-      | 'blankIndexes'
-      | 'correctAnswerRate'
-      | 'createdAt'
-    > = {
-      title,
-      englishText,
-    };
     selectedTypes.forEach((type) => {
-      this.problemService.createProblem(problem, type);
+      const problem: Omit<
+        Problem,
+        | 'problemId'
+        | 'japaneseText'
+        | 'blankIndexes'
+        | 'correctAnswerRate'
+        | 'createdAt'
+      > = {
+        title,
+        englishText,
+        type,
+      };
+
+      this.problemService.createProblem(problem);
+    });
+    this.router.navigateByUrl('/');
+    this.snackBar.open('問題を作成しました', null, {
+      duration: 2000,
     });
   }
 

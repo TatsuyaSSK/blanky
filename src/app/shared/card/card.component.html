@@ -1,0 +1,14 @@
+<div class="card">
+  <p class="card__title">{{ problem.title }}</p>
+  <figure class="card__cover"></figure>
+  <p class="class__accuracy">
+    正答率: <strong>{{ problem.correctAnswerRate }}</strong
+    >%
+  </p>
+  <a
+    routerLink="/study/{{ type }}/{{ problem.problemId }}/"
+    routerLinkActive="active"
+    class="card__link"
+  ></a>
+  <button class="card__button" (click)="deleteProblem()">削除</button>
+</div>

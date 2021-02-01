@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from '../shared/shared.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [ListComponent],
@@ -28,6 +29,7 @@ import { SharedModule } from '../shared/shared.module';
     MatButtonModule,
     MatTabsModule,
     SharedModule,
+    MatIconModule,
   ],
 })
 export class ListModule {}

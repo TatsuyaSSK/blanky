@@ -1,17 +1,19 @@
-<div class="grid">
-  <ng-container *ngFor="let problem of problems">
-    <div class="card">
-      <p class="card__title">{{ problem.title }}</p>
-      <figure class="card__cover"></figure>
-      <p class="class__accuracy">
-        正答率: <strong>{{ problem.correctAnswerRate }}</strong
-        >%
-      </p>
-      <a
-        routerLink="/study/{{ type }}/{{ problem.problemId }}/"
-        routerLinkActive="active"
-        class="card__link"
-      ></a>
-    </div>
-  </ng-container>
+<div *ngIf="!isQuery; else showResult">
+  <div class="grid">
+    <ng-container *ngFor="let problem of problems">
+      <app-card [problem]="problem" [type]="type"></app-card>
+    </ng-container>
+  </div>
 </div>
+<ng-template #showResult>
+  <div *ngIf="result?.nbHits === 0; else matched">
+    <p>検索結果がありません</p>
+  </div>
+  <ng-template #matched>
+    <div class="grid">
+      <ng-container *ngFor="let hit of result?.hits">
+        <app-card [problem]="hit" [type]="type"></app-card>
+      </ng-container>
+    </div>
+  </ng-template>
+</ng-template>
