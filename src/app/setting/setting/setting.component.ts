@@ -55,5 +55,11 @@ export class SettingComponent implements OnInit {
 
   openWithdrawalDialog() {
     const dialogRef = this.dialog.open(WithdrawalComponent);
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.snackBar.open('退会しました', null, {
+        duration: 2000,
+      });
+    });
   }
 }
