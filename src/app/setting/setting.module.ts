@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { CropComponent } from './crop/crop.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [SettingComponent, WithdrawalComponent, CropComponent],
@@ -23,6 +25,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatIconModule,
     ImageCropperModule,
     MatSnackBarModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
   ],
 })
 export class SettingModule {}

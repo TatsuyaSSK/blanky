@@ -23,4 +23,10 @@ export class UserService {
       avatarURL: imageURL,
     });
   }
+
+  updateUserName(uid: string, newName: string) {
+    return this.db.doc<User>(`users/${uid}`).update({
+      name: newName,
+    });
+  }
 }

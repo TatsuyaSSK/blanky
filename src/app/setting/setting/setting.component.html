@@ -23,13 +23,17 @@
         <div class="profile__user">
           <p class="profile__username">ユーザー名</p>
           <mat-form-field class="example-full-width">
-            <input matInput [value]="user.name" />
+            <input matInput [formControl]="userName" (change)="nameChanged()" />
+            <mat-error *ngIf="userName.hasError('required')">
+              ユーザー名を入力してください
+            </mat-error>
           </mat-form-field>
         </div>
         <button
           [disabled]="!isUpdated"
           class="profile__button"
           mat-raised-button
+          (click)="updateUserName()"
         >
           更新する
         </button>
