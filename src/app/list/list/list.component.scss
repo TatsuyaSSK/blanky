@@ -34,3 +34,44 @@
     font-size: 16px;
   }
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 16px;
+  gap: 16px;
+}
+
+.search {
+  background-color: #fff;
+  border: 1px solid rgba(black, 0.12);
+  border-radius: 8px;
+  height: 36px;
+  box-sizing: border-box;
+  max-width: 400px;
+  margin: 24px 0px 24px 24px;
+  display: flex;
+  &__button {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    height: 34px;
+    color: #15c399;
+    display: flex;
+    align-items: center;
+  }
+  &__input {
+    appearance: none;
+    border: none;
+    padding: 0 16px 0 16px;
+    margin: 0;
+    outline: none;
+    flex: 1;
+    border-radius: 8px;
+  }
+  ::placeholder {
+    color: rgba(black, 0.3);
+  }
+}

@@ -5,7 +5,6 @@ import { AuthService } from './auth.service';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import * as pos from 'parts-of-speech';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -70,7 +69,7 @@ export class ProblemService {
     return blankIndexes;
   }
 
-  createProblem(
+  async createProblem(
     problem: Omit<
       Problem,
       | 'problemId'
@@ -78,24 +77,24 @@ export class ProblemService {
       | 'blankIndexes'
       | 'correctAnswerRate'
       | 'createdAt'
-    >,
-    type: string
+    >
   ) {
     let blankIndexes: number[];
     const problemId = this.db.createId();
-    if (type === 'random') {
+    if (problem.type === 'random') {
       blankIndexes = this.createBlankIndexesbyRandom(
         this.countWords(problem.englishText)
       );
     } else {
       blankIndexes = this.createBlankIndexesbyPartOfSpeech(
         problem.englishText,
-        type
+        problem.type
       );
     }
-
     this.db
-      .doc<Problem>(`problems/${this.authService.uid}/${type}/${problemId}`)
+      .doc<Problem>(
+        `problems/${this.authService.uid}/${problem.type}/${problemId}`
+      )
       .set({
         problemId,
         ...problem,

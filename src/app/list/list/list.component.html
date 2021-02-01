@@ -1,57 +1,69 @@
 <div class="container">
-  <form class="search-form" [formGroup]="form" (ngSubmit)="submit()">
-    <mat-form-field class="search-form__keyward" appearance="outline">
+  <div class="spacer">
+    <form class="search">
+      <button class="search__button"><mat-icon>search</mat-icon></button>
       <input
-        formControlName="keyward"
-        placeholder="キーワードを入力してください（20字以内）"
         type="text"
-        matInput
+        class="search__input"
         autocomplete="off"
+        placeholder="タイトル、英単語など"
+        [formControl]="query"
+        (input)="search($event)"
       />
-    </mat-form-field>
-
-    <mat-form-field class="search-form__select" appearance="fill">
-      <mat-label>条件</mat-label>
-      <mat-select formControlName="sort">
-        <mat-option *ngFor="let sort of sorts" [value]="sort.value">
-          {{ sort.viewValue }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <div class="submit">
-      <button
-        [disabled]="form.invalid"
-        mat-raised-button
-        class="search-form__button"
-      >
-        検索
-      </button>
-    </div>
-  </form>
-
+    </form>
+  </div>
   <mat-tab-group
     class="tab"
     (selectedTabChange)="setProblemsbyType($event)"
     animationDuration="0ms"
   >
     <mat-tab label="ランダム">
-      <app-cards [problems]="problems" [type]="type"></app-cards>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
     <mat-tab label="名詞">
-      <app-cards [problems]="problems" [type]="type"></app-cards>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
     <mat-tab label="動詞">
-      <app-cards [problems]="problems" [type]="type"></app-cards>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
     <mat-tab label="形容詞">
-      <app-cards [problems]="problems" [type]="type"></app-cards>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
     <mat-tab label="副詞">
-      <app-cards [problems]="problems" [type]="type"></app-cards>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
     <mat-tab label="前置詞">
-      <app-cards [problems]="problems" [type]="type"></app-cards>
+      <app-cards
+        [problems]="problems"
+        [type]="type"
+        [isQuery]="isQuery"
+        [result]="result"
+      ></app-cards>
     </mat-tab>
   </mat-tab-group>
 </div>

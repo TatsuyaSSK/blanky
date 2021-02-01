@@ -1,5 +1,19 @@
-<div class="grid">
-  <ng-container *ngFor="let problem of problems">
-    <app-card [problem]="problem" [type]="type"></app-card>
-  </ng-container>
+<div *ngIf="!isQuery; else showResult">
+  <div class="grid">
+    <ng-container *ngFor="let problem of problems">
+      <app-card [problem]="problem" [type]="type"></app-card>
+    </ng-container>
+  </div>
 </div>
+<ng-template #showResult>
+  <div *ngIf="result?.nbHits === 0; else matched">
+    <p>検索結果がありません</p>
+  </div>
+  <ng-template #matched>
+    <div class="grid">
+      <ng-container *ngFor="let hit of result?.hits">
+        <app-card [problem]="hit" [type]="type"></app-card>
+      </ng-container>
+    </div>
+  </ng-template>
+</ng-template>

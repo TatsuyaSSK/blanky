@@ -20,6 +20,7 @@ export class StudyComponent implements OnInit {
     blankIndexes: [],
     correctAnswerRate: 0,
     createdAt: firebase.default.firestore.Timestamp.now(),
+    type: '',
   };
 
   englishTextList: string[] = [];

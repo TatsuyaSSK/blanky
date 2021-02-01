@@ -9,6 +9,8 @@ import { ProblemService } from 'src/app/services/problem.service';
 export class CardsComponent implements OnInit {
   @Input() problems;
   @Input() type;
+  @Input() isQuery;
+  @Input() result;
 
   constructor() {}
 

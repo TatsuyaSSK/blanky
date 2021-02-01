@@ -6,4 +6,5 @@ export interface Problem {
   blankIndexes: Array<number>;
   correctAnswerRate: number;
   createdAt: firebase.default.firestore.Timestamp;
+  type: string;
 }
