@@ -28,9 +28,11 @@
   background-color: #fafffe;
   padding: 20px 0;
   &__image {
-    width: 80px;
     height: 80px;
+    width: 80px;
+    background-size: cover;
     margin: 0 40px 0 16px;
+    background-position: center;
     border-radius: 50%;
   }
   &__username {
@@ -39,6 +41,9 @@
   }
   &__button {
     margin-left: 40px;
+  }
+  &__file {
+    display: none;
   }
 }
 

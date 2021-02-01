@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { WithdrawalComponent } from '../withdrawal/withdrawal.component';
 import { User } from '../../interfaces/user';
+import { CropComponent } from '../crop/crop.component';
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -12,7 +13,7 @@ import { User } from '../../interfaces/user';
 export class SettingComponent implements OnInit {
   questionNum: number;
   user$: Observable<User> = this.authService.user$;
-  isUpdated: boolean = false;
+  isUpdated = false;
 
   constructor(private authService: AuthService, public dialog: MatDialog) {}
 
@@ -21,10 +22,13 @@ export class SettingComponent implements OnInit {
     this.isUpdated = false;
   }
 
+  openCropDialog(event: any): void {
+    const dialogRef = this.dialog.open(CropComponent, {
+      data: { event },
+    });
+  }
+
   openWithdrawalDialog() {
     const dialogRef = this.dialog.open(WithdrawalComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 }

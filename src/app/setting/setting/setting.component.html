@@ -3,7 +3,23 @@
     <div class="my-profile" *ngIf="user$ | async as user">
       <h2 class="heading">プロフィール情報</h2>
       <div class="profile">
-        <img [src]="user.avatarURL" alt="" class="profile__image" />
+        <label
+          for="uploadImage"
+          [style.background-image]="'url(' + user.avatarURL + ')'"
+          class="profile__image"
+        >
+          <div class="profile__mark">
+            <mat-icon class="profile__cameraIcon">add_a_photo</mat-icon>
+          </div>
+        </label>
+        <input
+          id="uploadImage"
+          type="file"
+          accept=".png, .jpg, .jpeg"
+          class="profile__file"
+          (change)="openCropDialog($event)"
+          #imageSelecter
+        />
         <div class="profile__user">
           <p class="profile__username">ユーザー名</p>
           <mat-form-field class="example-full-width">
