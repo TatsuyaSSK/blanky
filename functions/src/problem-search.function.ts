@@ -20,7 +20,7 @@ export const deleteProblem = functions
     }
   });
 
-export const createProblem = functions
+export const updateProblem = functions
   .region('asia-northeast1')
   .firestore.document('problems/{uid}/{type}/{problemId}')
   .onUpdate((change) => {
