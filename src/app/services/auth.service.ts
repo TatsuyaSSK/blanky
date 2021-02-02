@@ -40,7 +40,6 @@ export class AuthService {
   }
 
   withdrawal() {
-    this.db.doc(`problems/${this.uid}`).delete();
     const user = firebase.auth().currentUser;
     user.delete().then(() => this.router.navigateByUrl('/'));
   }

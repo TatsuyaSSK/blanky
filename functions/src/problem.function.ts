@@ -20,14 +20,29 @@ export const translateText = functions
   .firestore.document(`problems/{uid}/{type}/{problemId}`)
   .onCreate((snap, context) => {
     const newValue = snap.data();
-    const englishText = newValue.englishText;
-    return translate(englishText, 'ja').then((translation) => {
+    if (
+      newValue.title === 'blankyへようこそ！' &&
+      newValue.englishText ===
+        'blanky is a service that allows you to create your own original English questions just by uploading English sentences.'
+    ) {
       return db
         .doc(
           `problems/${context.params.uid}/${context.params.type}/${context.params.problemId}`
         )
         .update({
-          japaneseText: translation,
+          japaneseText:
+            'blankyは、英語の文章をアップロードするだけであなただけのオリジナルの英語問題を作成することができるサービスです。',
         });
-    });
+    } else {
+      const englishText = newValue.englishText;
+      return translate(englishText, 'ja').then((translation) => {
+        return db
+          .doc(
+            `problems/${context.params.uid}/${context.params.type}/${context.params.problemId}`
+          )
+          .update({
+            japaneseText: translation,
+          });
+      });
+    }
   });

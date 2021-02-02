@@ -1,6 +1,8 @@
 import * as admin from 'firebase-admin';
 admin.initializeApp();
+export const db = admin.firestore();
+export const bucket = admin.storage().bucket();
 
-export { createUser, deleteUser } from './user.function';
+export * from './user.function';
 export { translateText } from './problem.function';
 export * from './problem-search.function';

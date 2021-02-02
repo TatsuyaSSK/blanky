@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Router } from '@angular/router';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -9,7 +10,8 @@ import { User } from '../interfaces/user';
 export class UserService {
   constructor(
     private db: AngularFirestore,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private router: Router
   ) {}
 
   async updateAvatar(uid: string, base64Image: string) {

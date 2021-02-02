@@ -3,4 +3,6 @@ export interface User {
   avatarURL: string;
   email: string;
   createdAt: Date;
+  stripeId: string;
+  uid: string;
 }
