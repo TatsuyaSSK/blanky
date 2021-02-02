@@ -1,79 +1,90 @@
 <div class="container">
-  <div class="my-profile">
-    <div class="profile">
-      <img src="/assets/images/icon.png" alt="" class="profile__image" />
-      <div class="block">
-        <p class="profile__name">テスト太郎</p>
-        <p class="profile__status">有料会員</p>
+  <div class="inner">
+    <div class="my-profile" *ngIf="user$ | async as user">
+      <h2 class="heading">プロフィール情報</h2>
+      <div class="profile">
+        <label
+          for="uploadImage"
+          [style.background-image]="'url(' + user.avatarURL + ')'"
+          class="profile__image"
+        >
+          <div class="profile__mark">
+            <mat-icon class="profile__cameraIcon">add_a_photo</mat-icon>
+          </div>
+        </label>
+        <input
+          id="uploadImage"
+          type="file"
+          accept=".png, .jpg, .jpeg"
+          class="profile__file"
+          (change)="openCropDialog($event)"
+          #imageSelecter
+        />
+        <div class="profile__user">
+          <p class="profile__username">ユーザー名</p>
+          <mat-form-field class="example-full-width">
+            <input matInput [formControl]="userName" (change)="nameChanged()" />
+            <mat-error *ngIf="userName.hasError('required')">
+              ユーザー名を入力してください
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button
+          [disabled]="!isUpdated"
+          class="profile__button"
+          mat-raised-button
+          (click)="updateUserName()"
+        >
+          更新する
+        </button>
       </div>
     </div>
-    <div class="usage">
-      <p class="usage__item">作成した問題</p>
-      <p class="usage__num">{{ questionNum }}</p>
-    </div>
-  </div>
 
-  <div class="my-status">
-    <div class="login-setting">
-      <h1>アカウント連携</h1>
-      <hr />
-      <div class="account">
-        <img
-          src="assets/images/f_logo_RGB-Blue_58.png"
-          alt=""
-          class="account__icon"
-        />
-        <p class="account__name">facebook</p>
-        <p class="account__status">ログイン中です</p>
-      </div>
-      <div class="account">
-        <img
-          src="assets/images/Twitter_Social_Icon_Square_Color.png"
-          alt=""
-          class="account__icon"
-        />
-        <p class="account__name">twitter</p>
-        <p class="account__status">連携されていません</p>
-      </div>
-      <button class="login-setting__button" mat-raised-button>
-        アカウント連携の登録、変更
-      </button>
-    </div>
-    <hr />
     <div class="service-setting">
-      <h1>サービスのご利用状況</h1>
-      <hr />
+      <h2 class="heading">サービスのご利用状況</h2>
       <div class="service">
-        <p class="servive__paid">有料会員</p>
         <div class="flex">
-          <p class="service__logo">blanky</p>
-          <button class="service__cancell-button" mat-raised-button>
-            解約する
-          </button>
+          <p>プラン</p>
+          <p class="service__status">
+            有料会員　<a class="service__link" routerLink="/payment">変更する</a
+            >　
+          </p>
+        </div>
+        <hr class="service-setting__border" />
+        <div class="flex">
+          <p>お支払い方法</p>
+          <div class="payment-method">
+            <p>
+              ****_****_****_****　<a
+                class="payment-method__link"
+                routerLink="/payment-method"
+                >変更する</a
+              >　
+            </p>
+          </div>
         </div>
         <div class="flex">
-          <p class="service__payment-method">お支払い方法</p>
-          <img
-            class="payment-icon"
-            src="assets/images/mc_symbol_opt_45_1x.png"
-            alt=""
-          />
-          <div class="payment-information">
-            <p class="payment-information__number">
-              ****_****_****_****　　変更する
+          <p>次回ご請求日</p>
+          <div class="payment-history">
+            <p class="">
+              20**年*月*日
+              <a class="payment-history__link" routerLink="/payment-history"
+                >お支払い履歴</a
+              >　
             </p>
-            <p>次回ご請求日：20**年*月*日</p>
           </div>
         </div>
       </div>
     </div>
-    <hr />
-    <button
-      (click)="openWithdrawalDialog()"
-      mat-raised-button
-      class="withdrawal"
-    >
-      退会する
-    </button>
+
+    <div class="withdrawal">
+      <button
+        (click)="openWithdrawalDialog()"
+        mat-raised-button
+        class="withdrawal__button"
+      >
+        退会する
+      </button>
+    </div>
   </div>
 </div>
