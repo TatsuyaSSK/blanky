@@ -44,30 +44,31 @@
       <h2 class="heading">サービスのご利用状況</h2>
       <div class="service">
         <div class="flex">
-          <p class="service__logo">blanky</p>
-          <button class="service__cancell-button" mat-raised-button>
-            解約する
-          </button>
+          <p>プラン</p>
+          <p class="service__status">
+            有料会員　<a class="service__link" routerLink="/payment">変更する</a
+            >　
+          </p>
         </div>
         <hr class="service-setting__border" />
         <div class="flex">
-          <p class="service__payment-method">お支払い方法</p>
-          <img
-            class="payment-icon"
-            src="assets/images/mc_symbol_opt_45_1x.png"
-            alt=""
-          />
-          <div class="payment-information">
-            <p class="payment-information__number">
+          <p>お支払い方法</p>
+          <div class="payment-method">
+            <p>
               ****_****_****_****　<a
-                class="payment-information__link"
-                routerLink="/payment"
+                class="payment-method__link"
+                routerLink="/payment-method"
                 >変更する</a
               >　
             </p>
-            <p>
-              次回ご請求日：20**年*月*日
-              <a class="payment-information__link" routerLink="/payment-history"
+          </div>
+        </div>
+        <div class="flex">
+          <p>次回ご請求日</p>
+          <div class="payment-history">
+            <p class="">
+              20**年*月*日
+              <a class="payment-history__link" routerLink="/payment-history"
                 >お支払い履歴</a
               >　
             </p>

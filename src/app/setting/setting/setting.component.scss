@@ -84,20 +84,29 @@
   &__cancell-button {
     margin-left: 200px;
   }
-  &__payment-method {
-    margin: 0px;
+  &__status {
+    margin-left: 200px;
+  }
+  &__link {
+    text-decoration: none;
+    color: #15c399;
   }
 }
 
 .flex {
   display: flex;
-  padding-bottom: 20px;
 }
 
-.payment-information {
-  &__number {
-    margin: 0px;
+.payment-method {
+  margin-left: 150px;
+  &__link {
+    text-decoration: none;
+    color: #15c399;
   }
+}
+
+.payment-history {
+  margin-left: 150px;
   &__link {
     text-decoration: none;
     color: #15c399;
