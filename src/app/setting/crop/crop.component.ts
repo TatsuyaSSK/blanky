@@ -36,7 +36,6 @@ export class CropComponent implements OnInit {
       this.userService
         .updateAvatar(this.authService.uid, this.croppedImage)
         .then(() => {
-          this.router.navigateByUrl('/setting');
           this.snackBar.open('プロフィール画像が更新されました', null, {
             duration: 2000,
           });
