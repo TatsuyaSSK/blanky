@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import firebase from 'firebase/app';
 import { Observable, of } from 'rxjs';
@@ -26,7 +27,8 @@ export class AuthService {
   constructor(
     public afAuth: AngularFireAuth,
     private db: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   login() {
@@ -42,5 +44,8 @@ export class AuthService {
   withdrawal() {
     const user = firebase.auth().currentUser;
     user.delete().then(() => this.router.navigateByUrl('/'));
+    this.snackBar.open('退会しました', null, {
+      duration: 2000,
+    });
   }
 }
