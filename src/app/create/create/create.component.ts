@@ -10,6 +10,7 @@ import { Problem } from 'src/app/interfaces/problem';
 import { ProblemService } from 'src/app/services/problem.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create',
@@ -44,7 +45,8 @@ export class CreateComponent implements OnInit {
     private fb: FormBuilder,
     private problemService: ProblemService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +65,7 @@ export class CreateComponent implements OnInit {
     }, []);
     const title: string = this.form.get('title').value;
     const englishText: string = this.form.get('englishText').value;
+    const uid = this.authService.uid;
     selectedTypes.forEach((type) => {
       const problem: Omit<
         Problem,
@@ -75,6 +78,7 @@ export class CreateComponent implements OnInit {
         title,
         englishText,
         type,
+        uid,
       };
 
       this.problemService.createProblem(problem);
