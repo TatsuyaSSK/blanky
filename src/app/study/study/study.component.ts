@@ -21,6 +21,7 @@ export class StudyComponent implements OnInit {
     correctAnswerRate: 0,
     createdAt: firebase.default.firestore.Timestamp.now(),
     type: '',
+    uid: '',
   };
 
   englishTextList: string[] = [];
