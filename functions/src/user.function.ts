@@ -80,6 +80,7 @@ function createUserData(user: auth.UserRecord, customer: Stripe.Customer) {
     createdAt: new Date(),
     stripeId: customer.id,
     uid: user.uid,
+    status: 'free',
   });
 }
 

@@ -5,4 +5,5 @@ export interface User {
   createdAt: Date;
   stripeId: string;
   uid: string;
+  status: string;
 }
