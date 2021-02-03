@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import Stripe from 'stripe';
-import { stripe } from './utils/client';
+import { stripe } from './utils/stripe';
 import { auth, firestore } from 'firebase-admin';
 import { db, bucket } from './index';
 const firebaseTools = require('firebase-tools');
