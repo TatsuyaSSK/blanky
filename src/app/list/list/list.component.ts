@@ -4,6 +4,7 @@ import { Problem } from 'src/app/interfaces/problem';
 import { ProblemService } from 'src/app/services/problem.service';
 import { SearchService } from 'src/app/services/search.service';
 import { SearchIndex } from 'algoliasearch/lite';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-list',
@@ -42,7 +43,8 @@ export class ListComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private problemService: ProblemService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -66,7 +68,9 @@ export class ListComponent implements OnInit {
     if (event.target.value) {
       this.isQuery = true;
       this.index
-        .search(event.target.value, { filters: `type:${this.type}` })
+        .search(event.target.value, {
+          filters: `type:${this.type} AND uid:${this.authService.uid}`,
+        })
         .then((result) => {
           this.result = result;
         });

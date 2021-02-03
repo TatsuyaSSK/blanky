@@ -7,4 +7,5 @@ export interface Problem {
   correctAnswerRate: number;
   createdAt: firebase.default.firestore.Timestamp;
   type: string;
+  uid: string;
 }
