@@ -3,24 +3,39 @@ import Stripe from 'stripe';
 import { stripe } from './utils/client';
 import { auth, firestore } from 'firebase-admin';
 import { db, bucket } from './index';
+const firebaseTools = require('firebase-tools');
 
 export const createUser = functions
   .region('asia-northeast1')
   .auth.user()
   .onCreate(async (user: auth.UserRecord) => {
     const customer: Stripe.Customer = await createStripeCustomer(user);
-    await createSampleData(user);
-    await createUserData(user, customer);
+    const promise1 = createSampleData(user);
+    const promise2 = createUserData(user, customer);
+    return Promise.all([promise1, promise2])
+      .then(() => {
+        console.log('新規登録は正常に実行されました');
+      })
+      .catch(() => {
+        console.log('新規登録に失敗しました');
+      });
   });
 
 export const deleteUser = functions
   .region('asia-northeast1')
   .auth.user()
-  .onDelete(async (user) => {
-    await deleteStripeCustomer(user);
-    await deleteUserImage(user);
-    await deleteUserProblems(user);
-    await deleteUserData(user);
+  .onDelete((user) => {
+    const promise1 = deleteStripeCustomer(user);
+    const promise2 = deleteUserImage(user);
+    const promise3 = deleteUserProblems(user);
+    const promise4 = deleteUserData(user);
+    return Promise.all([promise1, promise2, promise3, promise4])
+      .then(() => {
+        console.log('退会処理は正常に実行されました');
+      })
+      .catch(() => {
+        console.log('退会処理に失敗しました');
+      });
   });
 
 export const updateStripeUser = functions
@@ -52,6 +67,7 @@ function createSampleData(user: auth.UserRecord) {
     correctAnswerRate: 0,
     createdAt: firestore.Timestamp.now(),
     type: 'random',
+    uid: user.uid,
   });
   console.log(sampleData);
 }
@@ -86,8 +102,15 @@ function deleteUserImage(user: auth.UserRecord) {
   });
 }
 
-function deleteUserProblems(user: auth.UserRecord) {
-  return db.doc(`problems/${user.uid}`).delete();
+async function deleteUserProblems(user: auth.UserRecord) {
+  const path = `problems/${user.uid}`;
+  const token = await functions.config().fb.token;
+  return firebaseTools.firestore.delete(path, {
+    project: process.env.GCLOUD_PROJECT,
+    recursive: true,
+    yes: true,
+    token,
+  });
 }
 
 function deleteUserData(user: auth.UserRecord) {
