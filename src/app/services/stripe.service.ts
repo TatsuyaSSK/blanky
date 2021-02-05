@@ -1,6 +1,5 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireFunctions } from '@angular/fire/functions';
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
@@ -12,12 +11,7 @@ import firebase from 'firebase';
 export class StripeService {
   customerPortalUrl: string;
 
-  constructor(
-    private db: AngularFirestore,
-    private authService: AuthService,
-    private fns: AngularFireFunctions,
-    private NgZone: NgZone
-  ) {}
+  constructor(private db: AngularFirestore, private authService: AuthService) {}
 
   async redirectToCheckout() {
     const docRef = await this.db
