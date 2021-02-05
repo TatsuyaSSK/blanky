@@ -8,6 +8,7 @@ import { CropComponent } from '../crop/crop.component';
 import { FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StripeService } from 'src/app/services/stripe.service';
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -18,11 +19,14 @@ export class SettingComponent implements OnInit {
   user$: Observable<User> = this.authService.user$;
   isUpdated = false;
   userName = new FormControl('', Validators.required);
+  subscription$ = this.StripeService.getUserSubsription();
+  isPremium: boolean;
 
   constructor(
     private authService: AuthService,
     public dialog: MatDialog,
     private userService: UserService,
+    private StripeService: StripeService,
     private snackBar: MatSnackBar
   ) {}
 
@@ -31,6 +35,13 @@ export class SettingComponent implements OnInit {
     this.isUpdated = false;
     this.user$.subscribe((user) => {
       this.userName.setValue(user.name);
+    });
+    this.StripeService.getUserSubsription().subscribe((data) => {
+      if (data.length === 0) {
+        this.isPremium = false;
+      } else {
+        this.isPremium = true;
+      }
     });
   }
 
@@ -55,5 +66,9 @@ export class SettingComponent implements OnInit {
 
   openWithdrawalDialog() {
     const dialogRef = this.dialog.open(WithdrawalComponent);
+  }
+
+  redirectToCustomerPortal() {
+    this.StripeService.redirectToCustomerPortal();
   }
 }

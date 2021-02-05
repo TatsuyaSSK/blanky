@@ -62,29 +62,25 @@
               >　
             </p>
           </div>
-        </div>
-        <div class="flex">
-          <p>次回ご請求日</p>
-          <div class="payment-history">
-            <p class="">
-              20**年*月*日
-              <a class="payment-history__link" routerLink="/payment-history"
-                >お支払い履歴</a
+          <ng-template #freeplanuser>
+            <p class="service__status">
+              フリープラン<a class="service__link" routerLink="/plans"
+                >変更する</a
               >　
             </p>
-          </div>
+          </ng-template>
         </div>
       </div>
-    </div>
 
-    <div class="withdrawal">
-      <button
-        (click)="openWithdrawalDialog()"
-        mat-raised-button
-        class="withdrawal__button"
-      >
-        退会する
-      </button>
+      <div class="withdrawal">
+        <button
+          (click)="openWithdrawalDialog()"
+          mat-raised-button
+          class="withdrawal__button"
+        >
+          退会する
+        </button>
+      </div>
     </div>
   </div>
 </div>
