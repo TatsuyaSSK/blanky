@@ -45,20 +45,13 @@
       <div class="service">
         <div class="flex">
           <p>プラン</p>
-          <p class="service__status">
-            有料会員　<a class="service__link" routerLink="/payment">変更する</a
-            >　
-          </p>
-        </div>
-        <hr class="service-setting__border" />
-        <div class="flex">
-          <p>お支払い方法</p>
-          <div class="payment-method">
-            <p>
-              ****_****_****_****　<a
-                class="payment-method__link"
-                routerLink="/payment-method"
-                >変更する</a
+
+          <div *ngIf="isPremium; else freeplanuser">
+            <p class="service__status">
+              プレミアムプラン<a
+                class="service__link"
+                (click)="redirectToCustomerPortal()"
+                >利用状況を確認する</a
               >　
             </p>
           </div>
