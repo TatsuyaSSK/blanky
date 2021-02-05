@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StripeService } from 'src/app/services/stripe.service';
 
 @Component({
   selector: 'app-plans',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plans.component.scss'],
 })
 export class PlansComponent implements OnInit {
-  constructor() {}
+  constructor(private stripeService: StripeService) {}
 
   ngOnInit(): void {}
+
+  redirectToCheckout() {
+    this.stripeService.redirectToCheckout();
+  }
 }
