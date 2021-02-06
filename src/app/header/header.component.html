@@ -5,10 +5,17 @@
     <span class="header__spacer"></span>
 
     <div class="header__nav" *ngIf="user$ | async as user; else showLogin">
-      <div class="header__click" routerLink="/create">
-        <img class="header__icon" src="assets/images/create.png" alt="" />
-        <p class="header__icon-description">問題を作成する</p>
-      </div>
+      <button
+        [disabled]="
+          (isPremium === true && user.createdQuestionNum > 9) ||
+          (isPremium === false && user.createdQuestionNum > 2)
+        "
+        mat-raised-button
+        class="header__button"
+        routerLink="/create"
+      >
+        <mat-icon class="header__icon">create</mat-icon> 問題を作成する
+      </button>
 
       <button
         class="header__avatar"
