@@ -1,0 +1,70 @@
+.container {
+  margin: 0 auto;
+  width: 960px;
+}
+
+.title {
+  font-size: 32px;
+  margin-top: 40px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.plans {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__card {
+    padding: 24px;
+    margin: 16px;
+    width: 312px;
+    min-width: 312px;
+    height: 380px;
+    box-shadow: 0 12px 30px rgb(0 0 0 / 15%);
+    border-radius: 12px;
+    text-align: center;
+    background-color: white;
+    position: relative;
+  }
+  &__title {
+    font-size: 24px;
+    margin: 10px auto;
+  }
+  &__price {
+    margin: 0;
+    font-size: 24px;
+  }
+  &__border {
+    height: 1px;
+    width: 100%;
+    margin: 20px 0;
+    background-color: #dcdee0;
+    opacity: 0.5;
+  }
+  &__button {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 280px;
+    padding: 4px 8px;
+    background-color: #15c399;
+    color: #fff;
+    font-size: 16px;
+  }
+  &__check {
+    color: #15c399;
+  }
+  &__itemWrapper {
+    margin-top: 40px;
+    text-align: center;
+    list-style: none;
+  }
+  &__item {
+    padding: 0;
+    margin-top: 10px;
+  }
+}
