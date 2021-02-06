@@ -7,8 +7,8 @@
     <div class="header__nav" *ngIf="user$ | async as user; else showLogin">
       <button
         [disabled]="
-          (isPremium === true && user.createdQuestionNum > 9) ||
-          (isPremium === false && user.createdQuestionNum > 2)
+          (isPremium && user.createdQuestionNum > 9) ||
+          (!isPremium && user.createdQuestionNum > 2)
         "
         mat-raised-button
         class="header__button"
