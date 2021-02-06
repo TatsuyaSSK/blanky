@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Problem } from 'src/app/interfaces/problem';
 import { ProblemService } from 'src/app/services/problem.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { StripeService } from 'src/app/services/stripe.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-create',
@@ -19,6 +15,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CreateComponent implements OnInit {
   valid: boolean;
+  isPremium: boolean;
+  createdQuestionNum: number;
+  currentCreatedQuestionNum: number;
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(40)]],
@@ -46,16 +45,30 @@ export class CreateComponent implements OnInit {
     private problemService: ProblemService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private stripeService: StripeService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.form.valueChanges.subscribe((value) => {
       this.validateTypes();
+      this.countcheckNum();
+    });
+    this.stripeService.getUserSubsription().subscribe((data) => {
+      if (data.length === 0) {
+        this.isPremium = false;
+      } else {
+        this.isPremium = true;
+      }
+    });
+    this.authService.user$.subscribe((user) => {
+      this.createdQuestionNum = user.createdQuestionNum;
+      this.currentCreatedQuestionNum = user.createdQuestionNum;
     });
   }
 
-  submit() {
+  async submit() {
     const types: { [key: string]: boolean } = this.form.get('types').value;
     const selectedTypes: string[] = Object.keys(types).reduce((lis, key) => {
       if (types[key]) {
@@ -66,7 +79,7 @@ export class CreateComponent implements OnInit {
     const title: string = this.form.get('title').value;
     const englishText: string = this.form.get('englishText').value;
     const uid = this.authService.uid;
-    selectedTypes.forEach((type) => {
+    await selectedTypes.forEach((type) => {
       const problem: Omit<
         Problem,
         | 'problemId'
@@ -80,13 +93,35 @@ export class CreateComponent implements OnInit {
         type,
         uid,
       };
-
       this.problemService.createProblem(problem);
     });
+    this.userService.updateUserCreatedQuestionNum(
+      uid,
+      this.currentCreatedQuestionNum
+    );
     this.router.navigateByUrl('/');
     this.snackBar.open('問題を作成しました', null, {
       duration: 2000,
     });
+  }
+
+  countcheckNum() {
+    this.currentCreatedQuestionNum = this.createdQuestionNum;
+    Object.values(this.form.value.types).forEach((value) => {
+      if (value) {
+        this.currentCreatedQuestionNum += 1;
+      }
+    });
+
+    if (this.isPremium === true) {
+      if (this.currentCreatedQuestionNum > 10) {
+        this.valid = false;
+      }
+    } else {
+      if (this.currentCreatedQuestionNum > 3) {
+        this.valid = false;
+      }
+    }
   }
 
   validateTypes() {
