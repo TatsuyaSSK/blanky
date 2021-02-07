@@ -1,12 +1,12 @@
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
-
-const db = admin.firestore();
+import { auth, firestore } from 'firebase-admin';
+import { db } from './index';
 
 export const createUser = functions
   .region('asia-northeast1')
   .auth.user()
-  .onCreate((user) => {
+  .onCreate(async (user) => {
+    await createSampleData(user);
     return db.doc(`users/${user.uid}`).set({
       name: user.displayName,
       avatarURL: user.photoURL,
@@ -40,3 +40,19 @@ export const resetCreatedQuestionNum = functions
         });
       });
   });
+
+function createSampleData(user: auth.UserRecord) {
+  const problemId = db.collection('problems').doc().id;
+  return db.doc(`problems/${user.uid}/random/${problemId}`).set({
+    problemId,
+    title: 'blankyへようこそ！',
+    englishText:
+      'blanky is a service that allows you to create your own original English questions just by uploading English sentences.',
+    japaneseText: '和訳文',
+    blankIndexes: [3, 5, 11, 14],
+    correctAnswerRate: 0,
+    createdAt: firestore.Timestamp.now(),
+    type: 'random',
+    uid: user.uid,
+  });
+}
