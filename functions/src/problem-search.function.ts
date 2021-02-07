@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions';
 
 const algolia = new Algolia();
 
-export const deleteProblem = functions
+export const deleteAlgoliaProblem = functions
   .region('asia-northeast1')
   .firestore.document('problems/{uid}/{type}/{problemId}')
   .onDelete((snap) => {
@@ -20,7 +20,7 @@ export const deleteProblem = functions
     }
   });
 
-export const updateProblem = functions
+export const updateAlgoliaProblem = functions
   .region('asia-northeast1')
   .firestore.document('problems/{uid}/{type}/{problemId}')
   .onUpdate((change) => {
