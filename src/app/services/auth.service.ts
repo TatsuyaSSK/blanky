@@ -42,6 +42,16 @@ export class AuthService {
   withdrawal() {
     this.db.doc(`problems/${this.uid}`).delete();
     const user = firebase.auth().currentUser;
-    user.delete().then(() => this.router.navigateByUrl('/'));
+    user
+      .delete()
+      .then(() => this.router.navigateByUrl('/'))
+      .catch((error) => {
+        if (error.code === 'auth/requires-recent-login') {
+          const provider = new firebase.auth.GoogleAuthProvider();
+          user.reauthenticateWithPopup(provider).then((result) => {
+            return null;
+          });
+        }
+      });
   }
 }
