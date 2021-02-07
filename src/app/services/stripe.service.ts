@@ -13,8 +13,8 @@ export class StripeService {
 
   constructor(private db: AngularFirestore, private authService: AuthService) {}
 
-  async redirectToCheckout() {
-    const docRef = await this.db
+  addCheckoutSession() {
+    const docRef = this.db
       .collection('customers')
       .doc(this.authService.uid)
       .collection('checkout_sessions')
@@ -25,16 +25,7 @@ export class StripeService {
         cancel_url: window.location.origin,
       });
 
-    docRef.onSnapshot(async (snap) => {
-      const { error, sessionId } = snap.data();
-      if (error) {
-        alert(`エラーが発生しました: ${error.message}`);
-      }
-      if (sessionId) {
-        const stripe = await loadStripe(environment.stripe.publicKey);
-        stripe.redirectToCheckout({ sessionId });
-      }
-    });
+    return docRef;
   }
 
   getUserSubsription() {
@@ -47,12 +38,12 @@ export class StripeService {
       .valueChanges();
   }
 
-  async redirectToCustomerPortal() {
+  async getCustomerPortalUrl() {
     const functionRef = firebase
       .app()
       .functions('asia-northeast1')
       .httpsCallable('ext-firestore-stripe-subscriptions-createPortalLink');
     const { data } = await functionRef({ returnUrl: window.location.origin });
-    window.location.assign(data.url);
+    return data.url;
   }
 }
