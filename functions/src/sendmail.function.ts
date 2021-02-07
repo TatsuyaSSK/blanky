@@ -18,3 +18,21 @@ export const welcomeEmail = functions
       return null;
     }
   });
+
+export const farewellEmail = functions
+  .region('asia-northeast1')
+  .auth.user()
+  .onDelete((user) => {
+    if (user.email) {
+      return sendEmail({
+        to: user.email,
+        templateId: 'd-f277afeff42a460187957615df4b89ec',
+        dynamicTemplateData: {
+          subject: 'blankyを退会しました',
+          name: user.displayName,
+        },
+      });
+    } else {
+      return null;
+    }
+  });
