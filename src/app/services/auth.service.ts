@@ -6,6 +6,7 @@ import firebase from 'firebase/app';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from '../interfaces/user';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,13 +27,16 @@ export class AuthService {
   constructor(
     public afAuth: AngularFireAuth,
     private db: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {}
 
   login() {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
-    this.afAuth.signInWithPopup(provider);
+    this.afAuth.signInWithPopup(provider).then(() => {
+      this.loadingService.isLoading = true;
+    });
   }
 
   logout() {

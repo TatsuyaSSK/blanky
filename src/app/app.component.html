@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<mat-spinner class="loading" *ngIf="loadingService.isLoading"></mat-spinner>
+<div [class.shade]="loadingService.isLoading">
+  <router-outlet></router-outlet>
+</div>
