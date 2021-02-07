@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import { auth, firestore } from 'firebase-admin';
-import { db } from './index';
+import { db, bucket } from './index';
+const firebaseTools = require('firebase-tools');
 
 export const createUser = functions
   .region('asia-northeast1')
@@ -19,7 +20,10 @@ export const deleteUser = functions
   .region('asia-northeast1')
   .auth.user()
   .onDelete((user) => {
-    return db.doc(`users/${user.uid}`).delete();
+    const promise1 = deleteUserImage(user);
+    const promise2 = deleteUserData(user);
+    const promise3 = deleteCustomerData(user);
+    return Promise.all([promise1, promise2, promise3]);
   });
 
 function createSampleData(user: auth.UserRecord) {
@@ -35,5 +39,26 @@ function createSampleData(user: auth.UserRecord) {
     createdAt: firestore.Timestamp.now(),
     type: 'random',
     uid: user.uid,
+  });
+}
+
+function deleteUserImage(user: auth.UserRecord) {
+  return bucket.deleteFiles({
+    prefix: `users/${user.uid}`,
+  });
+}
+
+function deleteUserData(user: auth.UserRecord) {
+  return db.doc(`users/${user.uid}`).delete();
+}
+
+async function deleteCustomerData(user: auth.UserRecord) {
+  const path = `customers/${user.uid}`;
+  const token = await functions.config().fb.token;
+  return firebaseTools.firestore.delete(path, {
+    project: process.env.GCLOUD_PROJECT,
+    recursive: true,
+    yes: true,
+    token,
   });
 }
