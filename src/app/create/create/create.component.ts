@@ -53,7 +53,7 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this.form.valueChanges.subscribe((value) => {
       this.validateTypes();
-      this.countcheckNum();
+      this.countCheckNum();
     });
     this.stripeService.getUserSubsription().subscribe((data) => {
       if (data.length === 0) {
@@ -105,7 +105,7 @@ export class CreateComponent implements OnInit {
     });
   }
 
-  countcheckNum() {
+  countCheckNum() {
     this.currentCreatedQuestionNum = this.createdQuestionNum;
     Object.values(this.form.value.types).forEach((value) => {
       if (value) {
