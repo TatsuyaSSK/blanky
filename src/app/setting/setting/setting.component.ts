@@ -21,6 +21,7 @@ export class SettingComponent implements OnInit {
   userName = new FormControl('', Validators.required);
   subscription$ = this.StripeService.getUserSubsription();
   isPremium: boolean;
+  customerPortalUrl: string;
 
   constructor(
     private authService: AuthService,
@@ -42,6 +43,9 @@ export class SettingComponent implements OnInit {
       } else {
         this.isPremium = true;
       }
+    });
+    this.StripeService.getCustomerPortalUrl().then((url) => {
+      this.customerPortalUrl = url;
     });
   }
 
@@ -69,6 +73,6 @@ export class SettingComponent implements OnInit {
   }
 
   redirectToCustomerPortal() {
-    this.StripeService.redirectToCustomerPortal();
+    window.location.assign(this.customerPortalUrl);
   }
 }

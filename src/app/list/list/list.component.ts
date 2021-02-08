@@ -5,6 +5,7 @@ import { ProblemService } from 'src/app/services/problem.service';
 import { SearchService } from 'src/app/services/search.service';
 import { SearchIndex } from 'algoliasearch/lite';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-list',
@@ -44,8 +45,11 @@ export class ListComponent implements OnInit {
     private fb: FormBuilder,
     private problemService: ProblemService,
     private searchService: SearchService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private loadingService: LoadingService
+  ) {
+    this.loadingService.isLoading = false;
+  }
 
   ngOnInit(): void {
     this.problemService.getProblemsbyType('random').subscribe((problems) => {
@@ -53,6 +57,7 @@ export class ListComponent implements OnInit {
     });
     this.type = 'random';
     this.isQuery = false;
+    this.loadingService.isLoading = false;
   }
 
   setProblemsbyType($event) {
