@@ -29,4 +29,10 @@ export class UserService {
       name: newName,
     });
   }
+
+  updateUserCreatedQuestionNum(uid: string, createdQuestionNum: number) {
+    this.db.doc(`users/${uid}`).update({
+      createdQuestionNum,
+    });
+  }
 }

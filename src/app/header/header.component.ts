@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth.service';
+import { StripeService } from '../services/stripe.service';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +11,22 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   user$: Observable<User> = this.authService.user$;
+  isPremium: boolean;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private StripeService: StripeService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.StripeService.getUserSubsription().subscribe((data) => {
+      if (data.length === 0) {
+        this.isPremium = false;
+      } else {
+        this.isPremium = true;
+      }
+    });
+  }
 
   login() {
     this.authService.login();
