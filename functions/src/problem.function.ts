@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import { db } from './index';
+const firebaseTools = require('firebase-tools');
 
 const projectId = 'blanky-2fc41';
 
@@ -44,4 +45,18 @@ export const translateText = functions
           });
       });
     }
+  });
+
+export const deleteUserProblems = functions
+  .region('asia-northeast1')
+  .auth.user()
+  .onDelete(async (user) => {
+    const path = `problems/${user.uid}`;
+    const token = await functions.config().fb.token;
+    return firebaseTools.firestore.delete(path, {
+      project: process.env.GCLOUD_PROJECT,
+      recursive: true,
+      yes: true,
+      token,
+    });
   });

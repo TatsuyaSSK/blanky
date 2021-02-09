@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import { auth, firestore } from 'firebase-admin';
-import { db } from './index';
+import { db, bucket } from './index';
+const firebaseTools = require('firebase-tools');
 
 export const createUser = functions
   .region('asia-northeast1')
@@ -12,6 +13,8 @@ export const createUser = functions
       avatarURL: user.photoURL,
       email: user.email,
       createdAt: new Date(),
+      createdQuestionNum: 0,
+      uid: user.uid,
     });
   });
 
@@ -19,7 +22,27 @@ export const deleteUser = functions
   .region('asia-northeast1')
   .auth.user()
   .onDelete((user) => {
-    return db.doc(`users/${user.uid}`).delete();
+    const promise1 = deleteUserImage(user);
+    const promise2 = deleteUserData(user);
+    const promise3 = deleteCustomerData(user);
+    return Promise.all([promise1, promise2, promise3]);
+  });
+
+export const resetCreatedQuestionNum = functions
+  .region('asia-northeast1')
+  .pubsub.schedule('0 0 * * *')
+  .timeZone('Asia/Tokyo')
+  .onRun((context) => {
+    return db
+      .collection('users')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          return db.doc(`users/${doc.data().uid}`).update({
+            createdQuestionNum: 0,
+          });
+        });
+      });
   });
 
 function createSampleData(user: auth.UserRecord) {
@@ -35,5 +58,26 @@ function createSampleData(user: auth.UserRecord) {
     createdAt: firestore.Timestamp.now(),
     type: 'random',
     uid: user.uid,
+  });
+}
+
+function deleteUserImage(user: auth.UserRecord) {
+  return bucket.deleteFiles({
+    prefix: `users/${user.uid}`,
+  });
+}
+
+function deleteUserData(user: auth.UserRecord) {
+  return db.doc(`users/${user.uid}`).delete();
+}
+
+async function deleteCustomerData(user: auth.UserRecord) {
+  const path = `customers/${user.uid}`;
+  const token = await functions.config().fb.token;
+  return firebaseTools.firestore.delete(path, {
+    project: process.env.GCLOUD_PROJECT,
+    recursive: true,
+    yes: true,
+    token,
   });
 }
