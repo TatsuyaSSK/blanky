@@ -27,7 +27,11 @@ export class PlansComponent implements OnInit {
   }
 
   async redirectToCheckout() {
-    const stripe = await loadStripe(environment.stripe.publicKey);
-    stripe.redirectToCheckout({ sessionId: this.sessionId });
+    if (this.sessionId) {
+      const stripe = await loadStripe(environment.stripe.publicKey);
+      stripe.redirectToCheckout({ sessionId: this.sessionId });
+    } else {
+      alert('もう一度お試しください');
+    }
   }
 }

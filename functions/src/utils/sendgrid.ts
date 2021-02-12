@@ -11,7 +11,7 @@ export const sendEmail = (data: {
 }) => {
   const msg = {
     to: data.to,
-    from: 'ssktty514@gmail.com',
+    from: 'no-reply@blanky.site',
     templateId: data.templateId,
     dynamicTemplateData: data.dynamicTemplateData,
   };
