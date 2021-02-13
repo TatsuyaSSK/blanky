@@ -1,0 +1,27 @@
+@import 'variables';
+
+:root {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background-color: $color-background;
+  font-family: $font-base;
+  color: $color-font;
+}
+
+a {
+  color: $color-font;
+  text-decoration: none;
+}
