@@ -1,31 +1,34 @@
-.container {
-  margin: 0 auto;
-  width: 960px;
-}
+@import 'variables';
+@import 'mixins';
 
 .title {
   font-size: 32px;
-  margin-top: 40px;
   text-align: center;
   box-sizing: border-box;
+  margin-bottom: 40px;
 }
 
 .plans {
-  margin-top: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
+  @include sm {
+    flex-direction: column;
+  }
   &__card {
-    padding: 24px;
-    margin: 16px;
+    padding: 16px;
+    margin: 0 16px;
     width: 312px;
     min-width: 312px;
     height: 380px;
     box-shadow: 0 12px 30px rgb(0 0 0 / 15%);
     border-radius: 12px;
     text-align: center;
-    background-color: white;
+    background-color: $color-background;
     position: relative;
+    @include sm {
+      margin-bottom: 20px;
+    }
   }
   &__title {
     font-size: 24px;
@@ -39,7 +42,7 @@
     height: 1px;
     width: 100%;
     margin: 20px 0;
-    background-color: #dcdee0;
+    background-color: $color-border;
     opacity: 0.5;
   }
   &__button {
@@ -51,12 +54,7 @@
     margin-right: auto;
     width: 280px;
     padding: 4px 8px;
-    background-color: #15c399;
-    color: #fff;
     font-size: 16px;
-  }
-  &__check {
-    color: #15c399;
   }
   &__itemWrapper {
     margin-top: 40px;

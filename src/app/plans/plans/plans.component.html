@@ -9,13 +9,13 @@
         <p class="plans__item">ランダムに穴埋め問題生成可能</p>
         <p class="plans__item">1日3回まで問題作成可能</p>
       </div>
-      <button mat-raised-button [disabled]="true" class="plans__button">
+      <button mat-flat-button [disabled]="true" class="plans__button">
         はじめる
       </button>
     </div>
     <div class="plans__card">
       <h2 class="plans__title">プレミアムプラン</h2>
-      <p class="plans__price">500円 / 月</p>
+      <p class="plans__price">550円 / 月</p>
       <div class="plans__border"></div>
       <div class="plans__buttonWrapper"></div>
       <div class="plans__itemWrapper">
@@ -24,7 +24,8 @@
         <p class="plans__item">1日10回まで問題作成可能</p>
       </div>
       <button
-        mat-raised-button
+        mat-flat-button
+        color="primary"
         class="plans__button"
         (click)="redirectToCheckout()"
       >
