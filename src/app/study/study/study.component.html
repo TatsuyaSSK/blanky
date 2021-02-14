@@ -1,66 +1,84 @@
 <div class="container">
-  <h1 class="title">問題：{{ problem.title }}</h1>
-  <div class="box">
-    <ng-container *ngIf="display === false; else showAnswer">
-      <h2 class="box__item">英文</h2>
-      <form>
-        <span *ngFor="let text of englishTextList; index as i">
-          <span class="word">
-            <ng-container *ngIf="isBlankList[i]; else showWord">
-              <span
-                *ngIf="
-                  englishTextList[i].slice(-1) === ',' ||
-                    englishTextList[i].slice(-1) === '.';
-                  else normalTerm
-                "
-              >
-                <input
-                  autocomplete="off"
-                  type="text"
-                  [formControl]="fills.controls[blankList[i]]"
-                  [size]="wordLengthList[i]"
-                />
-                <span>{{ englishTextList[i].slice(-1) }}</span>
-              </span>
+  <section class="problem">
+    <div class="problem__box">
+      <h1 class="problem__title">{{ problem.title }}</h1>
+      <div *ngIf="!display; else showAnswer">
+        <div class="problem__englishBlock">
+          <h2 class="problem__heading">英文</h2>
+          <form>
+            <span *ngFor="let text of englishTextList; index as i">
+              <span>
+                <ng-container *ngIf="isBlankList[i]; else showWord">
+                  <span
+                    *ngIf="
+                      englishTextList[i].slice(-1) === ',' ||
+                        englishTextList[i].slice(-1) === '.';
+                      else normalTerm
+                    "
+                  >
+                    <mat-form-field
+                      class="problem__inputField"
+                      [style.width.px]="wordLengthList[i] * 9 + 9"
+                    >
+                      <input
+                        matInput
+                        class="problem__input"
+                        autocomplete="off"
+                        type="text"
+                        [formControl]="fills.controls[blankList[i]]"
+                      />
+                      <span>{{ englishTextList[i].slice(-1) }}</span>
+                    </mat-form-field>
+                  </span>
 
-              <ng-template #normalTerm>
-                <input
-                  [formControl]="fills.controls[blankList[i]]"
-                  autocomplete="off"
-                  type="text"
-                  [size]="wordLengthList[i] + 1"
-                />
-              </ng-template>
-            </ng-container>
-            <ng-template #showWord>
-              {{ englishTextList[i] }}
-            </ng-template>
-          </span>
-        </span>
-      </form>
-      <h2 class="box__item">和訳</h2>
-      <p>
-        {{ problem.japaneseText }}
-      </p>
-      <div class="button-layout">
-        <button class="box__button" mat-raised-button (click)="onSubmit()">
-          回答する
-        </button>
+                  <ng-template #normalTerm>
+                    <mat-form-field
+                      class="problem__inputField"
+                      [style.width.px]="wordLengthList[i] * 9 + 9"
+                    >
+                      <input
+                        matInput
+                        class="problem__input"
+                        [formControl]="fills.controls[blankList[i]]"
+                        autocomplete="off"
+                        type="text"
+                      />
+                    </mat-form-field>
+                  </ng-template>
+                </ng-container>
+                <ng-template #showWord>
+                  <p class="problem__word">{{ englishTextList[i] }}</p>
+                </ng-template>
+              </span>
+            </span>
+          </form>
+        </div>
+        <div class="problem__japaneseBlock">
+          <h2 class="problem__heading">和訳</h2>
+          <p class="problem__japaneseText">
+            {{ problem.japaneseText }}
+          </p>
+        </div>
+        <div class="problem__buttonBlock">
+          <button mat-raised-button color="primary" (click)="onSubmit()">
+            回答する
+          </button>
+        </div>
       </div>
-    </ng-container>
-  </div>
-  <ng-template #showAnswer>
-    <app-answer
-      [blankList]="blankList"
-      [isBlankList]="isBlankList"
-      [englishTextList]="englishTextList"
-      [filledDict]="filledDict"
-      [answerDict]="answerDict"
-      [wordLengthList]="wordLengthList"
-      [correctAnswerRate]="correctAnswerRate"
-      [problemNum]="problemNum"
-      [correctAnswerNum]="correctAnswerNum"
-      (transitioned)="onTransitioned($event)"
-    ></app-answer>
-  </ng-template>
+    </div>
+    <ng-template #showAnswer>
+      <app-answer
+        [blankList]="blankList"
+        [isBlankList]="isBlankList"
+        [englishTextList]="englishTextList"
+        [filledDict]="filledDict"
+        [answerDict]="answerDict"
+        [wordLengthList]="wordLengthList"
+        [correctAnswerRate]="correctAnswerRate"
+        [problemNum]="problemNum"
+        [correctAnswerNum]="correctAnswerNum"
+        (transitioned)="onTransitioned($event)"
+      ></app-answer>
+    </ng-template>
+  </section>
 </div>
