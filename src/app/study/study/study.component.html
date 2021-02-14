@@ -16,34 +16,40 @@
                       else normalTerm
                     "
                   >
-                    <mat-form-field
-                      class="problem__inputField"
-                      [style.width.px]="wordLengthList[i] * 9 + 9"
+                    <div
+                      class="problem__inputWrapper"
+                      [style.width.px]="wordLengthList[i] * 9 + 12"
                     >
-                      <input
-                        matInput
-                        class="problem__input"
-                        autocomplete="off"
-                        type="text"
-                        [formControl]="fills.controls[blankList[i]]"
-                      />
-                      <span>{{ englishTextList[i].slice(-1) }}</span>
-                    </mat-form-field>
+                      <div class="problem__inputField">
+                        <input
+                          class="problem__input"
+                          type="text"
+                          placeholder=""
+                          autocomplete="off"
+                          [formControl]="fills.controls[blankList[i]]"
+                        />
+                        <span class="problem__focusLine"></span>
+                      </div>
+                    </div>
+                    <span>{{ englishTextList[i].slice(-1) }}</span>
                   </span>
 
                   <ng-template #normalTerm>
-                    <mat-form-field
-                      class="problem__inputField"
-                      [style.width.px]="wordLengthList[i] * 9 + 9"
+                    <div
+                      class="problem__inputWrapper"
+                      [style.width.px]="wordLengthList[i] * 9 + 12"
                     >
-                      <input
-                        matInput
-                        class="problem__input"
-                        [formControl]="fills.controls[blankList[i]]"
-                        autocomplete="off"
-                        type="text"
-                      />
-                    </mat-form-field>
+                      <div class="problem__inputField">
+                        <input
+                          class="problem__input"
+                          type="text"
+                          placeholder=""
+                          autocomplete="off"
+                          [formControl]="fills.controls[blankList[i]]"
+                        />
+                        <span class="problem__focusLine"></span>
+                      </div>
+                    </div>
                   </ng-template>
                 </ng-container>
                 <ng-template #showWord>

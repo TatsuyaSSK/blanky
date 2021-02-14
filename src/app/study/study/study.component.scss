@@ -16,20 +16,18 @@
   &__englishBlock {
     margin-bottom: 40px;
   }
-  &__japaneseBlock {
-    margin-bottom: 80px;
-  }
   &__heading {
     font-size: 24px;
     color: $color-font;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
-  &__inputField {
-    margin-right: 0.4em;
+  &__japaneseBlock {
+    margin-bottom: 80px;
   }
   &__word {
     display: inline-block;
     margin-right: 0.4em;
+    margin-bottom: 0.6em;
   }
   &__japaneseText {
     line-height: 2;
@@ -37,5 +35,40 @@
   &__buttonBlock {
     width: 100%;
     text-align: center;
+  }
+  &__inputWrapper {
+    display: inline-block;
+    margin-right: 0.5em;
+  }
+  &__inputField {
+    width: 100%;
+    position: relative;
+  }
+  &__input {
+    font-size: 16px;
+    font-family: $font-base;
+    display: inline-block;
+    margin-bottom: 0.6em;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid $color-font;
+    background-color: transparent;
+  }
+  :focus {
+    outline: none;
+  }
+  &__input ~ &__focusLine {
+    position: absolute;
+    bottom: 0.6em;
+    left: 0;
+    width: 0;
+    height: 2.5px;
+    transition: 0.2s;
+    background-color: $color-main;
+  }
+  &__input:focus ~ &__focusLine,
+  &__inputField ~ &__focusLine {
+    width: 100%;
+    transition: 0.2s;
   }
 }
