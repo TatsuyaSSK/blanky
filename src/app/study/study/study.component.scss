@@ -7,11 +7,17 @@
     text-align: center;
     color: $color-main;
     margin-bottom: 40px;
+    @include sm {
+      font-size: 24px;
+    }
   }
   &__box {
     padding: 6% 10%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     border-radius: 12px;
+    @include sm {
+      padding: 6% 4%;
+    }
   }
   &__englishBlock {
     margin-bottom: 40px;
@@ -20,17 +26,28 @@
     font-size: 24px;
     color: $color-font;
     margin-bottom: 16px;
+    @include sm {
+      font-size: 20px;
+    }
   }
   &__japaneseBlock {
     margin-bottom: 80px;
   }
   &__word {
     display: inline-block;
+    font-size: 16px;
     margin-right: 0.4em;
     margin-bottom: 0.6em;
+    @include sm {
+      font-size: 12px;
+    }
   }
   &__japaneseText {
+    font-size: 16px;
     line-height: 2;
+    @include sm {
+      font-size: 12px;
+    }
   }
   &__buttonBlock {
     width: 100%;
@@ -53,6 +70,10 @@
     border: 0;
     border-bottom: 1px solid $color-font;
     background-color: transparent;
+    @include sm {
+      font-size: 12px;
+      margin-bottom: 0.8em;
+    }
   }
   :focus {
     outline: none;
