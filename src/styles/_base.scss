@@ -25,3 +25,16 @@ a {
   color: $color-font;
   text-decoration: none;
 }
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li,
+ol,
+figure {
+  padding: 0;
+  margin: 0;
+}
