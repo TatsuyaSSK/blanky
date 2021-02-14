@@ -142,6 +142,7 @@ export class StudyComponent implements OnInit {
   }
 
   onSubmit() {
+    window.scroll(0, 0);
     this.calculateCorrectAnswerRate();
     this.updateCorrectAnswerRate(
       this.correctAnswerRate,
