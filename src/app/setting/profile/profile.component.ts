@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isUpdated = false;
     this.user$.subscribe((user) => {
       this.userName.setValue(user.name);
     });
