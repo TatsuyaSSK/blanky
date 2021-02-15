@@ -20,7 +20,6 @@ export class SettingComponent implements OnInit {
   isUpdated = false;
   userName = new FormControl('', Validators.required);
   subscription$ = this.stripeService.getUserSubsription();
-  isPremium: boolean;
   customerPortalUrl: string;
 
   constructor(
@@ -33,24 +32,12 @@ export class SettingComponent implements OnInit {
 
   ngOnInit(): void {
     this.questionNum = 12;
-    this.isUpdated = false;
     this.user$.subscribe((user) => {
       this.userName.setValue(user.name);
-    });
-    this.stripeService.getUserSubsription().subscribe((data) => {
-      if (data.length === 0) {
-        this.isPremium = false;
-      } else {
-        this.isPremium = true;
-      }
     });
     this.stripeService.getCustomerPortalUrl().then((url) => {
       this.customerPortalUrl = url;
     });
-  }
-
-  openWithdrawalDialog() {
-    const dialogRef = this.dialog.open(WithdrawalComponent);
   }
 
   redirectToCustomerPortal() {
