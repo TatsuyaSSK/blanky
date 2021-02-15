@@ -7,7 +7,7 @@
 </div>
 <ng-template #showResult>
   <div *ngIf="result?.nbHits === 0; else matched">
-    <p>検索結果がありません</p>
+    <p class="notFound">検索結果がありません</p>
   </div>
   <ng-template #matched>
     <div class="grid">
