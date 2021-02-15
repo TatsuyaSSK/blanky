@@ -19,7 +19,7 @@ export class SettingComponent implements OnInit {
   user$: Observable<User> = this.authService.user$;
   isUpdated = false;
   userName = new FormControl('', Validators.required);
-  subscription$ = this.StripeService.getUserSubsription();
+  subscription$ = this.stripeService.getUserSubsription();
   isPremium: boolean;
   customerPortalUrl: string;
 
@@ -27,7 +27,7 @@ export class SettingComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private userService: UserService,
-    private StripeService: StripeService,
+    private stripeService: StripeService,
     private snackBar: MatSnackBar
   ) {}
 
@@ -37,14 +37,14 @@ export class SettingComponent implements OnInit {
     this.user$.subscribe((user) => {
       this.userName.setValue(user.name);
     });
-    this.StripeService.getUserSubsription().subscribe((data) => {
+    this.stripeService.getUserSubsription().subscribe((data) => {
       if (data.length === 0) {
         this.isPremium = false;
       } else {
         this.isPremium = true;
       }
     });
-    this.StripeService.getCustomerPortalUrl().then((url) => {
+    this.stripeService.getCustomerPortalUrl().then((url) => {
       this.customerPortalUrl = url;
     });
   }

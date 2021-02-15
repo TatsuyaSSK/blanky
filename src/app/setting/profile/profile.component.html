@@ -1,1 +1,38 @@
-<p>profile works!</p>
+<section class="profile" *ngIf="user$ | async as user">
+  <div class="profile__image">
+    <label
+      for="uploadImage"
+      [style.background-image]="'url(' + user.avatarURL + ')'"
+      class="profile__backgroundImage"
+    >
+      <div class="profile__mark">
+        <mat-icon class="profile__cameraIcon">add_a_photo</mat-icon>
+      </div>
+      <input
+        id="uploadImage"
+        type="file"
+        accept=".png, .jpg, .jpeg"
+        class="profile__file"
+        (change)="openCropDialog($event)"
+        #imageSelecter
+      />
+    </label>
+  </div>
+  <div class="profile__user">
+    <mat-form-field class="example-full-width">
+      <mat-label>ユーザー名</mat-label>
+      <input matInput [formControl]="userName" (change)="nameChanged()" />
+      <mat-error *ngIf="userName.hasError('required')">
+        ユーザー名を入力してください
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button
+    [disabled]="!isUpdated"
+    class="profile__button"
+    mat-raised-button
+    (click)="updateUserName()"
+  >
+    ユーザー名変更
+  </button>
+</section>

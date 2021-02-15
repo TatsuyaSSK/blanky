@@ -2,8 +2,9 @@
 @import 'mixins';
 
 .settings {
-  &__flex {
+  &__body {
     display: flex;
     justify-content: center;
+    padding-top: 50px;
   }
 }

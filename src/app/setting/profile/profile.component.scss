@@ -1,0 +1,25 @@
+@import 'variables';
+@import 'mixins';
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  &__backgroundImage {
+    height: 80px;
+    width: 80px;
+    background-size: cover;
+    margin: 0;
+    background-position: center;
+    border-radius: 50%;
+  }
+  &__file {
+    display: none;
+  }
+}
