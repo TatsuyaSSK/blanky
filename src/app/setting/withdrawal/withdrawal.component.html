@@ -1,17 +1,9 @@
-<div class="withdrawal">
-  <mat-dialog-content>
+<section class="withdrawal">
+  <div class="withdrawal__description">
     <p>退会すると全てのデータが削除されます</p>
     <p>本当に退会しますか？</p>
-  </mat-dialog-content>
-  <mat-dialog-actions align="center">
-    <button mat-button mat-dialog-close>キャンセル</button>
-    <button
-      (click)="withdrawal()"
-      mat-button
-      [mat-dialog-close]="true"
-      cdkFocusInitial
-    >
-      退会する
-    </button>
-  </mat-dialog-actions>
-</div>
+  </div>
+  <button mat-raised-button color="primary" class="withdrawal__button">
+    退会する
+  </button>
+</section>

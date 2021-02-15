@@ -49,25 +49,6 @@ export class SettingComponent implements OnInit {
     });
   }
 
-  nameChanged() {
-    this.isUpdated = true;
-  }
-
-  updateUserName() {
-    const newName = this.userName.value;
-    this.userService.updateUserName(this.authService.uid, newName).then(() => {
-      this.snackBar.open('ユーザー名が更新されました', null, {
-        duration: 2000,
-      });
-    });
-  }
-
-  openCropDialog(event: any): void {
-    const dialogRef = this.dialog.open(CropComponent, {
-      data: { event },
-    });
-  }
-
   openWithdrawalDialog() {
     const dialogRef = this.dialog.open(WithdrawalComponent);
   }
