@@ -13,7 +13,14 @@
         class="header__createButton"
         routerLink="/create"
       >
-        <mat-icon class="header__icon">create</mat-icon> 問題を作成する
+        <mat-icon
+          [class.header__icon--shade]="
+            (isPremium && user.createdQuestionNum > 9) ||
+            (!isPremium && user.createdQuestionNum > 2)
+          "
+          >create</mat-icon
+        >
+        問題を作成する
       </button>
 
       <button

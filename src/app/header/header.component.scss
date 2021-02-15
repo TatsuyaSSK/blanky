@@ -40,6 +40,9 @@
     transform: translateY(-0.09em);
     color: #6b6b6b;
   }
+  &__icon--shade {
+    color: #bdbdbd;
+  }
   &__signup {
     margin-right: 24px;
     @include sm {
