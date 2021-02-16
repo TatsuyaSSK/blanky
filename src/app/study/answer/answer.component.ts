@@ -24,5 +24,6 @@ export class AnswerComponent implements OnInit {
 
   transition(isClicked: boolean) {
     this.transitioned.emit(isClicked);
+    window.scroll(0, 0);
   }
 }
