@@ -30,6 +30,7 @@
     align-items: center;
   }
   &__createButton {
+    border-color: rgb($color-font, 0.12);
     background-color: #fff;
     color: $color-font;
     margin-right: 24px;
@@ -59,6 +60,7 @@
   }
   &__login {
     color: $color-font;
+    border-color: rgb($color-font, 0.12);
     background-color: #fff;
   }
   &__matMenuIcon {
