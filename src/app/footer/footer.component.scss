@@ -39,7 +39,7 @@
   &__link:hover {
     color: $color-sub;
   }
-  &__question::after {
+  &__link--question::after {
     font-family: Material Icons;
     content: 'launch';
     display: inline-block;
