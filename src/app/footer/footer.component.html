@@ -1,12 +1,21 @@
 <footer class="footer">
-  <div class="footer-link">
-    <a routerLink="/terms" routerLinkActive="active" class="link">利用規約</a>
-    <a routerLink="/privacy" routerLinkActive="active" class="link"
-      >プライバシーポリシー</a
-    >
-    <a class="link" href="https://forms.gle/tNVEj3MxTmQEHcj96">お問い合わせ</a>
-  </div>
-  <div class="copyright">
-    <p class="copyright-setence">copyright(C) tatsuyaSSK All rights reserved</p>
+  <ul class="footer__links">
+    <li class="footer__item">
+      <a class="footer__link" routerLink="/terms">利用規約</a>
+    </li>
+    <li class="footer__item">
+      <a class="footer__link" routerLink="/privacy">プライバシーポリシー</a>
+    </li>
+    <li class="footer__item">
+      <a
+        class="footer__link footer__link--question"
+        target="_blank"
+        href="https://forms.gle/tNVEj3MxTmQEHcj96"
+        >お問い合わせ</a
+      >
+    </li>
+  </ul>
+  <div class="footer__copyright-block">
+    <p class="footer__copyright">copyright©︎ TatsuyaSSK All rights reserved</p>
   </div>
 </footer>
