@@ -12,7 +12,8 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        loadChildren: () => import('./top/top.module').then((m) => m.TopModule),
+        loadChildren: () =>
+          import('./welcome/welcome.module').then((m) => m.WelcomeModule),
       },
       {
         path: 'terms',
