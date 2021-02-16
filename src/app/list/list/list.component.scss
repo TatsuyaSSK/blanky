@@ -1,6 +1,10 @@
 @import 'variables';
 @import 'mixins';
 
+.wrapper {
+  background-color: #f9fbfe;
+}
+
 .search {
   &__form {
     background-color: #fff;
@@ -25,6 +29,7 @@
   }
   &__input {
     appearance: none;
+    color: $color-font;
     border: none;
     padding: 0 -24px 0 16px;
     margin: 0;
@@ -33,7 +38,7 @@
     border-radius: 8px;
   }
   ::placeholder {
-    color: rgba(black, 0.3);
+    color: rgba($color-font, 0.3);
   }
 }
 

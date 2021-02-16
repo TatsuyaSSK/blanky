@@ -2,6 +2,7 @@
 @import 'mixins';
 
 .problem {
+  background-color: #fff;
   &__title {
     font-size: 30px;
     text-align: center;
@@ -64,6 +65,7 @@
   &__input {
     font-size: 16px;
     font-family: $font-base;
+    color: $color-font;
     display: inline-block;
     margin-bottom: 0.6em;
     width: 100%;

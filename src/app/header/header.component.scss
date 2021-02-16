@@ -7,9 +7,9 @@
   position: fixed;
   z-index: 100;
   top: 0;
-  background-color: $color-background;
+  background-color: $color-mainBackground;
   &__toolbar {
-    background-color: $color-background;
+    background-color: $color-mainBackground;
     padding: 0 24px;
     @include sm {
       padding: 0 8px;
@@ -30,6 +30,8 @@
     align-items: center;
   }
   &__createButton {
+    background-color: #fff;
+    color: $color-font;
     margin-right: 24px;
     padding: 4px 8px;
     @include sm {
@@ -37,7 +39,6 @@
     }
   }
   &__icon {
-    transform: translateY(-0.09em);
     color: #6b6b6b;
   }
   &__icon--shade {
@@ -55,5 +56,15 @@
     border-radius: 50%;
     margin-right: 16px;
     background: #fff center/cover;
+  }
+  &__login {
+    color: $color-font;
+    background-color: #fff;
+  }
+  &__matMenuIcon {
+    color: $color-font;
+  }
+  &__matMenuButton {
+    color: $color-font;
   }
 }

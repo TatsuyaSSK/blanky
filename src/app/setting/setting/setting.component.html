@@ -1,19 +1,21 @@
-<div class="container">
-  <section class="settings">
-    <mat-tab-group dynamicHeight mat-stretch-tabs animationDuration="0ms">
-      <mat-tab label="プロフィール">
-        <div class="settings__body">
-          <app-profile></app-profile>
-        </div>
-      </mat-tab>
-      <mat-tab label="お支払い情報">
-        <app-payment></app-payment>
-      </mat-tab>
-      <mat-tab label="退会">
-        <div class="settings__body">
-          <app-withdrawal></app-withdrawal>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </section>
+<div class="wrapper">
+  <div class="container">
+    <section class="settings">
+      <mat-tab-group dynamicHeight mat-stretch-tabs animationDuration="0ms">
+        <mat-tab label="プロフィール">
+          <div class="settings__body">
+            <app-profile></app-profile>
+          </div>
+        </mat-tab>
+        <mat-tab label="お支払い情報">
+          <app-payment></app-payment>
+        </mat-tab>
+        <mat-tab label="退会">
+          <div class="settings__body">
+            <app-withdrawal></app-withdrawal>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </section>
+  </div>
 </div>
