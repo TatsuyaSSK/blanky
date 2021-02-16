@@ -1,109 +1,117 @@
 <div class="wrapper">
   <div class="container">
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <mat-form-field class="title-input" appearance="outline">
-        <mat-label>タイトル</mat-label>
-        <input
-          formControlName="title"
-          placeholder="タイトルを入力してください（40字以内）"
-          type="text"
-          matInput
-          autocomplete="off"
-        />
-        <mat-error *ngIf="titleControl.hasError('required')"
-          >必須入力です</mat-error
-        >
-        <mat-error *ngIf="titleControl.hasError('maxlength')"
-          >長すぎます</mat-error
-        >
-      </mat-form-field>
+    <div class="template">
+      <h1 class="template__title">問題の作成</h1>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field class="template__area" appearance="outline">
+          <mat-label>タイトル</mat-label>
+          <input
+            formControlName="title"
+            placeholder="タイトルを入力してください（40字以内）"
+            type="text"
+            matInput
+            autocomplete="off"
+          />
+          <mat-error *ngIf="titleControl.hasError('required')"
+            >必須入力です</mat-error
+          >
+          <mat-error *ngIf="titleControl.hasError('maxlength')"
+            >長すぎます</mat-error
+          >
+        </mat-form-field>
 
-      <mat-form-field class="sentence-input" appearance="outline">
-        <mat-label>英文</mat-label>
-        <textarea
-          formControlName="englishText"
-          placeholder="英文を入力してください（1000字以内）"
-          type="text"
-          matInput
-          autocomplete="off"
-          matTextareaAutosize
-          [matAutosizeMinRows]="10"
-          [matAutosizeMaxRows]="20"
-        ></textarea>
-        <mat-error *ngIf="sentenceControl.hasError('required')"
-          >必須入力です</mat-error
-        >
-        <mat-error *ngIf="sentenceControl.hasError('maxlength')"
-          >長すぎます</mat-error
-        >
-      </mat-form-field>
-      <div class="format">
-        <p class="label">問題形式</p>
-        <div *ngIf="isPremium === true; else free">
-          <p>
-            {{
-              currentCreatedQuestionNum > 10
-                ? '本日作成できる上限数に達しました'
-                : '本日作成できる問題数：残り' +
-                  (10 - currentCreatedQuestionNum)
-            }}
-          </p>
-        </div>
-        <ng-template #free>
-          <p>
-            {{
-              currentCreatedQuestionNum > 3
-                ? '本日作成できる上限数に達しました'
-                : '本日作成できる問題数：残り' + (3 - currentCreatedQuestionNum)
-            }}
-          </p>
-        </ng-template>
-        <div class="checkbox" formGroupName="types">
-          <mat-checkbox class="checkbox__item" formControlName="random"
-            >ランダムに空白</mat-checkbox
+        <mat-form-field class="template__area" appearance="outline">
+          <mat-label>英文</mat-label>
+          <textarea
+            formControlName="englishText"
+            placeholder="英文を入力してください（1000字以内）"
+            type="text"
+            matInput
+            autocomplete="off"
+            matTextareaAutosize
+            [matAutosizeMinRows]="10"
+            [matAutosizeMaxRows]="20"
+          ></textarea>
+          <mat-error *ngIf="sentenceControl.hasError('required')"
+            >必須入力です</mat-error
           >
-          <mat-checkbox
-            class="checkbox__item"
-            formControlName="noun"
-            [disabled]="!isPremium"
-            >名詞のみ空白</mat-checkbox
+          <mat-error *ngIf="sentenceControl.hasError('maxlength')"
+            >長すぎます</mat-error
           >
-          <mat-checkbox
-            class="checkbox__item"
-            formControlName="verb"
-            [disabled]="!isPremium"
-            >動詞のみ空白</mat-checkbox
-          >
-          <mat-checkbox
-            class="checkbox__item"
-            formControlName="adjective"
-            [disabled]="!isPremium"
-            >形容詞のみ空白</mat-checkbox
-          >
-          <mat-checkbox
-            class="checkbox__item"
-            formControlName="adverb"
-            [disabled]="!isPremium"
-            >副詞のみ空白</mat-checkbox
-          >
-          <mat-checkbox
-            class="checkbox__item"
-            formControlName="preposition"
-            [disabled]="!isPremium"
-            >前置詞のみ空白</mat-checkbox
-          >
-        </div>
-      </div>
+        </mat-form-field>
 
-      <div class="submit">
-        <button
-          [disabled]="form.invalid || !valid"
-          mat-raised-button
-          class="create-button"
-        >
-          作成する
-        </button>
-      </div>
-    </form>
+        <div class="template__format">
+          <p class="template__label">問題形式</p>
+          <ul class="template__checkboxBox" formGroupName="types">
+            <li class="template__checkbox">
+              <mat-checkbox formControlName="random">
+                ランダムに空白
+              </mat-checkbox>
+            </li>
+            <li class="template__checkbox">
+              <mat-checkbox formControlName="noun" [disabled]="!isPremium"
+                >名詞のみ空白
+              </mat-checkbox>
+            </li>
+            <li class="template__checkbox">
+              <mat-checkbox formControlName="verb" [disabled]="!isPremium"
+                >動詞のみ空白
+              </mat-checkbox>
+            </li>
+            <li class="template__checkbox">
+              <mat-checkbox formControlName="adjective" [disabled]="!isPremium"
+                >形容詞のみ空白
+              </mat-checkbox>
+            </li>
+            <li class="template__checkbox">
+              <mat-checkbox formControlName="adverb" [disabled]="!isPremium"
+                >副詞のみ空白
+              </mat-checkbox>
+            </li>
+            <li class="template__checkbox">
+              <mat-checkbox
+                formControlName="preposition"
+                [disabled]="!isPremium"
+                >前置詞のみ空白
+              </mat-checkbox>
+            </li>
+          </ul>
+        </div>
+
+        <div class="template__problemNum">
+          <div *ngIf="isPremium === true; else free">
+            <p>
+              {{
+                currentCreatedQuestionNum > 10
+                  ? '本日作成できる上限数に達しました'
+                  : '本日作成できる問題数：残り' +
+                    (10 - currentCreatedQuestionNum)
+              }}
+            </p>
+          </div>
+          <ng-template #free>
+            <p>
+              {{
+                currentCreatedQuestionNum > 3
+                  ? '本日作成できる上限数に達しました'
+                  : '本日作成できる問題数：残り' +
+                    (3 - currentCreatedQuestionNum)
+              }}
+            </p>
+          </ng-template>
+        </div>
+
+        <div class="template__submit">
+          <button
+            [disabled]="form.invalid || !valid"
+            mat-flat-button
+            color="primary"
+            class="template__createButton"
+          >
+            作成する
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
