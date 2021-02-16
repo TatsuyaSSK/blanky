@@ -8,9 +8,14 @@
     <p class="card__text">{{ problem.englishText }}</p>
   </div>
   <div class="card__bottom">
-    <p>
-      <strong class="card__accurateRate">{{ problem.correctAnswerRate }}</strong
-      >%
+    <p class="card__rate">
+      <strong class="card__accurateRate">{{
+        problem.correctAnswerRate
+      }}</strong>
+      <span class="card__normal">%</span>
     </p>
+    <mat-icon class="card__deleteIcon">
+      <a (click)="deleteProblem()" class="card__deleteLink">delete_outline</a>
+    </mat-icon>
   </div>
 </div>
