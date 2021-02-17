@@ -1,1 +1,31 @@
-<p>hero works!</p>
+<div class="hero-container">
+  <section class="hero">
+    <div class="hero__message">
+      <h1 class="hero__title">
+        オリジナル英語問題<span class="hero__br">を瞬時に作成</span>
+      </h1>
+      <h2 class="hero__subMessage">
+        blankyは、英文をアップロードするだけで<span class="hero__br"
+          >あなただけのオリジナルの英語問題を
+          <span class="hero__br">作成することができるサービスです。</span>
+        </span>
+      </h2>
+      <button
+        (click)="openSignUpDialog()"
+        class="hero__signup"
+        mat-raised-button
+        color="primary"
+      >
+        まずは無料で始める
+      </button>
+    </div>
+    <div class="hero__mainImage">
+      <img
+        class="hero__image"
+        alt="メインビジュアル"
+        src="/assets/images/visual.png"
+        alt=""
+      />
+    </div>
+  </section>
+</div>

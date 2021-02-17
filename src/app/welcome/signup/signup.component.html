@@ -1,0 +1,22 @@
+<mat-dialog-content class="signup">
+  <h2 class="signup__title">アカウント作成</h2>
+  <div class="signup__description">
+    <p>アカウントを作成することにより、</p>
+    <p>
+      <a href="/terms">利用規約</a>および<a href="/privacy"
+        >プライバシーポリシー</a
+      >に同意するものとします
+    </p>
+  </div>
+  <img
+    class="signup__button"
+    (click)="login()"
+    src="/assets/images/btn_google_signin_dark_normal_web.png"
+    alt="googleログイン"
+  />
+
+  <p>
+    すでにアカウントをお持ちですか？
+    <a class="signup__loginLink" (click)="login()">ログイン</a>
+  </p>
+</mat-dialog-content>
