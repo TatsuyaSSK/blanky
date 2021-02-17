@@ -27,6 +27,7 @@
   }
   &__format:hover {
     border: 1px solid rgba(0, 0, 0, 0.87);
+    transition: 0.3s;
   }
   &__label {
     position: absolute;
