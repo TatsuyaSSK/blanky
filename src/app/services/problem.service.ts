@@ -107,7 +107,9 @@ export class ProblemService {
 
   getProblemsbyType(type: string): Observable<Problem[]> {
     return this.db
-      .collection<Problem>(`problems/${this.authService.uid}/${type}`)
+      .collection<Problem>(`problems/${this.authService.uid}/${type}`, (ref) =>
+        ref.orderBy('createdAt', 'desc')
+      )
       .valueChanges();
   }
 
