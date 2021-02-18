@@ -1,0 +1,141 @@
+@import 'variables';
+@import 'mixins';
+
+.useContainer {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  min-height: calc(100vh - 120px);
+  padding: 80px 24px 120px 24px;
+  @include sm {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    min-height: calc(100vh - 120px);
+    padding: 80px 16px 120px 16px;
+  }
+}
+
+.title {
+  font-size: 38px;
+  text-align: center;
+  color: $color-main;
+  margin-bottom: 120px;
+  letter-spacing: 0.05em;
+  @include md {
+    margin-bottom: 80px;
+    font-size: 24px;
+  }
+}
+
+.underline {
+  position: relative;
+  &::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    bottom: -8px;
+    left: 0;
+    border-bottom: 3px solid $color-sub;
+    @include sm {
+      bottom: -4px;
+    }
+  }
+}
+
+.use {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 49% 49%;
+  grid-template-areas:
+    'use1Image use1Description'
+    'use2Description use2Image'
+    'use3Image use3Description';
+  align-items: center;
+  row-gap: 120px;
+  column-gap: 2%;
+  @include sm {
+    grid-template-areas:
+      'use1Description'
+      'use1Image'
+      'use2Description'
+      'use2Image'
+      'use3Description'
+      'use3Image';
+    grid-template-rows: auto;
+    grid-template-columns: 90%;
+    justify-content: center;
+    align-items: center;
+    row-gap: 50px;
+  }
+  &__use1Image {
+    grid-area: use1Image;
+  }
+  &__use2Image {
+    grid-area: use2Image;
+  }
+  &__use3Image {
+    grid-area: use3Image;
+  }
+  &__use1Description {
+    grid-area: use1Description;
+  }
+  &__use2Description {
+    grid-area: use2Description;
+  }
+  &__use3Description {
+    grid-area: use3Description;
+  }
+  &__heading {
+    font-size: 24px;
+    margin-bottom: 25px;
+    letter-spacing: 0.1em;
+    @include sm {
+      font-size: 18px;
+    }
+  }
+  &__description {
+    position: relative;
+    padding-left: 130px;
+    @include sm {
+      padding-left: 70px;
+    }
+  }
+  &__description::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    bottom: 4px;
+    left: 86px;
+    border-left: 4px solid $color-sub;
+    @include sm {
+      top: 4px;
+      left: 45px;
+    }
+  }
+  &__image {
+    display: block;
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+    @include md {
+      width: 240px;
+    }
+  }
+  &__text {
+    padding: 0 35px 0 0;
+    @include sm {
+      font-size: 12px;
+    }
+  }
+  &__number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 77px;
+    color: $color-main;
+    @include sm {
+      font-size: 18px;
+    }
+  }
+}

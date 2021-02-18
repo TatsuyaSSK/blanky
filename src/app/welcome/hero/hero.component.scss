@@ -31,9 +31,10 @@
     }
   }
   &__title {
-    font-size: 50px;
+    font-size: 46px;
     color: $color-main;
     margin-bottom: 20px;
+    letter-spacing: 0.05em;
     @include md {
       font-size: 40px;
     }
