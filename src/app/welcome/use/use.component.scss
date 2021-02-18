@@ -134,6 +134,7 @@
     left: 0;
     font-size: 77px;
     color: $color-main;
+    transform: translateY(-10px);
     @include sm {
       font-size: 18px;
     }
