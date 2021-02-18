@@ -22,11 +22,15 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.StripeService.getUserSubsription().subscribe((data) => {
-      if (data.length === 0) {
-        this.isPremium = false;
-      } else {
-        this.isPremium = true;
+    this.authService.user$.subscribe((user) => {
+      if (user) {
+        this.StripeService.getUserSubsription().subscribe((data) => {
+          if (data.length === 0) {
+            this.isPremium = false;
+          } else {
+            this.isPremium = true;
+          }
+        });
       }
     });
   }

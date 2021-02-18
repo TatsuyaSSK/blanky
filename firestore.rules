@@ -3,11 +3,31 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     match /users/{uid} {
-      allow read, create, delete, update: if request.auth.uid == uid;
+      allow read: if true;
+      allow create, delete, update: if request.auth.uid == uid;
     }
 
-    match /problems/{uid}/{type}/{problemId} {
+    match /problems/{uid} {
       allow read, create, delete, update: if request.auth.uid == uid;
+
+      match /random/{problemId} {
+        allow read, create, delete, update: if request.auth.uid == uid;
+      }
+      match /noun/{problemId} {
+        allow read, create, delete, update: if request.auth.uid == uid;
+      }
+      match /verb/{problemId} {
+        allow read, create, delete, update: if request.auth.uid == uid;
+      }
+      match /adjective/{problemId} {
+        allow read, create, delete, update: if request.auth.uid == uid;
+      }
+      match /adverb/{problemId} {
+        allow read, create, delete, update: if request.auth.uid == uid;
+      }
+      match /preposition/{problemId} {
+        allow read, create, delete, update: if request.auth.uid == uid;
+      }
     }
 
     match /customers/{uid} {
