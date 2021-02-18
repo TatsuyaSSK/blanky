@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProblemService } from 'src/app/services/problem.service';
 
 @Component({
   selector: 'app-cards',
@@ -14,5 +13,9 @@ export class CardsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.problems === void 0) {
+      this.problems = [];
+    }
+  }
 }
