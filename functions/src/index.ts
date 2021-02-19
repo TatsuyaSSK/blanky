@@ -7,3 +7,4 @@ export * from './user.function';
 export * from './problem.function';
 export * from './problem-search.function';
 export * from './sendmail.function';
+export * from './render.function';
