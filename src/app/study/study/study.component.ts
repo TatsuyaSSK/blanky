@@ -46,6 +46,15 @@ export class StudyComponent implements OnInit {
     private problemService: ProblemService
   ) {}
 
+  focusNextInput(nextTarget?: number) {
+    const nextElement = document.querySelectorAll('input')[
+      nextTarget
+    ] as HTMLElement;
+    if (nextElement) {
+      nextElement.focus();
+    }
+  }
+
   ngOnInit(): void {
     this.type = this.route.snapshot.paramMap.get('type');
     this.problemId = this.route.snapshot.paramMap.get('problemId');
