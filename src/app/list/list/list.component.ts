@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Problem } from 'src/app/interfaces/problem';
 import { ProblemService } from 'src/app/services/problem.service';
 import { SearchService } from 'src/app/services/search.service';
@@ -42,7 +42,6 @@ export class ListComponent implements OnInit {
   ];
 
   constructor(
-    private fb: FormBuilder,
     private problemService: ProblemService,
     private searchService: SearchService,
     private authService: AuthService,

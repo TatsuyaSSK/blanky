@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { AnswerComponent } from './answer/answer.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [StudyComponent, AnswerComponent],
@@ -19,6 +20,7 @@ import { AnswerComponent } from './answer/answer.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatProgressBarModule,
   ],
 })
 export class StudyModule {}

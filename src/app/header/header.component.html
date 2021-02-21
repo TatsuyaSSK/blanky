@@ -1,49 +1,61 @@
-<header class="header">
-  <hr class="header__bar" />
-  <mat-toolbar>
-    <span><h1 class="header__logo" routerLink="/list">blanky</h1></span>
-    <span class="header__spacer"></span>
+<div class="wrapper">
+  <header class="header">
+    <mat-toolbar class="header__toolbar">
+      <h1><a class="header__logo" routerLink="/list">blanky</a></h1>
+      <span class="header__spacer"></span>
 
-    <div class="header__nav" *ngIf="user$ | async as user; else showLogin">
-      <button
-        [disabled]="
-          (isPremium && user.createdQuestionNum > 9) ||
-          (!isPremium && user.createdQuestionNum > 2)
-        "
-        mat-raised-button
-        class="header__button"
-        routerLink="/create"
-      >
-        <mat-icon class="header__icon">create</mat-icon> 問題を作成する
-      </button>
-
-      <button
-        class="header__avatar"
-        mat-icon-button
-        [matMenuTriggerFor]="menu"
-        [style.background-image]="'url(' + user.avatarURL + ')'"
-      ></button>
-
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/setting">
-          <mat-icon>settings</mat-icon>
-          <span>設定</span>
+      <div class="header__nav" *ngIf="user$ | async as user; else showLogin">
+        <button
+          [disabled]="
+            (isPremium && user.createdQuestionNum > 9) ||
+            (!isPremium && user.createdQuestionNum > 2)
+          "
+          mat-stroked-button
+          class="header__createButton"
+          routerLink="/create"
+        >
+          <mat-icon
+            [class.header__icon--shade]="
+              (isPremium && user.createdQuestionNum > 9) ||
+              (!isPremium && user.createdQuestionNum > 2)
+            "
+            >create</mat-icon
+          >
+          問題を作成する
         </button>
-        <button mat-menu-item (click)="logout()">
-          <mat-icon>exit_to_app</mat-icon>
-          <span>ログアウト</span>
-        </button>
-      </mat-menu>
-    </div>
 
-    <ng-template #showLogin>
-      <button
-        (click)="login()"
-        mat-raised-button
-        class="header__registration-button"
-      >
-        ログイン
-      </button>
-    </ng-template>
-  </mat-toolbar>
-</header>
+        <button
+          class="header__avatar"
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          [style.background-image]="'url(' + user.avatarURL + ')'"
+        ></button>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/setting">
+            <mat-icon class="header__matMenuIcon">settings</mat-icon>
+            <span class="header__matMenuButton">設定</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon class="header__matMenuIcon">exit_to_app</mat-icon>
+            <span class="header__matMenuButton">ログアウト</span>
+          </button>
+        </mat-menu>
+      </div>
+
+      <ng-template #showLogin>
+        <button
+          class="header__signup"
+          (click)="login()"
+          mat-flat-button
+          color="primary"
+        >
+          新規登録
+        </button>
+        <button class="header__login" (click)="login()" mat-stroked-button>
+          ログイン
+        </button>
+      </ng-template>
+    </mat-toolbar>
+  </header>
+</div>

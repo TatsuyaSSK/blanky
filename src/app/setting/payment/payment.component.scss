@@ -1,0 +1,49 @@
+@import 'variables';
+@import 'mixins';
+
+.payment {
+  margin: 50px auto 0;
+  width: 80%;
+  text-align: center;
+  @include sm {
+    width: 100%;
+  }
+  &__card {
+    border-radius: 4px;
+    border: 1px solid $color-border;
+    margin-bottom: 40px;
+  }
+  &__header {
+    display: flex;
+    height: 144px;
+    align-items: center;
+    border: none;
+    background: linear-gradient(
+      -180deg,
+      rgb(182, 43, 190) 0%,
+      rgb(150, 34, 185) 100%
+    );
+  }
+  &__block {
+    padding: 16px;
+  }
+  &__currentPlan {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  &__body {
+    padding: 16px;
+  }
+  &__descriptionBlock {
+    display: flex;
+    align-items: center;
+  }
+  &__description {
+    text-align: left;
+    list-style: none;
+    line-height: 1.7;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}

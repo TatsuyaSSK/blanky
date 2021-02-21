@@ -111,7 +111,7 @@ export class StudyComponent implements OnInit {
   calculateCorrectAnswerRate() {
     this.fills.value.map((value, i) => {
       if (value === '') {
-        this.filledDict[this.blankIndexes[i]] = '---';
+        this.filledDict[this.blankIndexes[i]] = '';
       } else {
         this.filledDict[this.blankIndexes[i]] = value.replace(/^\s+|\s+$/g, '');
       }
@@ -142,6 +142,7 @@ export class StudyComponent implements OnInit {
   }
 
   onSubmit() {
+    window.scroll(0, 0);
     this.calculateCorrectAnswerRate();
     this.updateCorrectAnswerRate(
       this.correctAnswerRate,

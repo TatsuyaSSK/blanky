@@ -1,64 +1,100 @@
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 16px;
-  width: 960px;
-}
+@import 'variables';
+@import 'mixins';
 
-.box {
-  margin-right: auto;
-  margin-left: auto;
-  box-shadow: 0 0 3px #ccc;
-  width: 100%;
-  max-width: 800px;
-  padding: 16px;
-  &__item {
-    color: #15c399;
+.answer {
+  &__block {
+    margin-bottom: 40px;
   }
-  &__input-field {
-    width: 80px;
+  &__heading {
+    font-size: 24px;
+    color: $color-font;
+    margin-bottom: 16px;
+    @include sm {
+      font-size: 20px;
+    }
+  }
+  &__word {
+    display: inline-block;
+    margin-right: 0.4em;
+    margin-bottom: 0.6em;
+    @include sm {
+      font-size: 12px;
+    }
+  }
+  &__buttonBlock {
+    width: 100%;
+    text-align: center;
+  }
+  &__inputWrapper {
+    display: inline-block;
+    margin-right: 0.5em;
+  }
+  &__inputField {
+    width: 100%;
+    position: relative;
+  }
+  &__correctInput {
+    color: $color-main;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: $font-base;
+    display: inline-block;
+    margin-bottom: 0.6em;
+    width: 100%;
+    border: 0;
+    border-bottom: 2.5px solid $color-main;
+    background-color: transparent;
+    @include sm {
+      font-size: 12px;
+      margin-bottom: 0.8em;
+    }
+  }
+  :focus {
+    outline: none;
+  }
+  &__incorrectInput {
+    color: $color-warn;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: $font-base;
+    display: inline-block;
+    margin-bottom: 0.6em;
+    width: 100%;
+    border: 0;
+    border-bottom: 2.5px solid $color-warn;
+    background-color: transparent;
+    @include sm {
+      font-size: 12px;
+      margin-bottom: 0.8em;
+    }
+  }
+  :focus {
+    outline: none;
   }
   &__button {
-    background: #15c399;
-    color: white;
+    margin-right: 80px;
+    @include sm {
+      margin-right: 20px;
+    }
+  }
+  &__acuuracyBlock {
+    margin-bottom: 80px;
+  }
+  &__rate {
+    font-size: 24px;
     text-align: center;
-    margin: 0px 60px;
+    margin-bottom: 20px;
   }
-  &__question-num {
-    color: #15c399;
-    padding-left: 35px;
+  &__accuracyRate {
+    padding: 6px;
+    font-size: 36px;
+    font-weight: bold;
+    color: $color-main;
   }
-}
-
-.button-layout {
-  margin: 40px 0px 16px 0px;
-  text-align: center;
-}
-
-.accuracy-box {
-  display: flex;
-  align-items: center;
-  &__string {
-    padding-left: 24px;
+  &__progressBar {
+    margin: 0 auto;
+    width: 60%;
+    height: 20px;
+    border-radius: 20px;
   }
-  &__percentage {
-    font-size: 40px;
-    color: #15c399;
-  }
-}
-
-.word {
-  margin-left: 10px;
-}
-
-.correct {
-  margin-left: 10px;
-  color: #15c399;
-  font-weight: bold;
-}
-
-.incorrect {
-  margin-left: 10px;
-  color: #ff3d00;
-  font-weight: bold;
 }

@@ -1,79 +1,21 @@
-<div class="container">
-  <div class="inner">
-    <div class="my-profile" *ngIf="user$ | async as user">
-      <h2 class="heading">プロフィール情報</h2>
-      <div class="profile">
-        <label
-          for="uploadImage"
-          [style.background-image]="'url(' + user.avatarURL + ')'"
-          class="profile__image"
-        >
-          <div class="profile__mark">
-            <mat-icon class="profile__cameraIcon">add_a_photo</mat-icon>
+<div class="wrapper">
+  <div class="container">
+    <section class="settings">
+      <mat-tab-group dynamicHeight mat-stretch-tabs animationDuration="0ms">
+        <mat-tab label="プロフィール">
+          <div class="settings__body">
+            <app-profile></app-profile>
           </div>
-        </label>
-        <input
-          id="uploadImage"
-          type="file"
-          accept=".png, .jpg, .jpeg"
-          class="profile__file"
-          (change)="openCropDialog($event)"
-          #imageSelecter
-        />
-        <div class="profile__user">
-          <p class="profile__username">ユーザー名</p>
-          <mat-form-field class="example-full-width">
-            <input matInput [formControl]="userName" (change)="nameChanged()" />
-            <mat-error *ngIf="userName.hasError('required')">
-              ユーザー名を入力してください
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <button
-          [disabled]="!isUpdated"
-          class="profile__button"
-          mat-raised-button
-          (click)="updateUserName()"
-        >
-          更新する
-        </button>
-      </div>
-    </div>
-
-    <div class="service-setting">
-      <h2 class="heading">サービスのご利用状況</h2>
-      <div class="service">
-        <div class="flex">
-          <p>プラン</p>
-
-          <div *ngIf="isPremium; else freeplanuser">
-            <p class="service__status">
-              プレミアムプラン<a
-                class="service__link"
-                (click)="redirectToCustomerPortal()"
-                >利用状況を確認する</a
-              >　
-            </p>
+        </mat-tab>
+        <mat-tab label="お支払い情報">
+          <app-payment></app-payment>
+        </mat-tab>
+        <mat-tab label="退会">
+          <div class="settings__body">
+            <app-withdrawal></app-withdrawal>
           </div>
-          <ng-template #freeplanuser>
-            <p class="service__status">
-              フリープラン<a class="service__link" routerLink="/plans"
-                >変更する</a
-              >　
-            </p>
-          </ng-template>
-        </div>
-      </div>
-
-      <div class="withdrawal">
-        <button
-          (click)="openWithdrawalDialog()"
-          mat-raised-button
-          class="withdrawal__button"
-        >
-          退会する
-        </button>
-      </div>
-    </div>
+        </mat-tab>
+      </mat-tab-group>
+    </section>
   </div>
 </div>

@@ -1,0 +1,45 @@
+<section class="payment">
+  <div class="payment__card">
+    <div class="payment__header">
+      <div class="payment__block">
+        <p class="payment__currentPlan">
+          {{ isPremium ? 'プレミアムプラン' : 'フリープラン' }}
+        </p>
+      </div>
+    </div>
+    <div class="payment__body">
+      <div class="payment__descriptionBlock">
+        <div *ngIf="isPremium; else showFreePlan">
+          <ul class="payment__description">
+            <li>ランダムに穴埋め問題作成可能</li>
+            <li>品詞を指定して問題作成可能</li>
+            <li>1日10回まで問題作成可能</li>
+          </ul>
+        </div>
+        <ng-template #showFreePlan>
+          <ul class="payment__description">
+            <li>ランダムに穴埋め問題作成可能</li>
+            <li>1日3回まで問題作成可能</li>
+          </ul>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isPremium; else showFreeButton">
+    <button
+      (click)="redirectToCustomerPortal()"
+      mat-raised-button
+      color="primary"
+      class="payment__button"
+    >
+      利用状況を確認する
+    </button>
+  </div>
+  <ng-template #showFreeButton>
+    <a routerLink="/plans">
+      <button mat-raised-button color="primary" class="payment__button">
+        プランを変更する
+      </button>
+    </a>
+  </ng-template>
+</section>

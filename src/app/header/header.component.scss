@@ -1,13 +1,26 @@
+@import 'variables';
+@import 'mixins';
+
 .header {
-  &__bar {
-    margin: 0px;
-    height: 10px;
-    background-color: #15c399;
-    border: none;
+  padding: 16px 0;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  background-color: $color-mainBackground;
+  &__toolbar {
+    background-color: $color-mainBackground;
+    padding: 0 24px;
+    @include sm {
+      padding: 0 8px;
+    }
   }
   &__logo {
-    color: #15c399;
-    padding: 4px;
+    font-family: $font-logo;
+    font-weight: 700;
+    font-size: 24px;
+    color: $color-main;
+    padding: 8px;
   }
   &__spacer {
     flex: 1 1 auto;
@@ -16,26 +29,27 @@
     display: flex;
     align-items: center;
   }
-  &__button {
-    margin-right: 40px;
+  &__createButton {
+    border-color: rgb($color-font, 0.12);
+    background-color: #fff;
+    color: $color-font;
+    margin-right: 24px;
     padding: 4px 8px;
-
-    color: #6b6b6b;
+    @include sm {
+      margin-right: 8px;
+    }
   }
   &__icon {
     color: #6b6b6b;
   }
-  &__icon-description {
-    font-size: 16px;
-    padding-right: 24px;
+  &__icon--shade {
+    color: #bdbdbd;
   }
-  &__click {
-    display: flex;
-    padding-right: 24px;
-  }
-  &__registration-button {
-    background: #15c399;
-    color: white;
+  &__signup {
+    margin-right: 24px;
+    @include sm {
+      margin-right: 8px;
+    }
   }
   &__avatar {
     width: 40px;
@@ -43,5 +57,16 @@
     border-radius: 50%;
     margin-right: 16px;
     background: #fff center/cover;
+  }
+  &__login {
+    color: $color-font;
+    border-color: rgb($color-font, 0.12);
+    background-color: #fff;
+  }
+  &__matMenuIcon {
+    color: $color-font;
+  }
+  &__matMenuButton {
+    color: $color-font;
   }
 }

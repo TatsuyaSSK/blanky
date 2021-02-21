@@ -1,14 +1,21 @@
 <div class="card">
-  <p class="card__title">{{ problem.title }}</p>
-  <figure class="card__cover"></figure>
-  <p class="class__accuracy">
-    正答率: <strong>{{ problem.correctAnswerRate }}</strong
-    >%
-  </p>
   <a
     routerLink="/study/{{ type }}/{{ problem.problemId }}/"
-    routerLinkActive="active"
     class="card__link"
   ></a>
-  <button class="card__button" (click)="deleteProblem()">削除</button>
+  <p class="card__title">{{ problem.title }}</p>
+  <div class="card__cover">
+    <p class="card__text">{{ problem.englishText }}</p>
+  </div>
+  <div class="card__bottom">
+    <p class="card__rate">
+      <strong class="card__accurateRate">{{
+        problem.correctAnswerRate
+      }}</strong>
+      <span class="card__normal">%</span>
+    </p>
+    <mat-icon class="card__deleteIcon">
+      <a (click)="deleteProblem()" class="card__deleteLink">delete_outline</a>
+    </mat-icon>
+  </div>
 </div>

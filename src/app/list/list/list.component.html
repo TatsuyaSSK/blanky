@@ -1,67 +1,76 @@
-<div class="spacer">
-  <form class="search">
-    <button class="search__button"><mat-icon>search</mat-icon></button>
-    <input
-      type="text"
-      class="search__input"
-      autocomplete="off"
-      placeholder="タイトル、英単語など"
-      [formControl]="query"
-      (input)="search($event)"
-    />
-  </form>
+<div class="wrapper">
+  <div class="container">
+    <div class="search">
+      <form class="search__form">
+        <button class="search__searchButton">
+          <mat-icon>search</mat-icon>
+        </button>
+        <input
+          type="text"
+          class="search__input"
+          autocomplete="off"
+          placeholder="タイトル、英単語など"
+          [formControl]="query"
+          (input)="search($event)"
+        />
+      </form>
+    </div>
+    <div class="main">
+      <mat-tab-group
+        dynamicHeight
+        mat-stretch-tabs
+        (selectedTabChange)="setProblemsbyType($event)"
+        animationDuration="0ms"
+      >
+        <mat-tab label="ランダム">
+          <app-cards
+            [problems]="problems"
+            [type]="type"
+            [isQuery]="isQuery"
+            [result]="result"
+          ></app-cards>
+        </mat-tab>
+        <mat-tab label="名詞">
+          <app-cards
+            [problems]="problems"
+            [type]="type"
+            [isQuery]="isQuery"
+            [result]="result"
+          ></app-cards>
+        </mat-tab>
+        <mat-tab label="動詞">
+          <app-cards
+            [problems]="problems"
+            [type]="type"
+            [isQuery]="isQuery"
+            [result]="result"
+          ></app-cards>
+        </mat-tab>
+        <mat-tab label="形容詞">
+          <app-cards
+            [problems]="problems"
+            [type]="type"
+            [isQuery]="isQuery"
+            [result]="result"
+          ></app-cards>
+        </mat-tab>
+        <mat-tab label="副詞">
+          <app-cards
+            [problems]="problems"
+            [type]="type"
+            [isQuery]="isQuery"
+            [result]="result"
+          ></app-cards>
+        </mat-tab>
+        <mat-tab label="前置詞">
+          <app-cards
+            [problems]="problems"
+            [type]="type"
+            [isQuery]="isQuery"
+            [result]="result"
+          ></app-cards>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
 </div>
-<mat-tab-group
-  class="tab"
-  (selectedTabChange)="setProblemsbyType($event)"
-  animationDuration="0ms"
->
-  <mat-tab label="ランダム">
-    <app-cards
-      [problems]="problems"
-      [type]="type"
-      [isQuery]="isQuery"
-      [result]="result"
-    ></app-cards>
-  </mat-tab>
-  <mat-tab label="名詞">
-    <app-cards
-      [problems]="problems"
-      [type]="type"
-      [isQuery]="isQuery"
-      [result]="result"
-    ></app-cards>
-  </mat-tab>
-  <mat-tab label="動詞">
-    <app-cards
-      [problems]="problems"
-      [type]="type"
-      [isQuery]="isQuery"
-      [result]="result"
-    ></app-cards>
-  </mat-tab>
-  <mat-tab label="形容詞">
-    <app-cards
-      [problems]="problems"
-      [type]="type"
-      [isQuery]="isQuery"
-      [result]="result"
-    ></app-cards>
-  </mat-tab>
-  <mat-tab label="副詞">
-    <app-cards
-      [problems]="problems"
-      [type]="type"
-      [isQuery]="isQuery"
-      [result]="result"
-    ></app-cards>
-  </mat-tab>
-  <mat-tab label="前置詞">
-    <app-cards
-      [problems]="problems"
-      [type]="type"
-      [isQuery]="isQuery"
-      [result]="result"
-    ></app-cards>
-  </mat-tab>
-</mat-tab-group>

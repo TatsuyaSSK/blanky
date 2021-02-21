@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from '../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [ListComponent],
@@ -30,6 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatTabsModule,
     SharedModule,
     MatIconModule,
+    MatExpansionModule,
   ],
 })
 export class ListModule {}
