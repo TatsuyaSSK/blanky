@@ -6,6 +6,7 @@ import { CardsComponent } from './cards/cards.component';
 import { CardComponent } from './card/card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [CardsComponent, CardComponent],
@@ -14,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     SharedRoutingModule,
     MatIconModule,
     MatSnackBarModule,
+    MatButtonModule,
   ],
   exports: [CardsComponent, MatIconModule],
 })

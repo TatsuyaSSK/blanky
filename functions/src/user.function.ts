@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions';
-import { auth, firestore } from 'firebase-admin';
+import * as admin from 'firebase-admin';
 import { db, bucket } from './index';
 const firebaseTools = require('firebase-tools');
 
@@ -16,6 +16,12 @@ export const createUser = functions
       createdQuestionNum: 0,
       uid: user.uid,
     });
+  });
+
+export const deleteAfUser = functions
+  .region('asia-northeast1')
+  .https.onCall((data, context) => {
+    return admin.auth().deleteUser(data);
   });
 
 export const deleteUser = functions
@@ -45,7 +51,7 @@ export const resetCreatedQuestionNum = functions
       });
   });
 
-function createSampleData(user: auth.UserRecord) {
+function createSampleData(user: admin.auth.UserRecord) {
   const problemId = db.collection('problems').doc().id;
   return db.doc(`problems/${user.uid}/random/${problemId}`).set({
     problemId,
@@ -55,23 +61,23 @@ function createSampleData(user: auth.UserRecord) {
     japaneseText: '和訳文',
     blankIndexes: [3, 5, 11, 14],
     correctAnswerRate: 0,
-    createdAt: firestore.Timestamp.now(),
+    createdAt: admin.firestore.Timestamp.now(),
     type: 'random',
     uid: user.uid,
   });
 }
 
-function deleteUserImage(user: auth.UserRecord) {
+function deleteUserImage(user: admin.auth.UserRecord) {
   return bucket.deleteFiles({
     prefix: `users/${user.uid}`,
   });
 }
 
-function deleteUserData(user: auth.UserRecord) {
+function deleteUserData(user: admin.auth.UserRecord) {
   return db.doc(`users/${user.uid}`).delete();
 }
 
-async function deleteCustomerData(user: auth.UserRecord) {
+async function deleteCustomerData(user: admin.auth.UserRecord) {
   const path = `customers/${user.uid}`;
   const token = await functions.config().fb.token;
   return firebaseTools.firestore.delete(path, {

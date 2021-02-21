@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StripeService } from 'src/app/services/stripe.service';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-payment',
@@ -10,7 +11,10 @@ export class PaymentComponent implements OnInit {
   isPremium: boolean;
   customerPortalUrl: string;
 
-  constructor(private stripeService: StripeService) {}
+  constructor(
+    private stripeService: StripeService,
+    private loadingService: LoadingService
+  ) {}
 
   ngOnInit(): void {
     this.stripeService.getUserSubsription().subscribe((data) => {
@@ -27,6 +31,10 @@ export class PaymentComponent implements OnInit {
   }
 
   redirectToCustomerPortal() {
-    window.location.assign(this.customerPortalUrl);
+    this.loadingService.isLoading = true;
+    this.stripeService.getCustomerPortalUrl().then((url) => {
+      this.loadingService.isLoading = false;
+      window.location.assign(url);
+    });
   }
 }

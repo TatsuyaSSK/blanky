@@ -7,9 +7,9 @@
   position: fixed;
   z-index: 100;
   top: 0;
-  background-color: $color-mainBackground;
+  background-color: transparent;
   &__toolbar {
-    background-color: $color-mainBackground;
+    background-color: transparent;
     padding: 0 24px;
     @include sm {
       padding: 0 8px;
