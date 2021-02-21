@@ -17,4 +17,14 @@
   margin-top: 40px;
   display: block;
   text-align: center;
+  margin-bottom: 20px;
+}
+
+.notFound-button {
+  display: block;
+  margin: 0 auto;
+  border-color: rgb($color-font, 0.12);
+  background-color: #fff;
+  color: $color-font;
+  padding: 4px 8px;
 }

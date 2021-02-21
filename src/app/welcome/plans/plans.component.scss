@@ -28,6 +28,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 100px;
   @include sm {
     flex-direction: column;
   }
@@ -80,5 +81,9 @@
   &__item {
     padding: 0;
     margin-top: 10px;
+  }
+  &__signup {
+    display: block;
+    margin: 0 auto;
   }
 }
