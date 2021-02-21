@@ -1,6 +1,21 @@
 @import 'variables';
 @import 'mixins';
 
+.planContainer {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  min-height: calc(100vh - 120px);
+  padding: 80px 24px 120px 24px;
+  @include sm {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    min-height: calc(100vh - 120px);
+    padding: 80px 16px 120px 16px;
+  }
+}
+
 .title {
   font-size: 32px;
   text-align: center;
@@ -19,7 +34,7 @@
   &__card {
     padding: 16px;
     margin: 0 16px;
-    width: 300px;
+    width: 312px;
     min-width: 312px;
     height: 380px;
     box-shadow: 0 12px 30px rgb(0 0 0 / 15%);

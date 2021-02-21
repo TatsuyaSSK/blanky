@@ -28,7 +28,7 @@
     right: 0;
     width: 1px;
     height: 14px;
-    background-color: #555;
+    background-color: $color-font;
     @include sm {
       height: 12px;
     }

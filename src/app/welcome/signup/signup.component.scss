@@ -1,0 +1,20 @@
+@import 'variables';
+@import 'mixins';
+
+.signup {
+  text-align: center;
+  &__title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  &__description {
+    margin-bottom: 20px;
+  }
+  &__button {
+    margin-bottom: 40px;
+    cursor: pointer;
+  }
+  &__loginLink {
+    cursor: pointer;
+  }
+}

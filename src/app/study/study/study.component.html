@@ -6,7 +6,7 @@
         <div *ngIf="!display; else showAnswer">
           <div class="problem__englishBlock">
             <h2 class="problem__heading">英文</h2>
-            <form>
+            <div>
               <span *ngFor="let text of englishTextList; index as i">
                 <span>
                   <ng-container *ngIf="isBlankList[i]; else showWord">
@@ -26,6 +26,7 @@
                             class="problem__input"
                             type="text"
                             placeholder=""
+                            (keyup.enter)="focusNextInput(blankList[i] + 1)"
                             autocomplete="off"
                             [formControl]="fills.controls[blankList[i]]"
                           />
@@ -45,6 +46,7 @@
                             class="problem__input"
                             type="text"
                             placeholder=""
+                            (keyup.enter)="focusNextInput(blankList[i] + 1)"
                             autocomplete="off"
                             [formControl]="fills.controls[blankList[i]]"
                           />
@@ -58,7 +60,7 @@
                   </ng-template>
                 </span>
               </span>
-            </form>
+            </div>
           </div>
           <div class="problem__japaneseBlock">
             <h2 class="problem__heading">和訳</h2>
