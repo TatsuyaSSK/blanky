@@ -30,6 +30,7 @@ export class PlansComponent implements OnInit {
   }
 
   redirectToCheckout() {
+    this.loadingService.isLoading = true;
     this.stripeService.addCheckoutSession().then((ref) => {
       ref.onSnapshot((snap) => {
         const { error, sessionId } = snap.data();
@@ -37,6 +38,7 @@ export class PlansComponent implements OnInit {
           alert(`エラーが発生しました: ${error.message}`);
         }
         if (sessionId) {
+          this.loadingService.isLoading = false;
           const stripe = loadStripe(environment.stripe.publicKey);
           stripe.then((stripe) => {
             if (stripe) {

@@ -99,7 +99,7 @@ export class ProblemService {
       .set({
         problemId,
         ...problem,
-        japaneseText: '和訳文',
+        japaneseText: '',
         blankIndexes,
         correctAnswerRate: 0,
         createdAt: firebase.default.firestore.Timestamp.now(),
