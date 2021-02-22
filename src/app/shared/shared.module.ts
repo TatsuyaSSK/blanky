@@ -7,6 +7,7 @@ import { CardComponent } from './card/card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [CardsComponent, CardComponent],
@@ -16,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatMenuModule,
   ],
   exports: [CardsComponent, MatIconModule],
 })

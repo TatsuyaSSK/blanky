@@ -8,6 +8,7 @@
   grid-gap: 60px 40px;
   padding: 40px 32px;
   @include sm {
+    grid-gap: 24px;
     padding: 40px 0;
     justify-content: center;
   }
