@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Problem } from '../interfaces/problem';
 import { AuthService } from './auth.service';
 import * as firebase from 'firebase/app';
+import 'firebase/functions';
 import { Observable } from 'rxjs';
 import * as pos from 'parts-of-speech';
 @Injectable({
