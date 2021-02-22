@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 import firebase from 'firebase/app';
+import 'firebase/functions';
 
 @Injectable({
   providedIn: 'root',
