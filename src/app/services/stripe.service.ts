@@ -45,10 +45,12 @@ export class StripeService {
     const functionRef = this.afn.httpsCallable(
       'ext-firestore-stripe-subscriptions-createPortalLink'
     );
-    functionRef({ returnUrl: window.location.origin }).subscribe((data) => {
-      if (data) {
-        return data.url;
+    await functionRef({ returnUrl: window.location.origin }).subscribe(
+      (data) => {
+        if (data) {
+          return data.url;
+        }
       }
-    });
+    );
   }
 }

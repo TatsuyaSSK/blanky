@@ -25,14 +25,16 @@ export class PaymentComponent implements OnInit {
       }
     });
 
-    this.stripeService.getCustomerPortalUrl().then((url) => {
-      this.customerPortalUrl = url;
+    this.stripeService.getCustomerPortalUrl().then((url: any) => {
+      if (url) {
+        this.customerPortalUrl = url;
+      }
     });
   }
 
   redirectToCustomerPortal() {
     this.loadingService.isLoading = true;
-    this.stripeService.getCustomerPortalUrl().then((url) => {
+    this.stripeService.getCustomerPortalUrl().then((url: any) => {
       this.loadingService.isLoading = false;
       window.location.assign(url);
     });
