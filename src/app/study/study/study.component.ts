@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Problem } from 'src/app/interfaces/problem';
 import { ProblemService } from 'src/app/services/problem.service';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { FormArray, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
