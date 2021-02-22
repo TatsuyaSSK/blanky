@@ -58,7 +58,7 @@ function createSampleData(user: admin.auth.UserRecord) {
     title: 'blankyへようこそ！',
     englishText:
       'blanky is a service that allows you to create your own original English questions just by uploading English sentences.',
-    japaneseText: '和訳文',
+    japaneseText: '',
     blankIndexes: [3, 5, 11, 14],
     correctAnswerRate: 0,
     createdAt: admin.firestore.Timestamp.now(),
