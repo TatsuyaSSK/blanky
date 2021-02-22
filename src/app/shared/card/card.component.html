@@ -5,7 +5,7 @@
   ></a>
   <p class="card__title">{{ problem.title }}</p>
   <div class="card__cover">
-    <p class="card__text">{{ problem.englishText }}</p>
+    <p class="card__text">{{ problem.japaneseText }}</p>
   </div>
   <div class="card__bottom">
     <p class="card__rate">
@@ -14,8 +14,18 @@
       }}</strong>
       <span class="card__normal">%</span>
     </p>
-    <mat-icon class="card__deleteIcon">
-      <a (click)="deleteProblem()" class="card__deleteLink">delete_outline</a>
-    </mat-icon>
+    <button
+      [matMenuTriggerFor]="menuRef"
+      class="card__delete-menu"
+      mat-icon-button
+    >
+      <mat-icon> more_vert </mat-icon>
+    </button>
+    <mat-menu #menuRef="matMenu">
+      <button mat-menu-item (click)="deleteProblem()">
+        <mat-icon class="card__delete-icon">delete_outline</mat-icon>
+        <span class="card__delete-text">削除</span>
+      </button>
+    </mat-menu>
   </div>
 </div>

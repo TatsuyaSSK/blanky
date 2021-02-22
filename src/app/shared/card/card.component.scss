@@ -47,7 +47,7 @@
     text-align: left;
     font-size: 12px;
     color: $color-font;
-    opacity: 0.2;
+    opacity: 0.4;
   }
   &__bottom {
     position: absolute;
@@ -72,11 +72,14 @@
     font-weight: bold;
     vertical-align: center;
   }
-  &__deleteIcon {
-    opacity: 0;
+  &__delete-menu {
+    transform: translateX(36px);
     z-index: 2;
   }
-  &__deleteLink {
+  &__delete-icon {
     color: $color-warn;
+  }
+  &__delete-text {
+    color: $color-font;
   }
 }
