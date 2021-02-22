@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import { db } from './index';
 const firebaseTools = require('firebase-tools');
 
-const projectId = 'blanky-2fc41';
+const projectId = 'blanky-prod';
 
 const { Translate } = require('@google-cloud/translate').v2;
 const translateInstance = new Translate({ projectId });

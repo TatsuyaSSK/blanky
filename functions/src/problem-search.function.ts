@@ -10,11 +10,7 @@ export const deleteAlgoliaProblem = functions
     const data = snap.data();
 
     if (data) {
-      return algolia.removeRecord(
-        'dev_blanky_service',
-        data.problemId,
-        'problemId'
-      );
+      return algolia.removeRecord('blanky_prod', data.problemId, 'problemId');
     } else {
       return;
     }
@@ -26,7 +22,7 @@ export const updateAlgoliaProblem = functions
   .onUpdate((change) => {
     const data = change.after.data();
     return algolia.saveRecord({
-      indexName: 'dev_blanky_service',
+      indexName: 'blanky_prod',
       largeConcentKey: 'englishText',
       isUpdate: true,
       data,

@@ -12,7 +12,7 @@ const searchClient = algoliasearch(
 })
 export class SearchService {
   index = {
-    dev_blanky_service: searchClient.initIndex('dev_blanky_service'),
+    blanky_prod: searchClient.initIndex('blanky_prod'),
   };
   constructor() {}
 }

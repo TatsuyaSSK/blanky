@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "blanky-2fc41"
+    "default": "blanky-2fc41",
+    "prod": "blanky-prod"
   }
 }

@@ -13,12 +13,13 @@ import { LoadingService } from 'src/app/services/loading.service';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  index: SearchIndex = this.searchService.index.dev_blanky_service;
+  index: SearchIndex = this.searchService.index.blanky_prod;
   result: {
     nbHits: number;
     hits: any[];
   };
   isQuery: boolean;
+  w;
 
   query = new FormControl('');
 
