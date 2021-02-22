@@ -31,9 +31,9 @@ export class PlansComponent implements OnInit {
 
   redirectToCheckout() {
     this.loadingService.isLoading = true;
-    this.stripeService.addCheckoutSession().then((ref) => {
-      ref.onSnapshot((snap) => {
-        const { error, sessionId } = snap.data();
+    this.stripeService.addCheckoutSession().then(async (ref) => {
+      await ref.onSnapshot(async (snap) => {
+        const { error, sessionId } = await snap.data();
         if (error) {
           alert(`エラーが発生しました: ${error.message}`);
         }
