@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
-import firebase from 'firebase/app';
-import 'firebase/functions';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +10,11 @@ import 'firebase/functions';
 export class StripeService {
   customerPortalUrl: string;
 
-  constructor(private db: AngularFirestore, private authService: AuthService) {}
+  constructor(
+    private db: AngularFirestore,
+    private authService: AuthService,
+    private afn: AngularFireFunctions
+  ) {}
 
   addCheckoutSession() {
     const docRef = this.db
@@ -39,11 +42,13 @@ export class StripeService {
   }
 
   async getCustomerPortalUrl() {
-    const functionRef = firebase
-      .app()
-      .functions('asia-northeast1')
-      .httpsCallable('ext-firestore-stripe-subscriptions-createPortalLink');
-    const { data } = await functionRef({ returnUrl: window.location.origin });
-    return data.url;
+    const functionRef = this.afn.httpsCallable(
+      'ext-firestore-stripe-subscriptions-createPortalLink'
+    );
+    functionRef({ returnUrl: window.location.origin }).subscribe((data) => {
+      if (data) {
+        return data.url;
+      }
+    });
   }
 }
