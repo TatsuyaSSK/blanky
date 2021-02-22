@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root',
